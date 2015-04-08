@@ -17,7 +17,7 @@ You must have at least 1GB of available (free) memory on your computer.  Before 
 
 1. Create a "home" directory for the guest vbox in a convenient subdirectory location.  Name it whatever you wish, but, herein, I will refer to it as "vagrant-ruby" :
     
-> mkdir vagrant-ruby
+        mkdir vagrant-ruby
 
 2. In order to build the guest vbox, you need three files from the "vagrant-ruby-git" github repository: the "Vagrantfile", and the two ".sh" files, "ruby221-inst.sh" and "rvm-inst.sh".  The two .sh files are BASH scripts which do provisioning of the guest vbox during its build, and, in addtion to the usual Vagrant Box configuration tasks, the Vagrantfile invokes the .sh provisioning files when necessary.
     
@@ -25,17 +25,17 @@ You must have at least 1GB of available (free) memory on your computer.  Before 
 
 3.  Now, make the guest vbox "home" directory your current working directory :
 
-> cd vagrant-ruby
+        cd vagrant-ruby
 
 4.  Enter the following command :
   
-> mkdir workspace
+        mkdir workspace
       
     A "vagrant-ruby/workspace/" subdirectory is created.
       
 5.  Enter the following command :
   
-> vagrant up
+        vagrant up
       
     The build starts.
 
@@ -43,7 +43,7 @@ Now wait...
 
 A very long list of text is output during the build process, beginning with :
   
-> "==> Bringing machine 'default' up with 'virtualbox' provider..."
+        "==        Bringing machine 'default' up with 'virtualbox' provider..."
      
 Depending on the speed of your computer and the speed of your Internet connection, the build will take eight to fifteen minutes or more, as the Ubuntu Server "base" image is downloaded, Ruby and the Gem sources are downloaded and compiled, and RVM and Git are downloaded and installed.
 
@@ -51,51 +51,51 @@ During that process, most of the informational text displayed is green in color,
 
 Typically, if the build fails, it often will stop with an obvious error message, but possibly not.  After the build finishes, you should scroll back through the terminal output and scrutinize it, because sometimes the build forges onward after an error.  On the other hand, beware of being falsely alarmed.  There are a number of _red_ messages which are not errors, they are informational only.  As an example, the _red_ text output,
 
-> "==> default: stdin: is not a tty"
+        "==        default: stdin: is not a tty"
     
 can be safely ignored.
   
 After the build completes successfully, the last build line of screen output reads :
   
-> "==> default: Setting up git (1:1.9.1-1ubuntu0.1) ..."
+        "==        default: Setting up git (1:1.9.1-1ubuntu0.1) ..."
   
 When the command prompt is subsequently displayed, enter the following command :
   
-> vagrant ssh
+        vagrant ssh
     
 After a few seconds, you will see an Ubuntu shell welcome screen, and a command prompt which reads :
     
-> vagrant@vagrant-ubuntu-trusty-64:~$
+        vagrant@vagrant-ubuntu-trusty-64:~$
         
 Enter the following commands, and note the associated results :
     
-> ruby --version
+        ruby --version
         
     Produces : ruby 2.2.1p85 (2015-02-26 revision 49769) [x86_64-linux]
-                
-> gem --version
+            
+        gem --version
       
     Produces : 2.4.6
-            
-> rvm --version
+        
+        rvm --version
         
     Produces : rvm 1.26.11 (latest) by Wayne E. Seguin...
-            
-> git --version
+        
+        git --version
         
     Produces : git version 1.9.1
-            
+        
 ## Using "vagrant-ruby-git"
 
 Not much can be said here about how to use Ruby, the Gems, RVM, Git, and the other usual suspects, such as the tools which come with Ubuntu.  Those subjects are better covered elsewhere.  But a few points unique to this particular project warrant some elaboration.
   
 Note that, above, you "went inside" the guest vbox using "vagrant ssh", to verify the success of the build and the versions of its components.  If you are not still there in your terminal, let's go back in there again, and do some exploring.  Starting from within the "vagrant-ruby" directory, in your regular host terminal shell, enter the command :
     
-> vagrant ssh
+        vagrant ssh
     
 This will open a terminal shell into the guest vbox.  Then, enter :
 
-> ls -l /
+        ls -l /
     
 In the resulting listing, notice the usual Ubuntu Server 14.04 root directory hierarchy, (in the guest vbox).  However, notice there are also two subdirectories not typically found in an Ubuntu root directory hierarchy.  One is named "/vagrant", the other is "/workspace".  They are discussed below.
 
@@ -103,7 +103,7 @@ In the resulting listing, notice the usual Ubuntu Server 14.04 root directory hi
 
 The guest vbox "/vagrant" subdirectory is sync'd by Vagrant to a directory you created on the host, the one named "vagrant-ruby".  The guest vbox "/vagrant" subdirectory and the host "vagrant-ruby" directory, for practical purposes, can be considered as being the same directory; you may consider them as "mapped into one-another".  Prove it to yourself by entering :
 
-> ls -l /vagrant
+        ls -l /vagrant
     
 Note that the Vagrantfile and .sh files, among others, are listed.
 
