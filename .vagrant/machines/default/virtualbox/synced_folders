@@ -1,0 +1,1 @@
+{"virtualbox":{"/vagrant":{"guestpath":"/vagrant","hostpath":"/media/esmer-data/share/work/common-workspace/vagrant-projects/ruby-devenv","disabled":false},"/workspace":{"guestpath":"/workspace","hostpath":"/media/esmer-data/share/work/common-workspace/vagrant-projects/ruby-devenv/workspace","disabled":false}}}
