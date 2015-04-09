@@ -1,5 +1,5 @@
 # vagrant-ruby-git
-#### A Vagrant Box containing Ubuntu Server 14.04, Ruby 2.2.1, Gems 4.2.1, RVM 1.26.11, and Git 1.9.1.
+#### A Vagrant Box containing Ubuntu Server 14.04, Ruby 2.2.1, Gems 2.4.6, RVM 1.26.11, and Git 1.9.1.
 
 This is a Vagrant Box, (https://www.vagrantup.com), intended for quick installation of a very basic Ruby development environment.  Due to its nature, it may be quickly installed, assuming pre-existing Vagrant/VirtualBox requirements have been met, and even more quickly intentionally disposed of if desired.  Because it can rebuilt quickly, if needed again, it is handy for transient/experimental work, which may require sacrificing the development environment while working, or simply as a way to quickly recover from unanticipated corruption of the development environment.
 
