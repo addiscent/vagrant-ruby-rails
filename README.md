@@ -1,10 +1,10 @@
 # vagrant-rails
 #### A (future) Vagrant Box containing Ubuntu Server 14.04, Ruby 2.2.1, Gems 2.4.6, Rails 4.2.1, RVM 1.26.11, and Git 1.9.1.
 
-### NOTE: This is a cloned project in transition.
+### NOTICE: This is a cloned project in transition.
 #### This project has NOT been "Railified" yet.  The documentation below has not been updated to include information about the pending Rails feature addition.
-####_Thank you for not using this project until further notice.
 #### If you are interested in alpha testing "vagrant-ruby-git", you may wish to go here, https://github.com/ckthomaston/vagrant-ruby-git  
+#### Thank you for not using this project until further notice.
 
 This is a Vagrant Box, (https://www.vagrantup.com), intended for quick installation of a very basic Ruby development environment.  Due to its nature, it may be quickly installed, assuming pre-existing Vagrant/VirtualBox requirements have been met, and even more quickly intentionally disposed of if desired.  Because it can rebuilt quickly, if needed again, it is handy for transient/experimental work, which may require sacrificing the development environment while working, or simply as a way to quickly recover from unanticipated corruption of the development environment.
 
