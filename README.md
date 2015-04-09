@@ -3,25 +3,25 @@
 
 This is a Vagrant Box, (https://www.vagrantup.com), intended for quick installation of a very basic Ruby development environment.  Due to its nature, it may be quickly installed, assuming pre-existing Vagrant/VirtualBox requirements have been met, and even more quickly intentionally disposed of if desired.  Because it can rebuilt quickly, if needed again, it is handy for transient/experimental work, which may require sacrificing the development environment while working, or simply as a way to quickly recover from unanticipated corruption of the development environment.
 
-This guest vbox is constructed using Vagrant, and contains, Ruby/Gems, RVM, and a few FOSS tools.  The virtual machine provider is VirtualBox.  Git is included as a convenience for quickly placing Ruby, etc, source into repositories, or for placing any modified guest vbox configuration/provisioning files into a repository of your own, so you may save your guest vbox configuration changes for later rebuilding.
+This guest vbox is constructed using Vagrant, and contains Ruby/Gems, RVM, and a few FOSS tools.  The virtual machine provider is VirtualBox.  Git is included as a convenience for quickly placing Ruby, etc, source into repositories, or for placing any modified guest vbox configuration/provisioning files into a repository of your own, so you may save your guest vbox configuration changes for later rebuilding.
   
 ### Requirements For Installation
 
 You must have at least 1GB of available (free) memory on your computer.  Before beginning installation, you must already have the following installed and properly configured :
   
-1. _Vagrant_
+##### _Vagrant_
 
-  "vagrant-ruby-git" is developed using Vagrant 1.7.2, (the most recent from https://www.vagrantup.com/downloads.html).  You may have success with earlier versions of Vagrant, but I have built/tested using only 1.7.2.  The machine used for development of this project is a generic AMD/Linux box running _Ubuntu Desktop 14.04 LTS_.  You are venturing into unexplored territory with this project if you build it on OS X or Windows.
+"vagrant-ruby-git" is developed using Vagrant 1.7.2, (the most recent from https://www.vagrantup.com/downloads.html).  You may have success with earlier versions of Vagrant, but I have built/tested using only 1.7.2.  The machine used for development of this project is a generic AMD/Linux box running _Ubuntu Desktop 14.04 LTS_.  You are venturing into unexplored territory with this project if you build it on OS X or Windows.
 
-2. _VirtualBox_
+##### _VirtualBox_
 
-  "vagrant-ruby-git" is tested using VirtualBox 4.3.10 as the provider, (a very slightly down-level version of the latest from https://www.virtualbox.org/wiki/Downloads).  You will probably have success with slightly earlier versions of VirtualBox, and the most recent stable version, but I have not tested those.
+"vagrant-ruby-git" is tested using VirtualBox 4.3.10 as the provider, (a very slightly down-level version of the latest from https://www.virtualbox.org/wiki/Downloads).  You will probably have success with slightly earlier versions of VirtualBox, and the most recent stable version, but I have not tested those.
 
 ### Installation
 
 #### Prepare For The Build
 
-1. Create a "home" directory for the guest vbox in a convenient subdirectory location.  Name it whatever you wish, but, herein, I will refer to it as "vagrant-ruby" :
+1. Create a "home" directory for the guest vbox in a convenient subdirectory location.  Name it whatever you wish, but, herein I will refer to it as "vagrant-ruby" :
     
         mkdir vagrant-ruby
 
@@ -97,9 +97,11 @@ Enter the following commands, and note the associated results :
         
 ### Using "vagrant-ruby-git"
 
-Not much can be said here about how to use Ruby, the Gems, RVM, Git, and the other usual suspects, such as the tools which come with Ubuntu.  Those subjects are better covered elsewhere.  But a few points unique to this particular project warrant some elaboration.
+Not much can be said here about how to use Ruby, the Gems, RVM, Git, and the other usual suspects, such as the tools which come with _Ubuntu_.  Those subjects are better covered elsewhere.  But a few points unique to this particular project warrant some elaboration.
   
-Note that, above, you "went inside" the guest vbox using "vagrant ssh", to verify the success of the build and the versions of its components.  If you are not still there in your terminal, let's go back in there again, and do some exploring.  Starting from within the "vagrant-ruby" directory, in your regular host terminal shell, enter the command :
+Note that, using the instructions above, you "went inside" the guest vbox using "vagrant ssh", to verify the success of the build and the versions of its components.  If you are not still there in your terminal, let's go back in there again, and do some exploring.
+
+Starting from within the "vagrant-ruby" directory, in your regular host terminal shell, enter the command :
     
         vagrant ssh
     
@@ -142,13 +144,13 @@ Note that the guest vbox's Vagrantfile and .sh provisioning BASH files, among ot
 
 You may therefore manage or edit those files from either "within" the guest vbox, in the "/vagrant" subdirectory, or from "outside" the guest vbox, in the "vagrant-ruby" subdirectory. You may also use that directory, or any of its subdirectories, to share files between the host file system, and the guest vbox file system.
   
-If desired, you can customize the configuration/operation of your guest vbox by modifying the Vagrantfile and .sh provisioning files, (you will need to rebuild the vagrant guest vbox image, see the Vagrant documentation).
+If desired, you can customize the configuration/operation of your guest vbox by modifying the Vagrantfile and .sh provisioning files, but, you will need to rebuild the vagrant guest vbox image, (see the Vagrant documentation).
 
-After doing that, if you wish to place those modified vagrant box configuration files into a git source repository of your own, the guest vbox's "/vagrant" directory is probably the best place to install a local git repository, ("git init"), for that purpose.  By the way, this is one of the advantages of having git already installed, (git was installed during the guest vbox build); git is ready to go, it can be executed from the "vagrant ssh" terminal immediately after the build.  Enter your git config info, such as your name and email address, (and remote repository URL, if desired), and git is ready for your use.
+After doing that, if you wish to place those modified vagrant box configuration files into a git source repository of your own, the guest vbox's "/vagrant" directory is probably the best place to install a local git repository, ("git init"), for that purpose.  By the way, this is one of the advantages of having git already installed, (git was installed during the guest vbox build).  Git is ready to go, it can be executed from the "vagrant ssh" terminal immediately after the build.  Enter your "git config..." info, such as your name and email address, (and remote repository URL, if desired), and git is ready for your use.
   
-The other subdirectory atypical to the guest vbox _Ubuntu_ root is "/workspace".  This subdirectory is also sync'd to the host; it is"mapped into" the other host subdirectory named "/workspace", which you created immediately before building the guest vbox.  This subdirectory is probably a good location for placing your Ruby et al project files, as they may be edited or managed either from "within", or "outside of", the guest vbox, as is your preference.  As with the "/vagrant" directory, a git repository may be placed in one or more subdirectories of "/workspace" as needed.
+The other subdirectory atypical to the guest vbox _Ubuntu_ file system root is "/workspace".  This subdirectory is also sync'd to the host.  It is"mapped into" the other host subdirectory named "/workspace", which you created immediately before building the guest vbox.  This subdirectory is probably a good location for placing your Ruby et al project files, as they may be edited or managed either from "within", or "outside of", the guest vbox.  As with the "/vagrant" directory, a git repository may be placed in one or more subdirectories of "/workspace" as needed.
 
-If this "/workspace" subdirectory is used for your Ruby or other project files, they won't be co-mingled with your guest vbox configuration files in "/vagrant".  Among other advantages, this simplifies the segregation of guest vbox configuration changes and Ruby project version control.
+If this "/workspace" subdirectory is used for your Ruby or other project files, they won't be co-mingled with your guest vbox configuration files in "/vagrant".  By segregating the two, version control management of guest vbox configuration changes and Ruby project changes is simplified.
   
 ### Product Pedigree
 
@@ -156,11 +158,11 @@ The software components installed by the provisioning scripts are noted below.  
 
 ##### Ubuntu Server 14.04 "base"
   
-The Ubuntu Server is an "official base" image from https://atlas.hashicorp.com/boxes/search.
+The _Ubuntu Server_ is an "official base" image from https://atlas.hashicorp.com/boxes/search.
         
 ##### Ruby 2.2.1, Gems 2.4.6
   
-Ruby and Gems are downloaded and compiled by RVM, using make sources from https://github.com/postmodern/ruby-install.
+Ruby and Gems are downloaded and compiled by RVM.  RVM compiles them using _make_ sources from https://github.com/postmodern/ruby-install.
         
 ##### RVM 1.26.11, (Ruby Version Manager).
   
@@ -168,14 +170,16 @@ RVM is installed using https://rvm.io/.
         
 ##### Git 1.9.1
   
-Git is installed using the official Canonical Ubuntu package repositories, "sudo apt-get install git".  
+Git is installed using the official _Canonical Ubuntu_ package repositories, "sudo apt-get install git".  
 
 ### Caveats
 
 ##### "works on my machine"
-This product, at this time, is _alpha_.  Extensive testing has not been done on its components.  Only its gross operation has been confirmed, in a limited operational environment.  Hardware and host OS environment testing has been limited to the single generic AMD/Ubuntu Linux box used for development.
+
+This product, at this time, is _alpha_.  Extensive testing has not been done on its components, only its gross operation has been confirmed .  Hardware and host OS environment testing has been limited to the single generic AMD/Ubuntu Linux box used for development.
 
 ##### The Provisioning Scripts Are Incomplete
+
 The provisioning BASH scripts build a working Vagrant box by downloading essential components/sources from the Internet.  The provisioning BASH scripts work, but, at this time they have _no_ error detection/handling.  If, as examples, a flaky Internet connection, or a lack of disk space, causes errors during the build, the provisioning scripts will _not_ handle these errors gracefully.
 
 ### Licensing And Disclaimers
