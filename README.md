@@ -11,7 +11,7 @@ You must have at least 1GB of available (free) memory on your computer.  Before 
   
 1. _Vagrant_
 
-  "vagrant-ruby-git" is developed using Vagrant 1.7.2, (the most recent from https://www.vagrantup.com/downloads.html).  You may have success with earlier versions of Vagrant, but I have built/tested using only 1.7.2.  The machine used for development of this project is a generic AMD/Linux box running Ubuntu Desktop 14.04 LTS.  You are venturing into unexplored territory with this project if you build it on OS X or Windows.
+  "vagrant-ruby-git" is developed using Vagrant 1.7.2, (the most recent from https://www.vagrantup.com/downloads.html).  You may have success with earlier versions of Vagrant, but I have built/tested using only 1.7.2.  The machine used for development of this project is a generic AMD/Linux box running _Ubuntu Desktop 14.04 LTS_.  You are venturing into unexplored territory with this project if you build it on OS X or Windows.
 
 2. _VirtualBox_
 
@@ -19,7 +19,7 @@ You must have at least 1GB of available (free) memory on your computer.  Before 
 
 ### Installation
 
-##### Prepare For The Build
+#### Prepare For The Build
 
 1. Create a "home" directory for the guest vbox in a convenient subdirectory location.  Name it whatever you wish, but, herein, I will refer to it as "vagrant-ruby" :
     
@@ -39,13 +39,13 @@ You must have at least 1GB of available (free) memory on your computer.  Before 
       
     A "vagrant-ruby/workspace/" subdirectory is created.
       
-##### Do The Build
+#### Do The Build
 
-5. Enter the following command :
+Enter the following command :
   
         vagrant up
       
-    The build starts.
+  The build starts.
 
 Now wait...
 
@@ -53,9 +53,9 @@ A very long list of text is output during the build process, beginning with :
   
         "==> Bringing machine 'default' up with 'virtualbox' provider..."
      
-Depending on the speed of your computer and the speed of your Internet connection, the build will take eight to fifteen minutes or more, as the Ubuntu Server "base" image is downloaded, Ruby and the Gem sources are downloaded and compiled, and RVM and Git are downloaded and installed.
+Depending on the speed of your computer and the speed of your Internet connection, the build will take eight to fifteen minutes or more, as the _Ubuntu Server_ "base" image is downloaded, Ruby and the Gem sources are downloaded and compiled, and RVM and Git are downloaded and installed.
 
-During that process, most of the informational text displayed is green in color, but, there will also be a _lot_ of red-color text output.  Seeing all that "blood" is somewhat alarming, but it is normal.  Also, the output of gpg and curl is _red_ and the formatting is very broken.  However, expected ugliness notwithstanding, keep an eye peeled for clues that the build may possibly have failed somehow because of a difference between the build environments of my computer and yours.
+During that process, most of the informational text displayed is green in color, but, there will also be a _lot_ of red-color text output.  Seeing all that "blood" is somewhat alarming, but it is normal.  Also, the text output of gpg and curl is _red_ and the formatting is very broken.  However, expected ugliness notwithstanding, keep an eye peeled for clues that the build may possibly have failed somehow because of a difference between the build environments of my computer and yours.
 
 Typically, if the build fails, it often will stop with an obvious error message, but possibly not.  After the build finishes, you should scroll back through the terminal output and scrutinize it, because sometimes the build forges onward after an error.  On the other hand, beware of being falsely alarmed.  There are a number of _red_ messages which are not errors, they are informational only.  As an example, the _red_ text output,
 
@@ -67,13 +67,13 @@ After the build completes successfully, the last build line of screen output rea
   
         "==> default: Setting up git (1:1.9.1-1ubuntu0.1) ..."
   
-##### Verify The Build
+#### Verify The Build
 
 When the command prompt is subsequently displayed, enter the following command :
   
         vagrant ssh
     
-After a few seconds, you will see an Ubuntu shell welcome screen, and a command prompt which reads :
+After a few seconds, you will see an _Ubuntu_ shell welcome screen, and a command prompt which reads :
     
         vagrant@vagrant-ubuntu-trusty-64:~$
         
@@ -148,7 +148,7 @@ After doing that, if you wish to place those modified vagrant box configuration 
   
 The other subdirectory atypical to the guest vbox _Ubuntu_ root is "/workspace".  This subdirectory is also sync'd to the host; it is"mapped into" the other host subdirectory named "/workspace", which you created immediately before building the guest vbox.  This subdirectory is probably a good location for placing your Ruby et al project files, as they may be edited or managed either from "within", or "outside of", the guest vbox, as is your preference.  As with the "/vagrant" directory, a git repository may be placed in one or more subdirectories of "/workspace" as needed.
 
-If this "/workspace" subdirectory is used for your Ruby or other project files, they won't be co-mingled with your guest vbox configuration files in "/vagrant".  Among other advantages, this simplifies the segregation of guest box configuration changes and Ruby project version control.
+If this "/workspace" subdirectory is used for your Ruby or other project files, they won't be co-mingled with your guest vbox configuration files in "/vagrant".  Among other advantages, this simplifies the segregation of guest vbox configuration changes and Ruby project version control.
   
 ### Product Pedigree
 
@@ -175,12 +175,12 @@ Git is installed using the official Canonical Ubuntu package repositories, "sudo
 ##### "works on my machine"
 This product, at this time, is _alpha_.  Extensive testing has not been done on its components.  Only its gross operation has been confirmed, in a limited operational environment.  Hardware and host OS environment testing has been limited to the single generic AMD/Ubuntu Linux box used for development.
 
-##### The Provisioning Scripts
+##### The Provisioning Scripts Are Incomplete
 The provisioning BASH scripts build a working Vagrant box by downloading essential components/sources from the Internet.  The provisioning BASH scripts work, but, at this time they have _no_ error detection/handling.  If, as examples, a flaky Internet connection, or a lack of disk space, causes errors during the build, the provisioning scripts will _not_ handle these errors gracefully.
 
 ### Licensing And Disclaimers
 
-_Use this product at your own risk. The author and any contributors are not responsible for adverse consequences caused by use of this product, even if it is used as designed/intended._
+_USE THIS PRODUCT AT YOUR OWN RISK. The author and any other contributors are not responsible for adverse consequences caused by use of this product, even if it is used as designed/intended._
 
 Please read the _MIT License_ included with this README file for important licensing information and disclaimers.
 
