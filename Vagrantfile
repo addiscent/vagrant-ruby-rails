@@ -69,7 +69,7 @@ Vagrant.configure(2) do |config|
 
         bash --login /vagrant/rvm-inst.sh
         bash --login /vagrant/ruby221-inst.sh
-#        bash --login /vagrant/rails421-inst.sh
+        bash --login /vagrant/rails421-inst.sh
         
         echo "################   apt-get install -y git    ###############"
         sudo apt-get install -y git
