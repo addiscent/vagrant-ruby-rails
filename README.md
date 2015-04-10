@@ -60,7 +60,7 @@ Enter the following command :
   
     - $ vagrant up
       
-  The build starts.
+The build starts.
 
 Now wait...
 
@@ -91,7 +91,7 @@ When the command prompt is subsequently displayed, enter the following command :
   
     - $ vagrant ssh
     
-After a few seconds, you see an _Ubuntu_ shell welcome screen, and a command prompt which reads :
+This will open an _ssh_ terminal shell into the guest vbox.  After a few seconds, you see an _Ubuntu_ shell welcome screen, and a command prompt which reads :
     
   vagrant@vagrant-ubuntu-trusty-64:~$
         
@@ -135,7 +135,7 @@ Enter the following commands.  Notice the components which have been installed, 
 
 Enter the following commands.  These commands build and execute a "basic" _Rails_ app named "myapp" :
     
-    - $ cd /workspace; mkdir myapp; cd myapp
+    - $ cd /workspace; mkdir myapp; cd myapp      # note semicolons
   
         Result : A command prompt in the terminal.  "myapp" is the current workingdirectory
 
@@ -143,7 +143,7 @@ Enter the following commands.  These commands build and execute a "basic" _Rails
   
         Result : Using /usr/local/rvm/gems/ruby-2.2.1 with gemset rails4.2.1
 
-    - $ rails new .   # note the dot
+    - $ rails new .   # note the dot, (current working directory)
   
         Result :
                   exist
@@ -197,29 +197,31 @@ Enter the following commands.  These commands build and execute a "basic" _Rails
   
         Result :
       
-                  => Booting WEBrick
+          => Booting WEBrick
                   
-                  => Rails 4.2.1 application starting in development on http://0.0.0.0:3000
+          => Rails 4.2.1 application starting in development on http://0.0.0.0:3000
                   
-                  => Run `rails server -h` for more startup options
+          => Run `rails server -h` for more startup options
                   
-                  => Ctrl-C to shutdown server
+          => Ctrl-C to shutdown server
                   
-                  [2015-04-10 02:36:11] INFO  WEBrick 1.3.1
+          [2015-04-10 02:36:11] INFO  WEBrick 1.3.1
                   
-                  [2015-04-10 02:36:11] INFO  ruby 2.2.1 (2015-02-26) [x86_64-linux]
+          [2015-04-10 02:36:11] INFO  ruby 2.2.1 (2015-02-26) [x86_64-linux]
                   
-                  [2015-04-10 02:36:11] INFO  WEBrick::HTTPServer#start: pid=11540 port=3000
+          [2015-04-10 02:36:11] INFO  WEBrick::HTTPServer#start: pid=11540 port=3000
 
-The built in WEBrick test server is now running.  Using a web browser on your host, examine the resulting test web page at :
+The built in WEBrick test server is now running.
 
-  http://localhost:3030
+Using a web browser on your host, examine the resulting test web page at :
+
+        http://localhost:3030
   
 The test web page shows "Welcome aboard. You’re riding Ruby on Rails!".
 
 You may now terminate execution of the _Rails_ WEBrick test server, by entering Ctrl-C in the guest vbox terminal.
 
-You are finished with preliminary verification of a successful build.  You may now remove the "myapp" scaffolding test program, if you have no other use for it, by removing its subdirectory.  As always, double-check your spelling when entering a command which contains "rm -rf ...".
+This ends preliminary verification of a successful build.  You may now remove the "myapp" scaffolding test program, if you have no other use for it.  If you wish to remove it, you may enter the following command.  (Always double-check your spelling when entering a command which contains "rm -rf ...").
 
     - $ cd ../; rm -rf /workspace/myapp     # skip this if you wish
   
@@ -231,20 +233,18 @@ You are finished with preliminary verification of a successful build.  You may n
 
 Not much can be said here about how to use _Ruby_, the _Gems_, _Rails_, _RVM_, _Git_, and the other usual suspects, such as the tools which come with _Ubuntu_.  Those subjects are better covered elsewhere.  But a few points unique to this particular project warrant some elaboration.
   
-Note that, using the instructions above, you ventured "inside" the guest vbox using "vagrant ssh", to verify the success of the build and the versions of its components.  If you are not still there in your terminal, let's go back in there again, and do some exploring.
+Using the instructions above, you ventured "inside" the guest vbox using "vagrant ssh", to verify the success of the build and the versions of its components.  If you are not still there in your terminal, let's go back in there again, and do some exploring.
 
 Starting from within the "vagrant-ruby" directory, in your regular host terminal shell, enter the command :
     
     - $ vagrant ssh
     
-This will open a terminal shell into the guest vbox.  Then, enter :
+This will open an _ssh_ terminal shell into the guest vbox.  Then, enter :
 
     - $ ls -l /
     
 In the resulting listing, notice the typical _Ubuntu Server 14.04_ root directory hierarchy, inside the guest vbox file system.
 
-        vagrant@vagrant-ubuntu-trusty-64:~$ ls -l /
-        
         total 92
         
         drwxr-xr-x  2 root    root     4096 Apr  6 20:06 bin
@@ -267,15 +267,15 @@ In the resulting listing, notice the typical _Ubuntu Server 14.04_ root director
         
         drwxrws---  1 vagrant vagrant  4096 Apr  8 11:03 workspace
         
-However, also notice there are two subdirectories not typically found in an _Ubuntu_ root directory hierarchy.  One is named "/vagrant", the other is "/workspace".  They are discussed below.
+However, also notice there are two subdirectories not typically found in an _Ubuntu Server_ root directory hierarchy.  One is named "/vagrant", the other is "/workspace".  They are discussed below.
 
 #### "/vagrant" and "/workspace"
 
-The guest vbox "/vagrant" subdirectory is sync'd by _Vagrant_ to a directory you created earlier on the host, the one named (herein) "vagrant-ruby".  The guest vbox "/vagrant" subdirectory and the host "vagrant-ruby" directory, for practical purposes, can be considered as being the same directory; they are effectively "mapped into one".  Prove it to yourself by entering :
+The guest vbox "/vagrant" subdirectory is sync'd by _Vagrant_ to a directory you created earlier on the host, the one (herein) named "vagrant-ruby".  The guest vbox "/vagrant" subdirectory and the host "vagrant-ruby" directory, for practical purposes, can be considered as being the same directory; they are effectively "both mapped-in to one".  Prove it to yourself by entering :
 
     - $ ls -l /vagrant
     
-Note that the guest vbox's Vagrantfile and .sh provisioning BASH files, among others, are listed.
+Note that the guest vbox's _Vagrantfile_ and _.sh_ provisioning _BASH_ files, among others, are listed.
 
         drwxrws--- 2 user group 4.0K Apr  7 22:21 workspace
         
@@ -283,36 +283,37 @@ Note that the guest vbox's Vagrantfile and .sh provisioning BASH files, among ot
         
         -rw-rw-r-- 1 user group  12K Apr  8 15:55 README.md
         
-        -rw-rw---- 1 user group  110 Apr  7 21:17 ruby221-inst.sh
+        -rw-rw---- 1 user group  110 Apr  7 21:17 ruby221-inst_.sh_
         
-        -rw-rw---- 1 user group  375 Apr  7 22:01 rvm-inst.sh
+        -rw-rw---- 1 user group  375 Apr  7 22:01 rvm-inst_.sh_
         
-        -rw-rw---- 1 user group 3.2K Apr  7 22:18 Vagrantfile
+        -rw-rw---- 1 user group 3.2K Apr  7 22:18 _Vagrantfile_
 
-You may therefore manage or edit those files from either "within" the guest vbox, (in the "/vagrant" subdirectory), or from "outside" the guest vbox, (in the "vagrant-ruby" subdirectory). You may also use that directory, or any of its subdirectories, to share files between the host file system, and the guest vbox file system.
+You may therefore manage or edit those files either from "within" the guest vbox, (in the "/vagrant" subdirectory), or from "outside" the guest vbox, (in the "vagrant-ruby" subdirectory).
   
-If desired, you can customize the configuration/operation of your guest vbox by modifying the Vagrantfile and .sh provisioning files.  Remember, some changes require completely rebuilding the guest vbox.  To rebuild the vagrant guest vbox image, you will need to do "vagrant destroy" and "vagrant up", after you customize these files, (see the _Vagrant_ documentation).  Beware.  If you do a complete rebuild, any changes made inside the guest vbox which have not been incorporated into the Vagrantfile and provisioning files will be lost, so before doing a "vagrant destroy", back up your work if necessary.
-
-After doing that, if you wish to place those modified _Vagrant Box_ configuration files into a _git_ source repository of your own, the guest vbox's "/vagrant" directory is probably the best place to install a local _git_ repository, ("git init"), for that purpose.  _Git_ is ready to be executed from the "vagrant ssh" shell immediately after guest vbox installation.  All you need to do is enter your "git config..." info, such as your name and email address, (and remote repository URL, if desired), and _git_ is ready for use.
+If desired, you may customize the configuration/operation of your guest vbox by modifying the _Vagrantfile_ and _.sh_ provisioning files.  If you wish to place those modified _Vagrant Box_ configuration files into a _git_ source repository of your own, the guest vbox's "/vagrant" directory is probably the best place to install a local _git_ repository, ("git init"), for that purpose.  _Git_ is ready to be executed from the "vagrant ssh" shell immediately after guest vbox installation.  All you need to do is enter your "git config..." info, such as your name and email address, (and remote repository URL, if desired), and _git_ is ready for use.
   
 The other subdirectory atypical to the guest vbox _Ubuntu_ file system root is "/workspace".  This subdirectory is also sync'd to the host.  It is"mapped into" the other host subdirectory named "/workspace", which you created immediately before building the guest vbox.  This subdirectory is probably a good location for placing your _Ruby/Rails_ et al project files, as they may be edited or managed either from "within", or "outside of", the guest vbox.  As with the "/vagrant" directory, a _git_ repository may be placed in one or more subdirectories of "/workspace" as needed.
 
 If this "/workspace" subdirectory is used for your _Ruby/Rails_ or other project files, they won't be co-mingled with your guest vbox configuration files in "/vagrant".  By segregating the two, version control management of guest vbox configuration changes and _Ruby_ project changes is simplified.
 
-Another advantage gained from placing your project files in the "/vagrant" and "/workspace" directories, ("outside of the box"), is they are not deleted by a "vagrant destroy" command.  This can be a very useful side effect.  If you have placed any of your non-disposable project files "inside the box" during development, executing "vagrant destroy" without first backing up your project files will probably ruin your day.  By the way, did I mention _git_ is already installed and ready to go immediately after the guest vbox finishes building?
+Another advantage gained from placing your project files in the "/vagrant" and "/workspace" directories, (which are actually "outside of the box"), is they are not deleted by a "vagrant destroy" command.  This is a very important system configuration advantage.  If you have placed any of your non-disposable project files "inside the box" during development, executing "vagrant destroy" without first backing up your project files will probably ruin your day.  By the way, did I mention _git_ is already installed and ready to go immediately after the guest vbox finishes building?
 
 #### Other Notes
+
 ##### Port Mapping
 
-Port mapping is an essential feature for resolving the problem of port number conflicts in a crowded system of server daemons, _Vagrant_ guest vboxes, Docker containers, etc.  The _Rails_ WEBrick server port default number is 3000.  The "vagrant-ruby-rails" Vagrantfile maps the guest vbox port number 3000 to the host's port number 3030.  The choice of port number 3030 is arbitrary.  If you wish to change this port mapping to a host number port which better suits your needs, you may do so by editing the Vagrantfile.  For more information, see the _Vagrant_ documentation about the "config.vm.network" directive.
+Port mapping is an essential feature for resolving the problem of port number conflicts in an over-crowded system of server daemons, _Vagrant_ guest vboxes, _Docker_ containers, etc.
+
+The _Rails_ WEBrick server port default number is 3000.  The "vagrant-ruby-rails" _Vagrantfile_ maps the guest vbox port number 3000 to the host's port number 3030.  The choice of port number 3030 is arbitrary.  If you wish to change this port mapping to a host number port which better suits your needs, you may do so by editing the _Vagrantfile_.  For more information, see the _Vagrant_ documentation about the "config.vm.network" directive.
 
 ##### Memory (RAM) Usage
 
-This guest vbox needs 1GB of memory during installation because it compiles componenet sources at that time.  However, after installation of this guest vbox, you may need less memory, (or more), while developing your projects.  If that is the case, you may use the Vagrantfile memory directive to change the amount of memory consumed by this guest vbox when it is loaded into memory.  For more information, see the _Vagrant_ documentation about the "vb.memory" directive.
+This guest vbox needs 1GB of memory during installation because it compiles componenet sources at that time.  However, after installation of this guest vbox, you may need less memory, (or more), while developing your projects.  If that is the case, you may use the _Vagrantfile_ memory directive to change the amount of memory allocated to this guest vbox when it is loaded into memory.  For more information, see the _Vagrant_ documentation about the "vb.memory" directive.
   
 ### Product Pedigree
 
-The software components installed by the provisioning scripts are noted below.  Their versions may be updated in the future, but their initial commit versions are :
+The software components installed by the provisioning scripts are noted below.  Their versions may be updated in the future.  Their initial commit versions are :
 
 ##### _Ubuntu Server_ 14.04 "base"
   
@@ -342,11 +343,11 @@ Nokigiri is installed by _gem_, "gem install nokogiri --no-document".
 
 ##### "works on my machine"
 
-This product, at this time, is in the _alpha_ stage of development.  Extensive testing has not been done on its components, only its gross operation has been confirmed .  Hardware and host OS environment testing has been limited to the single generic AMD/Ubuntu Linux box used for development.
+This product, at this time, is in the _alpha_ stage of development.  Extensive testing has not been done on its components, only its gross operation has been confirmed .  Hardware and host OS environment testing has been limited to the single generic _AMD/Ubuntu Linux_ box used for development.
 
 ##### The Provisioning Scripts Are Incomplete
 
-The provisioning BASH scripts build a working _Vagrant Box_ by downloading essential components/sources from the Internet.  The provisioning BASH scripts work, but, at this time they have _no_ error detection/handling.  If, as examples, a flaky Internet connection, or a lack of disk space, causes errors during the build, the provisioning scripts will _not_ handle these errors gracefully.
+The provisioning _BASH_ scripts build a working _Vagrant Box_ by downloading essential components/sources from the Internet.  The provisioning _BASH_ scripts install the components as described herein, but, at this time they have _no_ error detection/handling, per se.  If, as examples, a flaky Internet connection, or lack of disk space, causes errors during the build, the provisioning scripts will _not_ handle these errors gracefully.
 
 ### Licensing And Disclaimers
 
