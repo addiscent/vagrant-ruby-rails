@@ -18,17 +18,17 @@ The virtual machine "provider" in this guest vbox is _VirtualBox_.
 
 ###### Caveat :  The computer used for development of this project is a generic _AMD/Linux_ box running _Ubuntu Desktop 14.04 LTS_. If you install this guest vbox on _OS X_ or _Windows_, you are venturing into unexplored territory; installation may be successful, or it may fail.  Which of the two is unknown as of this writing.
 
-#### _Hardware_
+#### Hardware
 
-##### _Memory_
+##### Memory
 
 Your computer must have 1GB of available memory, (free RAM), to install this product, and to use it in its default memory configuration.  Your application may need more, or less, memory allocated to the guest vbox image at run-time.  See the "Other Notes" section in this document, below.
 
-##### _Storage Space_
+##### Storage Space
 
 Approximately 2.7GB of disk space is consumed by installation.  _VirtualBox_ will dynamically increase the size of the _Ubuntu Server_ "ubuntu/trusty64" virtual disk drive as you add new files into its file system.  The maximum virtual disk drive size of _Ubuntu Server_ "ubuntu/trusty64" is 40GB.
 
-#### _Software_
+#### Software
 
 Before beginning installation, you must already have the following installed and properly configured.
   
@@ -90,7 +90,7 @@ However, until the build stops, don't be unnecessarily alarmed.  There are a num
     
 can be safely ignored.
   
-After the build completes successfully, the last build line of screen output reads :
+After the build completes successfully, the last build message reads :
   
         "==> default: Setting up git (1:1.9.1-1ubuntu0.1) ..."
   
@@ -243,7 +243,7 @@ This ends preliminary verification of a successful build.  You may now remove th
 
 ### Using "vagrant-ruby-rails"
 
-Not much can be said here about how to use _Ruby_, the _Gems_, _Rails_, _RVM_, _Git_, and the other usual suspects, such as the tools which come with _Ubuntu_.  Those subjects are better covered elsewhere.  But a few points unique to this particular project warrant some elaboration.
+Not much can be said here about how to use _Ruby_, the _Gems_, _Rails_, _RVM_, _Git_, and the other usual suspects, such as the tools which come with _Ubuntu Server_.  Those subjects are better covered elsewhere.  But a few points unique to this particular project warrant some elaboration.
   
 Using the instructions above, you ventured "inside" the guest vbox, using "vagrant ssh" to verify the success of the build and the versions of its components.  If you are not still there in your terminal, let's go back in there again, and do some exploring.
 
@@ -311,17 +311,15 @@ If this "/workspace" subdirectory is used for your _Ruby/Rails_ sources or other
 
 It is important to clearly understand that the files in the "/vagrant" and "/workspace" directories _appear_ to be stored in those directories, but they are not.  While it is true that those files can be read-write accessed through those directories, those files do not actually _reside_ on the guest vbox file system.  The files actually reside on the _host_ file system.  Another way to think of those files is that they are accessed from "within" the guest vbox via file system links.
 
-This means that another advantage gained from placing your project files in the "/vagrant" and "/workspace" directories, instead of directly in the guest vbox file system, is that your files are not deleted by a "vagrant destroy" command.  This is a very important system configuration advantage.
+This means there is another advantage gained by storing your project files in the "/vagrant" and "/workspace" directories, instead of directly in the guest vbox file system.  That is, your files are not deleted by a "vagrant destroy" command.  This is a very important system configuration detail to understand.
 
-On the contrary, if you have stored any of your non-disposable project files "inside the box's" file system during development, then executing "vagrant destroy" without first backing up your project files will probably ruin your week.
+On the contrary, if you have stored any of your non-disposable project files "inside the box's" file system, then executing "vagrant destroy" without first backing up your project files will probably ruin your day.
 
 #### Other Notes
 
 ##### Port Mapping
 
-Port mapping is an essential feature for how to handle the problem of port number conflicts in an over-crowded system of server daemons, _Vagrant_ guest vboxes, _Docker_ containers, etc.
-
-The _Rails_ WEBrick server port default number is 3000.  The "vagrant-ruby-rails" _Vagrantfile_ maps the guest vbox port number 3000 to the host's port number 3030.  The choice of port number 3030 is arbitrary.  If you wish to change this port mapping to a host number port which better suits your needs, you may do so by editing the _Vagrantfile_.  For more information, see the _Vagrant_ documentation about the "config.vm.network" directive.
+The _Rails_ WEBrick server port default number is 3000.  The "vagrant-ruby-rails" _Vagrantfile_ maps the guest vbox port number 3000 to host port number 3030.  The choice of port number 3030 is arbitrary.  If you wish to change this port mapping to a host number port which better suits your needs, you may do so by editing the _Vagrantfile_.  For more information, see the _Vagrant_ documentation about the "config.vm.network" directive.
 
 ##### Memory (RAM) Usage
 
@@ -351,9 +349,9 @@ _Git_ is installed using the official _Canonical Ubuntu_ package repositories, "
   
 _Node.js_ is installed using the official _Canonical Ubuntu_ package repositories, "sudo apt-get install -y nodejs".
 
-##### Nokogiri 1.6.6.2
+##### _Nokogiri_ 1.6.6.2
   
-Nokigiri is installed by _Gem_, "gem install nokogiri --no-document".
+_Nokigiri_ is installed by _Gem_, "gem install nokogiri --no-document".
 
 ### Caveats
 
