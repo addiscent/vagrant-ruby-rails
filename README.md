@@ -38,7 +38,7 @@ In the following sections, a terminal command prompt is indicated by the symbol 
 
 1. Create a "home" directory for the guest vbox in a convenient subdirectory location.  Name it whatever you wish, but, herein I will refer to it as "vagrant-ruby" :
     
-+$ mkdir vagrant-ruby
+. . $ mkdir vagrant-ruby
 
 2. Download a zip file containing the files from the github repository page, https://github.com/ckthomaston/vagrant-ruby-rails.
 
@@ -46,11 +46,11 @@ In the following sections, a terminal command prompt is indicated by the symbol 
 
 3. Make the guest vbox "home" directory your current working directory :
 
-+$ cd vagrant-ruby
+. . $ cd vagrant-ruby
 
 4. Enter the following command :
   
-+$ mkdir workspace
+. . $ mkdir workspace
       
     A "vagrant-ruby/workspace/" subdirectory is created.
       
@@ -58,7 +58,7 @@ In the following sections, a terminal command prompt is indicated by the symbol 
 
 Enter the following command :
   
-+$ vagrant up
+. . $ vagrant up
       
   The build starts.
 
@@ -89,7 +89,7 @@ After the build completes successfully, the last build line of screen output rea
 
 When the command prompt is subsequently displayed, enter the following command :
   
-+$ vagrant ssh
+. . $ vagrant ssh
     
 After a few seconds, you see an _Ubuntu_ shell welcome screen, and a command prompt which reads :
     
@@ -97,21 +97,21 @@ After a few seconds, you see an _Ubuntu_ shell welcome screen, and a command pro
         
 Enter the following commands.  Notice the components which have been installed, and their associated version numbers :
     
-+$ ruby --version         # verifies ruby installed
+. . $ ruby --version         # verifies ruby installed
         
         Result :
         
           ruby 2.2.1p85 (2015-02-26 revision 49769) [x86_64-linux]
             
-+$ gem --version          # version of gems
+. . $ gem --version          # version of gems
       
         Result : 2.4.6
         
-+$ rvm --version          # verifies rvm installed
+. . $ rvm --version          # verifies rvm installed
         
         Result shown : rvm 1.26.11 (latest) by Wayne E. Seguin...
         
-+$ rvm gemset list        # lists ruby versions and gem sets managed by rvm
+. . $ rvm gemset list        # lists ruby versions and gem sets managed by rvm
       
         Result :
         
@@ -123,11 +123,11 @@ Enter the following commands.  Notice the components which have been installed, 
               
               => rails4.2.1
         
-+$ rails --version        # verifies rails installed
+. . $ rails --version        # verifies rails installed
       
         Result : 4.2.1
         
-+$ git --version          # verifies git installed
+. . $ git --version          # verifies git installed
         
         Result : git version 1.9.1
         
@@ -135,15 +135,15 @@ Enter the following commands.  Notice the components which have been installed, 
 
 Enter the following commands.  These commands build and execute a "basic" _Rails_ app named "myapp" :
     
-+$ cd /workspace; mkdir myapp; cd myapp
+. . $ cd /workspace; mkdir myapp; cd myapp
   
         Result : A command prompt in the terminal.  "myapp" is the current workingdirectory
 
-+$ rvm use ruby-2.2.1@rails4.2.1
+. . $ rvm use ruby-2.2.1@rails4.2.1
   
         Result : Using /usr/local/rvm/gems/ruby-2.2.1 with gemset rails4.2.1
 
-+$ rails new .   # note the dot
+. . $ rails new .   # note the dot
   
         Result :
                   exist
@@ -170,7 +170,7 @@ Enter the following commands.  These commands build and execute a "basic" _Rails
                   
                   * bin/rails: spring inserted
 
-+$ ls -l
+. . $ ls -l
   
         Result :
                   total 100
@@ -193,7 +193,7 @@ Enter the following commands.  These commands build and execute a "basic" _Rails
                   
                   drwxrws--- 1 vagrant vagrant 4096 Apr 10 02:14 vendor
 
-+$ rails s -b 0.0.0.0   # 0.0.0.0 specification required for vagrant box
+. . $ rails s -b 0.0.0.0   # 0.0.0.0 specification required for vagrant box
   
         Result :
       
@@ -221,7 +221,7 @@ You may now terminate execution of the _Rails_ WEBrick test server, by entering 
 
 You are finished with preliminary verification of a successful build.  You may now remove the "myapp" scaffolding test program, if you have no other use for it, by removing its subdirectory.  As always, double-check your spelling when entering a command which contains "rm -rf ...".
 
-+$ cd ../; rm -rf /workspace/myapp     # skip this if you wish
+. . $ cd ../; rm -rf /workspace/myapp     # skip this if you wish
   
         Result :
         
@@ -235,11 +235,11 @@ Note that, using the instructions above, you ventured "inside" the guest vbox us
 
 Starting from within the "vagrant-ruby" directory, in your regular host terminal shell, enter the command :
     
-+$ vagrant ssh
+. . $ vagrant ssh
     
 This will open a terminal shell into the guest vbox.  Then, enter :
 
-+$ ls -l /
+. . $ ls -l /
     
 In the resulting listing, notice the typical _Ubuntu Server 14.04_ root directory hierarchy, inside the guest vbox file system.
 
@@ -273,7 +273,7 @@ However, also notice there are two subdirectories not typically found in an _Ubu
 
 The guest vbox "/vagrant" subdirectory is sync'd by _Vagrant_ to a directory you created earlier on the host, the one named (herein) "vagrant-ruby".  The guest vbox "/vagrant" subdirectory and the host "vagrant-ruby" directory, for practical purposes, can be considered as being the same directory; they are effectively "mapped into one".  Prove it to yourself by entering :
 
-+$ ls -l /vagrant
+. . $ ls -l /vagrant
     
 Note that the guest vbox's Vagrantfile and .sh provisioning BASH files, among others, are listed.
 
