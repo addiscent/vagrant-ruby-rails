@@ -4,7 +4,7 @@
 
 ##### Containing Ubuntu Server 14.04, Ruby 2.2.1, Gems 2.4.6, Rails 4.2.1, RVM 1.26.11, Git 1.9.1, and Node.js 0.10.25.
 
-This is a _Vagrant Box_, (https://www.vagrantup.com), intended for quick installation of a very basic _Ruby On Rails_ development environment.  Assuming _Vagrant_ and _VirtualBox_ are already installed on your host computer, (instructions not provided here), this _Vagrant Box_ may be quickly installed, intentionally "destroyed", (if desired), and quickly reinstalled.  Because it can be rebuilt quickly if necessary, this _Vagrant Box_ may be handy for transient/experimental work, (perhaps due to a need for a sacrifial development environment), or simply as a way to quickly recover from unanticipated corruption of a long-term development environment.  It also allows easy reproduction and distribution of exact duplicates of a development environment shared among multiple project members.
+This is a _Vagrant Box_, (https://www.vagrantup.com), intended for quick installation of a very basic _Ruby On Rails_ development environment.  Assuming _Vagrant_ and _VirtualBox_ are already installed on your host computer, (instructions not provided here), this _Vagrant Box_ may be quickly installed, intentionally "destroyed", (if desired), and quickly reinstalled.  Because it can be rebuilt quickly if necessary, this _Vagrant Box_ may be handy for transient/experimental work, (perhaps due to a need for a sacrificial development environment), or simply as a way to quickly recover from unanticipated corruption of a long-term development environment.  It also allows easy reproduction and distribution of exact duplicates of a development environment shared among multiple project members.
 
 _Git_ is included as a convenience, for quickly placing _Ruby/Rails_ files or other sources into repositories.  You may also wish to customize this guest vbox's configuration and provisioning files, allowing you to easily recreate your custom guest vbox environment in the future.  In that case, _Git_ is useful for managing versions for yourself, or for sharing your customized guest vbox with others, using an online _Git_ repository.
 
@@ -351,7 +351,7 @@ _Node.js_ is installed using the official _Canonical Ubuntu_ package repositorie
 
 ##### _Nokogiri_ 1.6.6.2
   
-_Nokigiri_ is installed by _Gem_, "gem install nokogiri --no-document".
+_Nokogiri_ is installed by _Gem_, "gem install nokogiri --no-document".
 
 ### Caveats
 
@@ -365,7 +365,7 @@ The provisioning _BASH_ scripts build a working _Vagrant Box_ by downloading ess
 
 ### Licensing And Disclaimers
 
-_USE THIS PRODUCT AT YOUR OWN RISK. The author and any other contributors are not responsible for adverse consequences caused by use of this product, even if it is used as designed or as implied by any description, herein or elswhere._
+_USE THIS PRODUCT AT YOUR OWN RISK. The author and any other contributors are not responsible for adverse consequences caused by use of this product, even if it is used as designed or as implied by any description, herein or elsewhere._
 
 Please read the _MIT License_ included with this README file for important licensing information and disclaimers.
 
