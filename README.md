@@ -3,7 +3,7 @@
 
 ### NOTICE: This is a cloned project in transition.
 #### This project has NOT been "Railified" yet.  The documentation below has not been updated to include information about the pending Rails feature addition.
-#### If you are interested in alpha testing "vagrant-ruby-git", you may wish to go here, https://github.com/ckthomaston/vagrant-ruby-git  
+#### If you are interested in _alpha_ testing "vagrant-ruby-git", you may wish to go here, https://github.com/ckthomaston/vagrant-ruby-git.
 #### Thank you for not using this project until further notice.
 
 This is a Vagrant Box, (https://www.vagrantup.com), intended for quick installation of a very basic Ruby development environment.  Due to its nature, it may be quickly installed, assuming pre-existing Vagrant/VirtualBox requirements have been met, and even more quickly intentionally disposed of if desired.  Because it can rebuilt quickly, if needed again, it is handy for transient/experimental work, which may require sacrificing the development environment while working, or simply as a way to quickly recover from unanticipated corruption of the development environment.
@@ -73,6 +73,7 @@ After the build completes successfully, the last build line of screen output rea
         "==> default: Setting up git (1:1.9.1-1ubuntu0.1) ..."
   
 #### Verify The Build
+##### Verify The Toolset Has Properly Installed
 
 When the command prompt is subsequently displayed, enter the following command :
   
@@ -82,24 +83,97 @@ After a few seconds, you will see an _Ubuntu_ shell welcome screen, and a comman
     
         vagrant@vagrant-ubuntu-trusty-64:~$
         
-Enter the following commands, and note the associated results :
+Enter the following commands, and note the associated compenents have been installed.  Also, notice their version numbers :
     
-        ruby --version
+  ruby --version
         
-    Produces : ruby 2.2.1p85 (2015-02-26 revision 49769) [x86_64-linux]
+      Produces => ruby 2.2.1p85 (2015-02-26 revision 49769) [x86_64-linux]
             
-        gem --version
+  gem --version
       
-    Produces : 2.4.6
+      Produces => 2.4.6
         
-        rvm --version
+  rvm gemset list
+      
+      Produces => gemsets for ruby-2.2.1 (found in /usr/local/rvm/gems/ruby-2.2.1)
+                    (default)
+                    global
+                    => rails4.2.1
         
-    Produces : rvm 1.26.11 (latest) by Wayne E. Seguin...
+  rails --version
+      
+      Produces => 4.2.1
         
-        git --version
+  rvm --version
         
-    Produces : git version 1.9.1
+      Produces => rvm 1.26.11 (latest) by Wayne E. Seguin...
         
+  git --version
+        
+      Produces => git version 1.9.1
+        
+##### Construct And Test A Minimal App Which Confirms Working Rails Scaffolding
+
+Enter the following commands, and note that the commands build and successfully execute a "basic" Rails app named "myapp" :
+    
+  cd /workspace; mkdir myapp; cd myapp
+  
+      Produces => a command prompt in the terminal, in the myapp subdirectory
+
+  rvm use ruby-2.2.1@rails4.2.1
+  
+      Produces => Using /usr/local/rvm/gems/ruby-2.2.1 with gemset rails4.2.1
+
+  rails new .   # note the dot
+  
+      Produces => exist  
+                  create  README.rdoc
+                  create  Rakefile
+                  create  config.ru
+                  create  .gitignore
+                      .
+                      .
+                      .
+                  Use `bundle show [gemname]` to see where a bundled gem is installed.
+                           run  bundle exec spring binstub --all
+                  * bin/rake: spring inserted
+                  * bin/rails: spring inserted
+
+  ls -l
+  
+      Produces => total 100
+                  drwxrws--- 1 vagrant vagrant 4096 Apr 10 02:14 app
+                  drwxrws--- 1 vagrant vagrant 4096 Apr 10 02:14 bin
+                  drwxrws--- 1 vagrant vagrant 4096 Apr 10 02:14 config
+                      .
+                      .
+                      .
+                  drwxrws--- 1 vagrant vagrant 4096 Apr 10 02:14 test
+                  drwxrws--- 1 vagrant vagrant 4096 Apr 10 02:14 tmp
+                  drwxrws--- 1 vagrant vagrant 4096 Apr 10 02:14 vendor
+
+  rails s -b 0.0.0.0
+  
+      Produces => => Booting WEBrick
+                  => Rails 4.2.1 application starting in development on http://0.0.0.0:3000
+                  => Run `rails server -h` for more startup options
+                  => Ctrl-C to shutdown server
+                  [2015-04-10 02:36:11] INFO  WEBrick 1.3.1
+                  [2015-04-10 02:36:11] INFO  ruby 2.2.1 (2015-02-26) [x86_64-linux]
+                  [2015-04-10 02:36:11] INFO  WEBrick::HTTPServer#start: pid=11540 port=3000
+
+The built-n WEBrick test server is now running.  Using a web browser, examine the test web page at :
+
+  http://localhost:3030
+  
+The webpage shows "Welcome aboard. You’re riding Ruby on Rails!".  You may now terminate the Rails WEBrick test server, by entering control-C in the guest vbox terminal.
+
+You are now finished with preliminary verification of a successful build.  If you have no other use for it, you may now remove the "myapp" scaffolding test program by removing its subdirectory.  As always, double-check your spelling when doing a command which contains "rm -rf ...".
+
+  rm -rf /workspace/myapp
+  
+      Produces =>
+
 ### Using "vagrant-ruby-git"
 
 Not much can be said here about how to use Ruby, the Gems, RVM, Git, and the other usual suspects, such as the tools which come with _Ubuntu_.  Those subjects are better covered elsewhere.  But a few points unique to this particular project warrant some elaboration.
@@ -156,6 +230,12 @@ After doing that, if you wish to place those modified vagrant box configuration 
 The other subdirectory atypical to the guest vbox _Ubuntu_ file system root is "/workspace".  This subdirectory is also sync'd to the host.  It is"mapped into" the other host subdirectory named "/workspace", which you created immediately before building the guest vbox.  This subdirectory is probably a good location for placing your Ruby et al project files, as they may be edited or managed either from "within", or "outside of", the guest vbox.  As with the "/vagrant" directory, a git repository may be placed in one or more subdirectories of "/workspace" as needed.
 
 If this "/workspace" subdirectory is used for your Ruby or other project files, they won't be co-mingled with your guest vbox configuration files in "/vagrant".  By segregating the two, version control management of guest vbox configuration changes and Ruby project changes is simplified.
+
+#### Other Notes
+##### Port Mapping
+
+Port mapping is a feature which may be used to resolve port number conflicts in a crowded system of server daemons, Vagrant guest vboxes, Docker containers, etc.  The Rails WEBrick server port default is number 3000.  In this implementation of "vagrant-ruby-git", Vagrant's guest vbox port number 3000 is mapped to the host's port number 3030, by using a directive in the Vagrantfile.  The host's port number 3030 was arbitrarily chosen as the target for re-mapping the WEBrick server's port.  If you wish to change this port mapping to a host number port which better suits your needs, you may do so by editing the Vagrantfile.
+
   
 ### Product Pedigree
 

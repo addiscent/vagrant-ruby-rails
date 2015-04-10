@@ -21,8 +21,8 @@ Vagrant.configure(2) do |config|
 
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
-  # accessing "localhost:3333" will access port 3000 on the guest machine.
-  # config.vm.network "forwarded_port", guest: 3000, host: 3333 
+  # accessing "localhost:3030" will access port 3000 on the guest machine.
+    config.vm.network "forwarded_port", guest: 3000, host: 3030 
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
@@ -66,11 +66,10 @@ Vagrant.configure(2) do |config|
   # documentation for more information about their specific syntax and use.
     config.vm.provision "shell", inline: <<-SHELL
         sudo apt-get update
-        # sudo apt-get install -y vim
-        # sudo apt-get install curl
 
         bash --login /vagrant/rvm-inst.sh
         bash --login /vagrant/ruby221-inst.sh
+#        bash --login /vagrant/rails421-inst.sh
         
         echo "################   apt-get install -y git    ###############"
         sudo apt-get install -y git
