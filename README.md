@@ -10,28 +10,28 @@ Because it can be rebuilt quickly if necessary, this _Vagrant Box_ may be handy 
 
 It also allows easy reproduction and distribution of exact duplicates of a development environment shared among multiple project members.
 
-_Git_ is convenient for placing _Ruby/Rails_ files or other sources into repositories.  If you customize this guest-vbox's configuration and provisioning files, saving them in a _Git_ repository will allow you to recreate your custom guest-vbox environment in the future.  Or, using an online _Git_ repository, you can easily share your customized "vagrant-ruby-rails" box with users.
+_Git_ is used for committing _Ruby/Rails_ files or other sources into repositories.  If you customize the configuration and provisioning files of this "vagrant-ruby-rails" _Vagrant Box_, saving them in a _Git_ repository will allow you to recreate your custom "vagrant-ruby-rails" _Vagrant Box_ environment in the future.  Or, using an online _Git_ repository, you can easily share your customized "vagrant-ruby-rails" _Vagrant Box_ with other users.
 
-#### Overview Of Installation And Use
+## Overview Of Installation And Use
 
 To install "vagrant-ruby-rails", your computer needs :
 
 1. An Internet connection
 2. 1GB of available memory (free RAM) - After installation, you may increase or decrease the amount of memory allocated
 3. 3GB of disk storage - Your long term disk storage space requirement will be determined by your application.
-4. Your computer must have an operating system installed which supports _Vagrant_ and _VirtualBox_.
+4. _Vagrant_ and _VirtualBox_ - Your computer must have an operating system installed which supports _Vagrant_ and _VirtualBox_.
 5. A previously installed terminal emulation program
 
-A quick introduction to the most essential Vagrant commands :
+Here is a quick introduction to the most essential Vagrant commands :
 
-1. vagrant up - creates a new _Vagrant Box_, directed by the _Vagrantfile_. Also "restarts" an existing _Vagrant Box_.
-2. vagrant ssh - opens an ssh session with the _Vagrant Box_, allowing its system administration.
-3. vagrant halt - stops an executing _Vagrant Box_.  "vagrant up" restarts a halted _Vagrant Box_.
-4. vagrant destroy - halts an executing _Vagrant Box_, and removes its files from disk storage.  When done, the _Vagrant Box_ and all files which it contained have been permanently deleted.
+1. "vagrant up" - creates a new _Vagrant Box_, directed by the _Vagrantfile_. Also "restarts" an existing _Vagrant Box_.
+2. "vagrant ssh" - opens an ssh session with the _Vagrant Box_, allowing its system administration.
+3. "vagrant halt" - stops an executing _Vagrant Box_.  "vagrant up" restarts a halted _Vagrant Box_.
+4. "vagrant destroy" - halts an executing _Vagrant Box_, and removes its files from disk storage.  When done, the _Vagrant Box_ and all files which it contained have been permanently deleted.
 
-Quick definition of terms : A "host" is a computer on which you will be installing "vagrant-ruby-rails".  The "vagrant-ruby-rails" _Vagrant Box_ is a "guest" installed on your "host" computer.  Because the "vagrant-ruby-rails" guest is a _Vagrant Box_, it will be referred to using the less cumbersome term "guest-vbox".
+Definition of a few terms : A "host" is a computer on which you will be installing "vagrant-ruby-rails".  The "vagrant-ruby-rails" _Vagrant Box_ is a "guest" installed on your "host" computer.  Because the "vagrant-ruby-rails" guest is a _Vagrant Box_, it is referred to below as a "guest-vbox".
 
-If you are very unfamiliar with the products in this document, you may wish to visit online references before proceeding.  Some relevant sources are listed in a section near the end of this document, titled "The Short List Of Online References".
+If you are very unfamiliar with the products in this document, you may wish to visit online references before proceeding.  Some relevant online resources are listed in a section near the end of this document, titled "The Short List Of Online References".
 
 ## Software Installation
 
@@ -59,13 +59,11 @@ Bring up a terminal in your host, and follow the instructions below.  In the fol
   
     - $ mkdir workspace
       
-    A ".../vagrant-ruby/workspace/" subdirectory is created.
-    
-    The ".../vagrant-ruby/workspace/" subdirectory will be used later.
+    A subdirectory named ".../vagrant-ruby/workspace/" is created.  It will be used later.
       
 #### Do The Build
 
-The work done by the provisioning scripts during this initial "vagrant up" build will not be done the next time "vagrant up" is executed, because provisioning is a one-time process.  Subsequent "vagrant up" operations result in a loaded and operational system in approximately one minute or less.  Depending on the speed of your computer and the speed of your Internet connection, the build done by the first "vagrant up" will take eight to fifteen minutes or more.
+The "vagrant up" command introduced below will provision, (create and initialize), a "vagrant-ruby-rails" _Vagrant Box_.  Depending on the speed of your computer and the speed of your Internet connection, the build done by this "vagrant up" will take eight to fifteen minutes or more.  However, the work done by the provisioning scripts during this initial "vagrant up" build will not be invoked the next time "vagrant up" is executed, because provisioning is a one-time process.  Therefore, subsequent "vagrant up" operations will result in a loaded guest-vbox within a minute or less.
 
 Enter the following command :
   
@@ -137,11 +135,12 @@ Enter the following commands.  Notice the components which have been installed, 
         
 ##### Construct And Test A Minimal App Which Confirms Working _Rails_ Scaffolding
 
-Ensure you are still in the "vagrant ssh" session in your terminal program.  Enter the following commands.  These commands build and serve an example _Rails_ app named "myapp" :
+Ensure you are still in the "vagrant ssh" session in your terminal program.  Enter the following commands.  These commands build and serve a web page from an example _Rails_ app named "myapp" :
     
     - $ cd /vagrant/workspace; mkdir myapp; cd myapp      # note semicolons
   
         Result :
+        
           A command prompt in the terminal.  "myapp" is the cwd.
 
     - $ rvm use ruby-2.2.1@rails4.2.1
@@ -163,10 +162,6 @@ Ensure you are still in the "vagrant ssh" session in your terminal program.  Ent
                   
                       .
                       
-                      .
-                      
-                      .
-                      
                   Use `bundle show [gemname]` to see where a bundled gem is installed.
                   
                            run  bundle exec spring binstub --all
@@ -186,10 +181,6 @@ Ensure you are still in the "vagrant ssh" session in your terminal program.  Ent
                   
                   drwxrws--- 1 vagrant vagrant 4096 Apr 10 02:14 config
                   
-                      .
-                      
-                      .
-                      
                       .
                       
                   drwxrws--- 1 vagrant vagrant 4096 Apr 10 02:14 test
@@ -228,7 +219,7 @@ The test web page shows :
 
 You may now terminate execution of the _Rails_ WEBrick test server, by entering _Ctrl-C_ in the guest-vbox terminal.
 
-This ends preliminary verification of a successful build.  You may now remove the "myapp" scaffolding test program, if you have no other use for it.  If you wish to remove it, you may enter the following command.  (Always double-check your spelling when entering a command which contains "rm -rf ...").
+This ends preliminary verification of a successful build.  You may now remove the "myapp" scaffolding example app, if you have no other use for it.  If you wish to remove it, you may enter the following command.  (Always double-check your spelling when entering a command which contains "rm -rf ...").
 
     - $ cd ../; rm -rf /vagrant/workspace/myapp     # be careful with rm -rf
   
@@ -236,7 +227,7 @@ This ends preliminary verification of a successful build.  You may now remove th
         
           "myapp" deleted.  The current working directory is now /workspace.
 
-### Using "vagrant-ruby-rails"
+## Using "vagrant-ruby-rails"
 
 While following the instructions above, you ventured "inside" the guest-vbox, using "vagrant ssh" to verify the success of the build and the versions of its components.  Let's go back in there again, and do some exploring.
 
@@ -248,7 +239,7 @@ This will open an _ssh_ terminal shell on the guest-vbox.  Next, enter :
 
     - $ ls -l /     # list the contents of the root directory
     
-In the listing which results, exists a typical _Ubuntu Server 14.04_ root directory hierarchy, inside the guest-vbox file system.
+The listing which results shows a typical _Ubuntu Server 14.04_ root directory hierarchy, inside the guest-vbox file system.
 
         total 92
         
@@ -258,10 +249,6 @@ In the listing which results, exists a typical _Ubuntu Server 14.04_ root direct
         
         drwxr-xr-x 13 root    root     3880 Apr  8 20:43 dev
         
-                .
-                
-                .
-                
                 .
                 
         drwxrws---  1 vagrant vagrant  4096 Apr  8 08:34 vagrant
@@ -274,7 +261,7 @@ Notice there is one subdirectory not typically found in an _Ubuntu Server_ root 
 
 #### Guest VBox "/vagrant/" Subdirectory
 
-The guest-vbox "/vagrant/" subdirectory is created by _Vagrant_ during construction of the guest-vbox, and sync'd by _VirtualBox_ to a directory you created earlier on the host filesystem, the one (herein) named ".../vagrant-ruby/".  Due to the _VirtualBox_ sync, the guest-vbox "/vagrant/" subdirectory and the host ".../vagrant-ruby/" directory are effectively "mapped into" a single directory.  Observe that for yourself by entering the following command :
+The guest-vbox "/vagrant/" subdirectory is created by _Vagrant_ during construction of the guest-vbox, and sync'd by _VirtualBox_ to a directory you created earlier on the host filesystem, the one (herein) named ".../vagrant-ruby/".  Due to the _VirtualBox_ sync, the guest-vbox "/vagrant/" subdirectory and the host ".../vagrant-ruby/" directory are effectively "mapped into" a single directory.  You may observe evidence of that by entering the following command :
 
     - $ ls -l /vagrant    # list the contents of the guest-vbox /vagrant dir
     
@@ -294,21 +281,21 @@ Note that the guest-vbox's _Vagrantfile_ and _.sh_ provisioning _BASH_ files, am
 
 These are the same files you placed into the ".../vagrant-ruby/" subdirectory after you created it, when beginning installation of this product. 
 
-You may therefore manage or edit those files either from "within" the guest-vbox, (in the guest-vbox "/vagrant/" subdirectory), or from "outside" the guest-vbox, (in the host ".../vagrant-ruby/" subdirectory).
+You may manage or edit those files either from "within" the guest-vbox, (in the guest-vbox "/vagrant/" subdirectory), or from "outside" the guest-vbox, (in the host ".../vagrant-ruby/" subdirectory).
   
-It is important to clearly understand that the files which _appear_ in the guest-vbox "/vagrant/" subdirectory may have _create-read-write-delete_ operations done on them from that guest-vbox directory, but those files are not _stored_ in the guest-vbox filesystem.  The files reside on the _host_ filesystem.
+It is important to clearly understand that the files which _appear_ in the guest-vbox "/vagrant/" subdirectory can have _create-read-write-delete_ operations done on them from that guest-vbox directory, but those files are not _stored_ in the guest-vbox filesystem.  The files reside on the _host_ filesystem.
 
 That implementation detail means that files which you place in the guest-vbox "/vagrant" subdirectory tree are _not_ deleted by a "vagrant destroy" command.  But, conversely, any files stored "inside the guest-vbox" filesystem are _irretrievably deleted_ by a "vagrant destroy" command.
 
 #### Guest VBox ".../workspace/" Subdirectory
 
-Recall that earlier you created a subdirectory in ".../vagrant-ruby/" named "workspace/".  You created it while in a terminal session on the host computer, on its filesystem.  You later created a _Rails_ app in the guest-vbox's "/vagrant/workspace" subdirectory, and served its web pages from the WEBrick server, while in a "vagrant ssh" session.
+Recall that earlier you created a subdirectory in ".../vagrant-ruby/" named "workspace/".  You created it while in a terminal session on the host computer, on its filesystem.  Later, while in a "vagrant ssh" session, you created a _Rails_ app in the guest-vbox's "/vagrant/workspace" subdirectory, and served its web pages from the WEBrick server.
 
 That is an example of how a subdirectory heirarchy in ".../vagrant-ruby/" can be used from "within" the guest-vbox filesystem.
   
 Here is a _Git_-related tip : At some point you may wish to commit your guest-vbox _Vagrantfile_ and _.sh_ provisioning files to a _Git_ repository.  However, you probably do _not_ want the files in "workspace" or equivalent subdirectories of ".../vagrant-ruby/" to be co-mingled with commits of your guest-vbox configuration/provisioning files.  You may prevent that by adding "workspace" into your ".../vagrant-ruby/.gitignore" file.
 
-#### Other Notes
+## Other Notes
 
 ##### Port Mapping
 
@@ -320,15 +307,15 @@ This guest-vbox needs 1GB of memory allocated to it during installation, because
 
 ##### Disk Drive Storage Usage
 
-_VirtualBox_ will dynamically increase the size of the _Ubuntu Server_ virtual disk drive as you add new files into its file system.  The maximum virtual disk drive size of _Ubuntu Server_ is 40GB.  For more information, see the "Other Notes" section in this document, below.
+_VirtualBox_ will dynamically increase the size of the _Ubuntu Server_ virtual disk drive as you add new files into its file system.  The maximum virtual disk drive size of _Ubuntu Server_ is 40GB.
 
 ##### Provisioning
 
-Provisioning is a process during which all of the components needed for the "vagrant-ruby-rails" guest-vbox are downloaded, built, and stored on your hard drive.  Vagrant executes this time-consumng provisioning of the guest-vbox the first time "vagrant up" is executed.  Subsequent "vagrant up" commands will load the previously built image from your local hard drive, rather than redundantly provisioning the guest-vbox.  Unless you "vagrant destroy" your already-provisioned guest-vbox image, or command-force "vagrant up" to re-provision the guest-vbox, subsequent "vagrant up" commands will skip the provisioning stage, and instead will load the previously provisioned image, usually in one minute or less.
+Provisioning is a process during which all of the components needed for the "vagrant-ruby-rails" guest-vbox are downloaded, built, and stored on your hard drive.  Vagrant executes this time-consumng provisioning of the guest-vbox the first time "vagrant up" is executed.  Subsequent "vagrant up" commands will load the previously built image from your local hard drive, rather than redundantly provisioning the guest-vbox.  Unless you "vagrant destroy" your already-provisioned guest-vbox image, or command-force "vagrant up" to re-provision the guest-vbox, subsequent "vagrant up" commands will skip the provisioning step, and instead will load the previously provisioned image, usually in one minute or less.
 
 The provisioning files, _rvm-inst.sh_, _ruby221-inst.sh_, and _rails421-inst.sh_, are _BASH_ scripts.  By understanding how the _Vagrantfile_ and the _.sh_ provisioning files work together, and by editing the contents of those files, you can easily change the (known) versions of the components installed, or add/remove components, as desired.  Please see the _Vagrant_ documentation for more information about provisioning _Vagrant Boxes_.
   
-#### Installing _VirtualBox_ 
+##### Installing _VirtualBox_ 
 
 "vagrant-ruby-rails" uses _VirtualBox_ as the provider.  The specific version used as the provider on my development computer is _VirtualBox_ 4.3.10 (AMD64).  You will probably have success with slightly earlier versions of _VirtualBox_, or the most recent stable version, but I have not tested those.
 
@@ -336,7 +323,7 @@ _VirtualBox_ installation is typically not difficult for those persons familiar 
 
 For _VirtualBox_ installation instructions, please visit the _VirtualBox_ web site : https://www.virtualbox.org/
 
-#### Installing _Vagrant_
+##### Installing _Vagrant_
 
 The "vagrant-ruby-rails" guest-vbox is built and managed by _Vagrant_.  The specific version used as the provider on my development computer is _Vagrant_ 1.7.2 (DEB-64bit), which is the most recent version.  You may have success with earlier versions of _Vagrant_, but I have built/tested using only 1.7.2.
 
@@ -344,7 +331,7 @@ _Vagrant_ installation is typically not difficult for those persons familiar wit
 
 For _Vagrant_ installation instructions, please visit the _Vagrant_ web site : http://docs.vagrantup.com/v2/installation/index.html
 
-#### The Short List Of Online References
+## The Short List Of Online References
 
 If you are unfamiliar with the products in this document, you may wish to inform yourself about them.  The references "short list" is :
 
@@ -398,7 +385,7 @@ The provisioning _BASH_ scripts build a working _Vagrant Box_ by downloading ess
 
 ### Licensing And Disclaimers
 
-_USE THIS PRODUCT AT YOUR OWN RISK. The author and any other contributors are not responsible or liable for adverse consequences caused by use of this product, even if it is used as designed or as implied by any description herein or elsewhere._
+_USE THIS PRODUCT AT YOUR OWN RISK. The author and any other contributors are not responsible or liable for adverse consequences caused by use of this product, even if it is used as designed, or as implied by any description, herein or elsewhere._
 
 Please read the _MIT License_ included with this README file for important licensing information and disclaimers.
 
