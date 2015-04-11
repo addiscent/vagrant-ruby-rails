@@ -20,19 +20,27 @@ If you are very unfamiliar with the software products listed at the top of this 
 
 To install _vagrant-ruby-rails_, your computer needs :
 
-* An Internet connection
-* 1GB of available memory (free RAM) - After installation, you may increase or decrease the amount of _host_ memory allocated to the _guest-vbox_.
-* 3GB of storage (minimum) - Your long term _host_ storage space requirement will be determined by your application.
-* _Vagrant_ and _VirtualBox_ - Your _host_ computer must have an operating system installed which supports _Vagrant_ and _VirtualBox_, and those must be installed prior to installing _vagrant-ruby-rails_.
-* A terminal program - previously installed on the _host_.
-* A zip file extraction program - previously installed on the _host_.
+  * An Internet connection
 
+  * 1GB of available memory (free RAM) - After installation, you may increase or decrease the amount of _host_ memory allocated to the _guest-vbox_.
+
+  * 3GB of storage (minimum) - Your long term _host_ storage space requirement will be determined by your application.
+
+  * _Vagrant_ and _VirtualBox_ - Your _host_ computer must have an operating system installed which supports _Vagrant_ and _VirtualBox_, and those must be installed prior to installing _vagrant-ruby-rails_.
+
+  * A terminal program - previously installed on the _host_.
+
+  * A zip file extraction program - previously installed on the _host_.
+  
 This set of commands is the minimum required to control a _Vagrant Box_:
 
-* "vagrant up" - creates a new _Vagrant Box_ on the _host_, directed by the _Vagrantfile_. Also restarts a previously halted _Vagrant Box_.
-* "vagrant ssh" - opens an _ssh_ terminal session with the _Vagrant Box_, allowing its system administration.
-* "vagrant halt" - stops execution of a running _Vagrant Box_.
-* "vagrant destroy" - halts an executing _Vagrant Box_, and then removes its image files, including its file system, from _host_ storage.  When this command finishes executing, the _Vagrant Box_ and its contents have been permanently deleted from _host_ file system storage.
+  * "vagrant up" - creates a new _Vagrant Box_ on the _host_, directed by the _Vagrantfile_. Also restarts a previously halted _Vagrant Box_.
+
+  * "vagrant ssh" - opens an _ssh_ terminal session with the _Vagrant Box_, allowing its system administration.
+
+  * "vagrant halt" - stops execution of a running _Vagrant Box_.
+
+  * "vagrant destroy" - halts an executing _Vagrant Box_, and then removes its image files, including its file system, from _host_ storage.  When this command finishes executing, the _Vagrant Box_ and its contents have been permanently deleted from _host_ file system storage.
 
 ## Software Installation
 
@@ -40,7 +48,7 @@ Before beginning installation of _vagrant-ruby-rails_, you must already have _Va
 
 ### Installation of _vagrant-ruby-rails_
 
-#### Prepare For The Build
+#### Prepare For _The Build_
 
 Bring up a terminal on your _host_, and follow the instructions below.  In the following sections, a terminal command prompt is indicated by the symbol $.
 
@@ -56,7 +64,7 @@ Download a zip file containing the _vagrant-ruby-rails_ product files from the _
 
 Extract those files into this subdirectory, (".../vagrant-ruby/").  During extraction, ensure the same file and subdirectory hierarchy as in the repository is retained.
 
-After extraction, verify the contents of the directory.  Enter the following command :
+After extraction, verify the contents of ".../vagrant-ruby/".  Enter the following command :
   
 > $ ls -al
       
@@ -76,19 +84,19 @@ Enter the following command :
       
 A subdirectory named ".../vagrant-ruby/workspace/" is created.  It will be used later.
       
-#### Do The Build
+#### Do _The Build_
 
 The "vagrant up" command executed below will provision, (create and initialize), a _vagrant-ruby-rails_ _Vagrant Box_, and start it.  Depending on the speed of your computer and the speed of your Internet connection, the build done by this "vagrant up" will take approximately eight minutes or more, but should take no more than twenty minutes.
 
 The work done by the provisioning scripts during this initial "vagrant up" build will not be invoked the next time "vagrant up" is executed, because provisioning is a one-time process.  Therefore, subsequent "vagrant up" operations will result in a running _guest-vbox_ within approximately one minute.
 
+There is a large amount of message output during provisioning.  The vast majority of messages log the construction of software which is being placed _into the_  _vagrant-ruby-rails_ _Vagrant Box_.  _Ruby, Gems, Rails, RVM, Git, and Node.js_ are _not_ being placed directly onto your _host_, they are being placed into the _guest-vbox_.  When provisioning of the _guest-vbox_ finishes,  the _guest-vbox_ is then stored onto the _host_.
+
 Enter the following command :
   
 > $ vagrant up
       
-The build starts.
-
-Now wait...
+_The Build_ starts.
 
 A very long list of text messages is output during the build process, beginning with :
   
@@ -96,11 +104,13 @@ A very long list of text messages is output during the build process, beginning 
               .
               .
      
-The build tools will output numerous status/progress messages.  Most of the informational messages displayed are green in color, but, there will also be a _lot_ of red-color text output.  The output messages of _gpg_ and _curl_ are _red_ and the formatting is very _broken_.
+The build tools will output numerous status/progress messages.  If you are using a terminal which is configured to show colored text, most of the informational messages displayed are green in color, but, there will also be a _lot_ of red-color text output.  The output messages of _gpg_ and _curl_ are _red_ and the formatting is very _broken_.
 
-Unfortunately, this messy output makes it difficult to spot a genuine error which should be investigated, if one occurs.  Typically, if the build fails, it will often stop with an obvious error message, but in some unusual cases it does not.
+Unfortunately, this messy output makes it difficult to spot any genuine error, if one occurs.  Typically, if the build fails, it will often stop with an obvious error message, but in some unusual cases it does not.
 
 After the build finishes, you should scroll back through the terminal output messages and scrutinize them for messages which _may_ indicate an obvious error.
+
+If the build does not complete successfully, see the section at near the end of this document titled, "If _The Build_ Fails".
 
 After the build completes successfully, the last build message reads :
   
@@ -108,7 +118,7 @@ After the build completes successfully, the last build message reads :
               .
         "==> default: Setting up git (1:1.9.1-1ubuntu0.1) ..."
   
-#### Verify The Build
+#### Verify _The Build_
 
 ##### Verify The Toolset Has Properly Installed
 
@@ -330,6 +340,12 @@ Note that if you change your provisioning files, your installed _guest-vbox_ ima
 
 Please see the _Vagrant_ documentation for more information about provisioning _Vagrant Boxes_.
   
+##### Miscellany About _The Build_
+
+_Ruby_ was built without documentation, to build it run:
+
+        rvm docs generate-ri
+  
 ##### Installing _Vagrant_
 
 The _vagrant-ruby-rails_ _guest-vbox_ is built and managed by _Vagrant_.  The specific version of _Vagrant_ used on the _vagrant-ruby-rails_ project development computer is _Vagrant_ 1.7.2 (DEB-64bit), which is the most recent version.  You may have success with earlier versions of _Vagrant_, but the _vagrant-ruby-rails_ project has been built/tested using only 1.7.2.
@@ -345,6 +361,42 @@ _vagrant-ruby-rails_ uses _VirtualBox_ as the provider.  The specific version of
 _VirtualBox_ installation is typically not difficult for those persons familiar with installation of software on their operating system.
 
 For _VirtualBox_ installation instructions, please visit the _VirtualBox_ web site : https://www.virtualbox.org/
+
+##### If _The Build_ Fails
+
+First of all, be sure to save the terminal output of the "vagrant up" provisioning build for future reference.  This is usually easily done by backscrolling the terminal, highlighting the terminal text, and then doing copy-paste into a file, and saving it.
+
+Only you have access to the necessary configuration information about your _host_, so the only practical advice which can be offered here is :
+
+###### Divide And Conquer
+
+Identify the "milestone" at which the provisioning error occurred.  Start with the terminal output produced by the "vagrant up" command.  Use a keen eye, sometimes the clue you need is well hidden by the messy terminal output of "vagrant up" provisioning.
+
+Important milestones can be identified in the terminal messages at intervals during provisioning.  Search your saved "vagrant up" terminal output file for a string of ##########, e.g. :
+
+        echo "################   Getting RVM PGP key   ###############"
+                                      .
+        echo "################   Installing RVM stable   ###############"
+                                      .
+        echo "################   Installing Ruby 2.2.1    ###############"
+                                      .
+                                      .
+
+It may be obvious from the terminal messages what is wrong, after you identify approximately what the provisioning script was attempting.
+
+If it's not obvious, then inspect the _.sh_ provisioning files, _rvm-inst.sh_, _ruby221-inst.sh_, and _rails421-inst.sh_.  Find the corresponding milestone locations in the script file.  Narrow down which milestone succeeded, and which did not.  Once you find the most likely script commands, investigate as to why that particular command may have failed.
+
+Its possible for a build to fail for quite a few reasons.  Some are :
+
+* Unreliable Internet connection.
+
+* One or more web sites which provide source code, or build scripts, have become unavailable, (broken links, or temporarily offline). 
+
+* Missing, misconfigured, or incompatible versions of _Vagrant_ or _VirtualBox_.
+
+After you have found something suspicious, addressed it, either by changing some configuration of your _host_, (most likely to resolve the problem), or by modifying the provisioning script, (see broken links, above).
+
+Then, try again to install this software.  Before doing so, be aware that the _.sh_ provisioning scripts in this version of _vagrant-ruby-rails_ are not idempotent, meaning, the likelyhood of success is low if you simply re-run "vagrant up" after installation failed, even after you have implemented a certain fix for an error.  Unless you know otherwise, your best course of action is to execute "vagrant destroy", and then execute "vagrant up" again.
 
 ## The Short List Of Online References
 
