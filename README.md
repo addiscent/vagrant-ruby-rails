@@ -20,7 +20,7 @@ The gem _Nokogiri_, a dependency of many other commonly used gems, is compiled a
 
 #### Overview Of Installation And Use
 
-To install this software, your computer needs an Internet connection, and your computer has to meet the hardware minimum requirements of 1GB of available memory (Free RAM), and 3GB of disk storage.  Your application may need more, or less, memory allocated to the guest vbox image at run-time, but 1GB will install "vagrant-ruby-rails", and be plenty for evaluation of its capabilities and usefulness.  Your long term storage requirment will also be determined by your application.  _VirtualBox_ will dynamically increase the size of the _Ubuntu Server_ virtual disk drive as you add new files into its file system.  The maximum virtual disk drive size of _Ubuntu Server_ is 40GB.  For more information, see the "Other Notes" section in this document, below.
+To install this software, your computer needs an Internet connection, and your computer has to meet the hardware minimum requirements of 1GB of available memory (Free RAM), and 3GB of disk storage.  Your specific application may require more, or less, memory allocated to the guest vbox image at run-time, but 1GB will install "vagrant-ruby-rails", and be adequate for evaluation of its capabilities.  Your long term disk storage space requirement will also be determined by your application.  _VirtualBox_ will dynamically increase the size of the _Ubuntu Server_ virtual disk drive as you add new files into its file system.  The maximum virtual disk drive size of _Ubuntu Server_ is 40GB.  For more information, see the "Other Notes" section in this document, below.
 
 Your computer mist have an operating system installed which supports _Vagrant_ and _VirtualBox_.
 
