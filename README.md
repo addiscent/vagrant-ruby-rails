@@ -302,11 +302,9 @@ In the listing which results, notice a typical _Ubuntu Server 14.04_ root direct
         
         lrwxrwxrwx  1 root    root       30 Apr  6 20:05 vmlinuz...
         
-        drwxrws---  1 vagrant vagrant  4096 Apr  8 11:03 workspace
-        
-However, also notice there are two subdirectories not typically found in an _Ubuntu Server_ root directory hierarchy.  One is named "/vagrant/", the other is "/workspace/".  They are discussed below.
+However, also notice there is one subdirectory not typically found in an _Ubuntu Server_ root directory hierarchy.  It is named "/vagrant/".  It is discussed below.
 
-#### Guest VBox"/vagrant/" and "/workspace/" Subdirectories
+#### Guest VBox"/vagrant/" Subdirectory
 
 The guest vbox "/vagrant/" subdirectory is sync'd by _VirtualBox_ to a directory you created earlier on the host filesystem, the one (herein) named ".../vagrant-ruby/".  The guest vbox "/vagrant/" subdirectory and the host ".../vagrant-ruby/" directory can be considered as being the same directory; they are effectively "mapped into" a single directory.  See that for yourself by entering the following command :
 
@@ -314,8 +312,6 @@ The guest vbox "/vagrant/" subdirectory is sync'd by _VirtualBox_ to a directory
     
 Note that the guest vbox's _Vagrantfile_ and _.sh_ provisioning _BASH_ files, among others, are listed.
 
-        drwxrws--- 2 ckt admins 4.0K Apr  9 21:25 workspace
-        
         -rw-rw-r-- 1 ckt admins 1.1K Apr  9 16:19 LICENSE
         
         -rw-rw-r-- 1 ckt admins 1.1K Apr  9 18:46 rails421-inst.sh
@@ -331,16 +327,14 @@ Note that the guest vbox's _Vagrantfile_ and _.sh_ provisioning _BASH_ files, am
 You may therefore manage or edit those files either from "within" the guest vbox, (in the guest vbox "/vagrant/" subdirectory), or from "outside" the guest vbox, (in the host ".../vagrant-ruby/" subdirectory).
   
 By the way, if you desire to do so, you may customize the configuration/operation of your guest vbox by modifying the _Vagrantfile_ and _.sh_ provisioning files.  After having done so, if you wish to place those modified _Vagrant Box_ configuration files into a _Git_ source repository of your own, the host's ".../vagrant-ruby/" directory is probably the best place to install a local _Git_ repository, (do a "git init"), for that purpose.  _Git_ is ready to be executed from the "vagrant ssh" shell immediately after guest vbox installation.  All you need to do is enter your "git config..." info, such as your name and email address, (and remote repository URL, if desired), and _Git_ is ready for use.
+
+Recall that earlier you created a subdirectory in "" named "workspace/".  "workspace" is an example of how a subdirectory heirarchy can be used to edit or otherwise manage your project's files from "within" the guest vbox filesystem, or "outside" of the guest vbox by using the host's filesytem.
   
-The other subdirectory atypical to the guest vbox _Ubuntu Server_ file system root is the guest vbox subdirectory "/workspace/".  This guest vbox subdirectory is also sync'd to a host subdirectory.  It is "mapped into" the host subdirectory named ".../vagrant-ruby/workspace/", which you created immediately before building the guest vbox.  This subdirectory is probably a good location for storing your _Ruby/Rails_ et al project files, as they may be edited or managed either from "within", or "outside of", the guest vbox.  As with the host's ".../vagrant-ruby/" directory, a _Git_ repository may be placed in one or more subdirectories of ".../vagrant-ruby/workspace/" as needed. And, again, as with the ".../vagrant-ruby/" directory, you can operate on ".../vagrant-ruby/workspace/" files from "inside the box", via the "/workspace/" subdirectory.
+If you want your guest vbox _Vagrantfile_ and _.sh_ files committed in a _Git_ repository, you probably want to exclude "workspace" or other subdirectories of ".../vagrant-ruby/" from your _Git_ commits, because if your projects are non-trivial you probably don't want your project's files co-mingled with your commits of your ".../vagrant-ruby/" _Vagrantfile_ and _.sh_ files.  Do that by adding "workspace" into your ".../vagrant-ruby/.gitignore" file.  On the other hand, on very small simple projects, committing both project and guest vbox configuration files changes together in a single commit may be exactly what you want, because the changes to both the project and its development environment configuration files are "in sync".
 
-BTW, don't forget to exclude "workspace" from your _Git_ commits of ".../vagrant-ruby/" _Vagrantfile_ and _.sh_ files.  Do this by adding "workspace" into your ".../vagrant-ruby/.gitignore" file.
+It is important to clearly understand that the files which _appear_ in the guest vbox "/vagrant/" subdirectory is _accessible_ from that directory, but those files are not actually _stored_ on the guest vbox filesystem.  The files actually reside on the _host_ filesystem.  Another way to think of those files is that they are accessed from "within" the guest vbox via file system links.
 
-It is important to clearly understand that the files which _appear_ in the guest vbox "/vagrant/" and "/workspace/" subdirectories are _accessible_ from those directories, but the files are not actually _stored_ on the guest vbox filesystem.  The files actually reside on the _host_ filesystem.  Another way to think of those files is that they are accessed from "within" the guest vbox via file system links.
-
-This means there is another advantage gained by storing your project files in the ".../vagrant-ruby/" and ".../vagrant-ruby/workspace/" directories, instead of directly in the guest vbox file system, in some arbitrary subdirectory of the guest vbox root.  That advantage is, your files are not deleted by a "vagrant destroy" command.  This is a very important system configuration detail to understand.
-
-If you have stored any of your non-disposable project files "inside the box's" filesystem, then executing "vagrant destroy" without first backing up your project files will probably ruin your day.
+An important advantage to that implementation detail is that your files are not deleted by a "vagrant destroy" command.  This is a very important system configuration detail to understand.  If you have stored any of your non-disposable project files "inside the box's" filesystem, (in the guest vbox filesystem), then executing "vagrant destroy" without first backing up your project files will probably ruin your day.
 
 #### Other Notes
 
