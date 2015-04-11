@@ -1,4 +1,4 @@
-# vagrant-ruby-rails
+# _vagrant-ruby-rails_
 
 ### A Ruby On Rails Development Environment (Basic)
 
@@ -6,68 +6,86 @@
 
 This is a _Vagrant Box_, (https://www.vagrantup.com), intended for quick installation of a very basic _Ruby On Rails_ development environment.  Assuming _Vagrant_ and _VirtualBox_ are already installed on your _host_ computer, this _Vagrant Box_ can be easily and quickly installed, and removed.
 
-Because it can be rebuilt quickly if necessary, this _Vagrant Box_ may be handy for transient work, such as tutorials, or experimental work which may sacrifice the development environment.
+Because it can be quickly built or rebuilt if necessary, this _Vagrant Box_ may be handy for transient work environments, such as tutorials, or experimental work which may sacrifice the development environment.
 
 It also allows easy reproduction and distribution of exact duplicates of a development environment shared among multiple project members.
 
-_Git_ and can be used for committing _Ruby/Rails_ files or other sources into repositories.  If you customize the configuration and provisioning files of this _vagrant-ruby-rails_ _Vagrant Box_, saving them in a _Git_ repository will allow you to recreate your custom _vagrant-ruby-rails_ _Vagrant Box_ environment in the future.  Or, using an online _Git_ repository, you can easily share your customized _vagrant-ruby-rails_ _Vagrant Box_ with other users.
+_Git_ can be used for committing _Ruby/Rails_ project files or other sources into repositories.  If you customize the configuration and provisioning files of this _vagrant-ruby-rails_ _Vagrant Box_, saving them in a _Git_ repository will allow you to recreate your custom _vagrant-ruby-rails_ _Vagrant Box_ environment in the future.  Or, using an online _Git_ repository, you can easily share your customized _vagrant-ruby-rails_ _Vagrant Box_ with other users.
+
+Definitions : A "_host_" is a computer on which you will be installing _vagrant-ruby-rails_.  The _vagrant-ruby-rails_ _Vagrant Box_ is a "guest" installed on your "_host_" computer.  Because the _vagrant-ruby-rails_ guest is a _Vagrant Box_, it is referred to in this document as a "_guest-vbox_".
+
+If you are very unfamiliar with the products in this document, you may wish to visit online references before proceeding.  Some relevant online resources are listed in a section near the end of this document, titled "The Short List Of Online References".
 
 ## Overview Of Installation And Use
 
 To install _vagrant-ruby-rails_, your computer needs :
 
 1. An Internet connection
-2. 1GB of available memory (free RAM) - After installation, you may increase or decrease the amount of memory allocated.
-3. 3GB of storage (minimum) - Your long term storage space requirement will be determined by your application.
-4. _Vagrant_ and _VirtualBox_ - Your computer must have an operating system installed which supports _Vagrant_ and _VirtualBox_, and those must be installed before installing _vagrant-ruby-rails_.
-5. A previously installed terminal emulation program.
+2. 1GB of available memory (free RAM) - After installation, you may increase or decrease the amount of _host_ memory allocated to the _guest-vbox_.
+3. 3GB of storage (minimum) - Your long term _host_ storage space requirement will be determined by your application.
+4. _Vagrant_ and _VirtualBox_ - Your _host_ computer must have an operating system installed which supports _Vagrant_ and _VirtualBox_, and those must be installed prior to installing _vagrant-ruby-rails_.
+5. A terminal program - previously installed on the _host_.
+6. A zip file extraction program - previously installed on the _host_.
 
-Meet the most essential Vagrant commands you will need to use :
+This set of commands is the minimum required to control a _Vagrant Box_:
 
-1. "vagrant up" - creates a new _Vagrant Box_, directed by the _Vagrantfile_. Also "restarts" a previously halted_Vagrant Box_.
+1. "vagrant up" - creates a new _Vagrant Box_ on the _host_, directed by the _Vagrantfile_. Also restarts a previously halted_Vagrant Box_.
 2. "vagrant ssh" - opens an _ssh_ session with the _Vagrant Box_, allowing its system administration.
 3. "vagrant halt" - stops execution of a running _Vagrant Box_.
-4. "vagrant destroy" - halts an executing _Vagrant Box_, and then removes its files from storage.  When this command finishes executing, the _Vagrant Box_ and its contents have been permanently deleted from storage.
-
-Definitions : A "_host_" is a computer on which you will be installing _vagrant-ruby-rails_.  The _vagrant-ruby-rails_ _Vagrant Box_ is a "guest" installed on your "_host_" computer.  Because the _vagrant-ruby-rails_ guest is a _Vagrant Box_, it is referred to in this document as a "_guest-vbox_".
-
-If you are very unfamiliar with the products in this document, you may wish to visit online references before proceeding.  Some relevant online resources are listed in a section near the end of this document, titled "The Short List Of Online References".
+4. "vagrant destroy" - halts an executing _Vagrant Box_, and then removes its image files, including its file system, from storage.  When this command finishes executing, the _Vagrant Box_ and its contents have been permanently deleted from _host_ file system storage.
 
 ## Software Installation
 
 Before beginning installation of _vagrant-ruby-rails_, you must already have _Vagrant_ and _VirtualBox_ installed and properly configured.  For more information, see the section near the end of this document, titled, "Other Notes".
 
-### Installation of __vagrant-ruby-rails__
+### Installation of _vagrant-ruby-rails_
 
 #### Prepare For The Build
 
 Bring up a terminal on your _host_, and follow the instructions below.  In the following sections, a terminal command prompt is indicated by the symbol $.
 
-1. Create a "home" directory for the _guest-vbox_ in a convenient subdirectory location of your choice.  Name it whatever you wish.  Herein, I will refer to it as "vagrant-ruby".  At times it may also be referred to as ".../vagrant-ruby/" :
+1. Create a "home" directory for the _guest-vbox_ in a convenient subdirectory location of your choice.  Name it whatever you wish.  Herein, the _guest-vbox_ "home" subdirectory will be referred to as "vagrant-ruby".  At times it may also be referred to as ".../vagrant-ruby/" :
     
-    - $ mkdir vagrant-ruby
+> $ mkdir vagrant-ruby
 
-2. Download a zip file containing the _vagrant-ruby-rails_ product files from the github repository page, https://github.com/ckthomaston/vagrant-ruby-rails.
+2. Make the _guest-vbox_ "home" directory your current working directory :
 
-  While using the same file and subdirectory hierarchy as in the repository, extract those files into the ".../vagrant-ruby/" subdirectory you just created above.
+> $ cd vagrant-ruby
 
-3. Make the _guest-vbox_ "home" directory your current working directory :
+3. Download a zip file containing the _vagrant-ruby-rails_ product files from the _Github_ repository page, https://github.com/ckthomaston/vagrant-ruby-rails.
 
-    - $ cd vagrant-ruby
+  Extract those files into this subdirectory, (".../vagrant-ruby/").  During extraction, ensure the same file and subdirectory hierarchy as in the repository is retained.
 
-4. Enter the following command :
+4. After extraction, verify the contents of the directory.  Enter the following command :
   
-    - $ mkdir workspace
+> $ ls -al      # list the directory contents
+      
+    A directory listing shows the following, (or very similar), contents :
+    
+        -rw-rw-r-- 1 user group    20 Apr  9 16:19 .gitignore
+        -rw-rw-r-- 1 user group  1085 Apr  9 16:19 LICENSE
+        -rw-rw-r-- 1 user group  1073 Apr  9 18:46 rails421-inst.sh
+        -rw-rw-r-- 1 user group 22112 Apr 11 10:55 README.md
+        -rw-rw-r-- 1 user group   110 Apr  9 17:18 ruby221-inst.sh
+        -rw-rw-r-- 1 user group   375 Apr  9 16:19 rvm-inst.sh
+        drwxrws--- 3 user group  4096 Apr  9 16:19 .vagrant
+        -rw-rw-r-- 1 user group  3250 Apr 10 19:03 Vagrantfile
+      
+5. Enter the following command :
+  
+> $ mkdir workspace
       
     A subdirectory named ".../vagrant-ruby/workspace/" is created.  It will be used later.
       
 #### Do The Build
 
-The "vagrant up" command executed below will provision, (create and initialize), a _vagrant-ruby-rails_ _Vagrant Box_.  Depending on the speed of your computer and the speed of your Internet connection, the build done by this "vagrant up" will take eight to fifteen minutes or more.  However, the work done by the provisioning scripts during this initial "vagrant up" build will not be invoked the next time "vagrant up" is executed, because provisioning is a one-time process.  Therefore, subsequent "vagrant up" operations will result in a loaded _guest-vbox_ within approximately one minute.
+The "vagrant up" command executed below will provision, (create and initialize), a _vagrant-ruby-rails_ _Vagrant Box_.  Depending on the speed of your computer and the speed of your Internet connection, the build done by this "vagrant up" will take eight to fifteen minutes or more.
+
+However, the work done by the provisioning scripts during this initial "vagrant up" build will not be invoked the next time "vagrant up" is executed, because provisioning is a one-time process.  Therefore, subsequent "vagrant up" operations will result in a loaded _guest-vbox_ within approximately one minute.
 
 Enter the following command :
   
-    - $ vagrant up
+> $ vagrant up
       
 The build starts.
 
@@ -81,7 +99,9 @@ A very long list of text messages is output during the build process, beginning 
      
 The build tools will output numerous status/progress messages.  Most of the informational messages displayed are green in color, but, there will also be a _lot_ of red-color text output.  The output messages of _gpg_ and _curl_ are _red_ and the formatting is very _broken_.
 
-Unfortunately, this messy output makes it difficult to spot a genuine error which should be investigated, if one occurs.  Typically, if the build fails, it will often stop with an obvious error message, but in some unusual cases it does not.  After the build finishes, you should scroll back through the terminal output messages and scrutinize them.
+Unfortunately, this messy output makes it difficult to spot a genuine error which should be investigated, if one occurs.  Typically, if the build fails, it will often stop with an obvious error message, but in some unusual cases it does not.
+
+After the build finishes, you should scroll back through the terminal output messages and scrutinize them for messages which _may_ indicate an obvious error.
 
 After the build completes successfully, the last build message reads :
   
@@ -95,29 +115,29 @@ After the build completes successfully, the last build message reads :
 
 When the command prompt is subsequently displayed, enter the following command :
   
-    - $ vagrant ssh
+> $ vagrant ssh
     
-This will open an _ssh_ terminal shell on the _guest-vbox_.  After a few seconds, you see an _Ubuntu_ shell welcome screen, and a command prompt which reads :
+This will open an _ssh_ terminal shell on the _vagrant-ruby-rails_ _Vagrant Box_.  After a few seconds, you see an _Ubuntu_ shell welcome screen, and a command prompt which reads :
     
 >  vagrant@vagrant-ubuntu-trusty-64:~$
         
 Enter the following commands.  Notice the components which have been installed, and their associated version numbers :
     
-    - $ ruby --version     # verifies ruby installed
+> $ ruby --version     # verifies ruby installed
         
           Result :
         
             ruby 2.2.1p85 (2015-02-26 revision 49769) [x86_64-linux]
             
-    - $ gem --version      # version of gems
+> $ gem --version      # version of gems
       
           Result : 2.4.6
         
-    - $ rvm --version      # verifies rvm installed
+> $ rvm --version      # verifies rvm installed
         
           Result : rvm 1.26.11 (latest) by Wayne E. Seguin...
         
-    - $ rvm gemset list    # lists ruby versions and gem sets managed by rvm
+> $ rvm gemset list    # lists ruby versions and gem sets managed by rvm
       
           Result :
         
@@ -129,11 +149,11 @@ Enter the following commands.  Notice the components which have been installed, 
               
                 => rails4.2.1
         
-    - $ rails --version    # verifies rails installed
+> $ rails --version    # verifies rails installed
       
           Result : 4.2.1
         
-    - $ git --version      # verifies git installed
+> $ git --version      # verifies git installed
         
           Result : git version 1.9.1
         
@@ -141,19 +161,19 @@ Enter the following commands.  Notice the components which have been installed, 
 
 Ensure you are still in the "vagrant ssh" session in your terminal program.  Enter the following commands.  These commands build and serve a web page from an example _Rails_ app named "myapp" :
     
-    - $ cd /vagrant/workspace; mkdir myapp; cd myapp      # note semicolons
+> $ cd /vagrant/workspace; mkdir myapp; cd myapp      # note semicolons
   
           Result :
         
             A command prompt in the terminal.  "myapp" is the cwd.
 
-    - $ rvm use ruby-2.2.1@rails4.2.1
+> $ rvm use ruby-2.2.1@rails4.2.1
   
           Result :
           
             Using /usr/local/rvm/gems/ruby-2.2.1 with gemset rails4.2.1
 
-    - $ rails new .   # note the dot, (current working directory)
+> $ rails new .   # note the dot, (current working directory)
   
           Result :
         
@@ -169,7 +189,7 @@ Ensure you are still in the "vagrant ssh" session in your terminal program.  Ent
                   
             * bin/rails: spring inserted
 
-    - $ ls -l     # view the scaffolding hierarchy created by rails new
+> $ ls -l     # view the scaffolding hierarchy created by rails new
   
           Result :
         
@@ -185,7 +205,7 @@ Ensure you are still in the "vagrant ssh" session in your terminal program.  Ent
                   
             drwxrws--- 1 vagrant vagrant 4096 Apr 10 02:14 vendor
 
-    - $ rails s -b 0.0.0.0   # 0.0.0.0 specification required for vagrant box
+> $ rails s -b 0.0.0.0   # 0.0.0.0 specification required for vagrant box
   
           Result :
       
@@ -213,7 +233,7 @@ You may now terminate execution of the _Rails_ WEBrick test server, by entering 
 
 This ends preliminary verification of a successful build.  You may now remove the "myapp" scaffolding example app, if you have no other use for it.  If you wish to remove it, you may enter the following command.  (Always double-check your spelling when entering a command which contains "rm -rf ...").
 
-    - $ cd ../; rm -rf /vagrant/workspace/myapp     # be careful with rm -rf
+> $ cd ../; rm -rf /vagrant/workspace/myapp     # be careful with rm -rf
   
         Result :
         
@@ -225,11 +245,11 @@ While following the instructions above, you ventured "inside" the _guest-vbox_, 
 
 Starting from within the ".../vagrant-ruby/" directory, (in your regular _host_ terminal shell), enter the following command :
     
-    - $ vagrant ssh
+> $ vagrant ssh
     
 This will open an _ssh_ terminal shell on the _guest-vbox_.  Next, enter :
 
-    - $ ls -l /     # list the contents of the root directory
+> $ ls -l /     # list the contents of the root directory
     
 The listing which results shows a typical _Ubuntu Server 14.04_ root directory hierarchy, on the _guest-vbox_ file system.
 
@@ -251,7 +271,7 @@ Notice there is one subdirectory not typically found in an _Ubuntu Server_ root 
 
 The _guest-vbox_ "/vagrant/" subdirectory is created by _Vagrant_ during construction of the _guest-vbox_.  Upon loading, "/vagrant/" is sync'd by _VirtualBox_ to a directory you created earlier on the _host_ file system, the one (herein) named ".../vagrant-ruby/".  Due to the _VirtualBox_ sync, _guest-vbox_ "/vagrant/" and _host_ ".../vagrant-ruby/" are effectively "mapped into" a single directory.  You can observe evidence of that by entering the following command :
 
-    - $ ls -l /vagrant    # list the contents of the _guest-vbox_ /vagrant dir
+> $ ls -l /vagrant    # list the contents of the _guest-vbox_ /vagrant dir
     
 Note that the _guest-vbox_ _Vagrantfile_ and _.sh_ provisioning _BASH_ files, among others, are listed.
 
