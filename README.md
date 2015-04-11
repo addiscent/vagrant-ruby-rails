@@ -12,9 +12,9 @@ It also allows easy reproduction and distribution of exact duplicates of a devel
 
 _Git_ can be used for committing _Ruby/Rails_ project files or other sources into repositories.  If you customize the configuration and provisioning files of this _vagrant-ruby-rails_ _Vagrant Box_, saving them in a _Git_ repository will allow you to recreate your custom _vagrant-ruby-rails_ _Vagrant Box_ environment in the future.  Or, using an online _Git_ repository, you can easily share your customized _vagrant-ruby-rails_ _Vagrant Box_ with other users.
 
-Definitions : A "_host_" is a computer on which you will be installing _vagrant-ruby-rails_.  The _vagrant-ruby-rails_ _Vagrant Box_ is a "guest" installed on your "_host_" computer.  Because the _vagrant-ruby-rails_ guest is a _Vagrant Box_, it is referred to in this document as a "_guest-vbox_".
+Definitions : A "_host_" is a computer on which you will be installing _vagrant-ruby-rails_.  _Vagrant-ruby-rails_ is a "guest" installed onto your "_host_" computer.  Because the _vagrant-ruby-rails_ guest is a _Vagrant Box_, it is referred to in this document as a "_guest-vbox_".
 
-If you are very unfamiliar with the products in this document, you may wish to visit online references before proceeding.  Some relevant online resources are listed in a section near the end of this document, titled "The Short List Of Online References".
+If you are very unfamiliar with the software products listed at the top of this document, you may wish to visit online references before proceeding.  Some relevant online resources are listed in a section near the end of this document, titled "The Short List Of Online References".
 
 ## Overview Of Installation And Use
 
@@ -29,10 +29,10 @@ To install _vagrant-ruby-rails_, your computer needs :
 
 This set of commands is the minimum required to control a _Vagrant Box_:
 
-1. "vagrant up" - creates a new _Vagrant Box_ on the _host_, directed by the _Vagrantfile_. Also restarts a previously halted_Vagrant Box_.
-2. "vagrant ssh" - opens an _ssh_ session with the _Vagrant Box_, allowing its system administration.
+1. "vagrant up" - creates a new _Vagrant Box_ on the _host_, directed by the _Vagrantfile_. Also restarts a previously halted _Vagrant Box_.
+2. "vagrant ssh" - opens an _ssh_ terminal session with the _Vagrant Box_, allowing its system administration.
 3. "vagrant halt" - stops execution of a running _Vagrant Box_.
-4. "vagrant destroy" - halts an executing _Vagrant Box_, and then removes its image files, including its file system, from storage.  When this command finishes executing, the _Vagrant Box_ and its contents have been permanently deleted from _host_ file system storage.
+4. "vagrant destroy" - halts an executing _Vagrant Box_, and then removes its image files, including its file system, from _host_ storage.  When this command finishes executing, the _Vagrant Box_ and its contents have been permanently deleted from _host_ file system storage.
 
 ## Software Installation
 
@@ -79,9 +79,9 @@ A subdirectory named ".../vagrant-ruby/workspace/" is created.  It will be used 
       
 #### Do The Build
 
-The "vagrant up" command executed below will provision, (create and initialize), a _vagrant-ruby-rails_ _Vagrant Box_.  Depending on the speed of your computer and the speed of your Internet connection, the build done by this "vagrant up" will take eight to fifteen minutes or more.
+The "vagrant up" command executed below will provision, (create and initialize), a _vagrant-ruby-rails_ _Vagrant Box_, and start it.  Depending on the speed of your computer and the speed of your Internet connection, the build done by this "vagrant up" will take approximately eight minutes or more, but should take no more than twenty minutes.
 
-However, the work done by the provisioning scripts during this initial "vagrant up" build will not be invoked the next time "vagrant up" is executed, because provisioning is a one-time process.  Therefore, subsequent "vagrant up" operations will result in a loaded _guest-vbox_ within approximately one minute.
+The work done by the provisioning scripts during this initial "vagrant up" build will not be invoked the next time "vagrant up" is executed, because provisioning is a one-time process.  Therefore, subsequent "vagrant up" operations will result in a running _guest-vbox_ within approximately one minute.
 
 Enter the following command :
   
