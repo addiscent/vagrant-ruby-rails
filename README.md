@@ -44,23 +44,23 @@ Before beginning installation of _vagrant-ruby-rails_, you must already have _Va
 
 Bring up a terminal on your _host_, and follow the instructions below.  In the following sections, a terminal command prompt is indicated by the symbol $.
 
-1. Create a "home" directory for the _guest-vbox_ in a convenient subdirectory location of your choice.  Name it whatever you wish.  Herein, the _guest-vbox_ "home" subdirectory will be referred to as "vagrant-ruby".  At times it may also be referred to as ".../vagrant-ruby/" :
+Create a "home" directory for the _guest-vbox_ in a convenient subdirectory location of your choice.  Name it whatever you wish.  Herein, the _guest-vbox_ "home" subdirectory will be referred to as "vagrant-ruby".  At times it may also be referred to as ".../vagrant-ruby/" :
     
 > $ mkdir vagrant-ruby
 
-2. Make the _guest-vbox_ "home" directory your current working directory :
+Make the _guest-vbox_ "home" directory your current working directory :
 
 > $ cd vagrant-ruby
 
-3. Download a zip file containing the _vagrant-ruby-rails_ product files from the _Github_ repository page, https://github.com/ckthomaston/vagrant-ruby-rails.
+Download a zip file containing the _vagrant-ruby-rails_ product files from the _Github_ repository page, https://github.com/ckthomaston/vagrant-ruby-rails.
 
-  Extract those files into this subdirectory, (".../vagrant-ruby/").  During extraction, ensure the same file and subdirectory hierarchy as in the repository is retained.
+Extract those files into this subdirectory, (".../vagrant-ruby/").  During extraction, ensure the same file and subdirectory hierarchy as in the repository is retained.
 
-4. After extraction, verify the contents of the directory.  Enter the following command :
+After extraction, verify the contents of the directory.  Enter the following command :
   
-> $ ls -al      # list the directory contents
+> $ ls -al
       
-    A directory listing shows the following, (or very similar), contents :
+A directory listing shows the following, (or very similar), contents :
     
         -rw-rw-r-- 1 user group    20 Apr  9 16:19 .gitignore
         -rw-rw-r-- 1 user group  1085 Apr  9 16:19 LICENSE
@@ -71,11 +71,11 @@ Bring up a terminal on your _host_, and follow the instructions below.  In the f
         drwxrws--- 3 user group  4096 Apr  9 16:19 .vagrant
         -rw-rw-r-- 1 user group  3250 Apr 10 19:03 Vagrantfile
       
-5. Enter the following command :
+Enter the following command :
   
 > $ mkdir workspace
       
-    A subdirectory named ".../vagrant-ruby/workspace/" is created.  It will be used later.
+A subdirectory named ".../vagrant-ruby/workspace/" is created.  It will be used later.
       
 #### Do The Build
 
@@ -123,21 +123,21 @@ This will open an _ssh_ terminal shell on the _vagrant-ruby-rails_ _Vagrant Box_
         
 Enter the following commands.  Notice the components which have been installed, and their associated version numbers :
     
-> $ ruby --version     # verifies ruby installed
+> $ ruby --version
         
           Result :
         
             ruby 2.2.1p85 (2015-02-26 revision 49769) [x86_64-linux]
             
-> $ gem --version      # version of gems
+> $ gem --version
       
           Result : 2.4.6
         
-> $ rvm --version      # verifies rvm installed
+> $ rvm --version
         
           Result : rvm 1.26.11 (latest) by Wayne E. Seguin...
         
-> $ rvm gemset list    # lists ruby versions and gem sets managed by rvm
+> $ rvm gemset list
       
           Result :
         
@@ -149,11 +149,11 @@ Enter the following commands.  Notice the components which have been installed, 
               
                 => rails4.2.1
         
-> $ rails --version    # verifies rails installed
+> $ rails --version
       
           Result : 4.2.1
         
-> $ git --version      # verifies git installed
+> $ git --version
         
           Result : git version 1.9.1
         
@@ -161,7 +161,7 @@ Enter the following commands.  Notice the components which have been installed, 
 
 Ensure you are still in the "vagrant ssh" session in your terminal program.  Enter the following commands.  These commands build and serve a web page from an example _Rails_ app named "myapp" :
     
-> $ cd /vagrant/workspace; mkdir myapp; cd myapp      # note semicolons
+> $ cd /vagrant/workspace; mkdir myapp; cd myapp
   
           Result :
         
@@ -173,7 +173,7 @@ Ensure you are still in the "vagrant ssh" session in your terminal program.  Ent
           
             Using /usr/local/rvm/gems/ruby-2.2.1 with gemset rails4.2.1
 
-> $ rails new .   # note the dot, (current working directory)
+> $ rails new .
   
           Result :
         
@@ -189,7 +189,7 @@ Ensure you are still in the "vagrant ssh" session in your terminal program.  Ent
                   
             * bin/rails: spring inserted
 
-> $ ls -l     # view the scaffolding hierarchy created by rails new
+> $ ls -l
   
           Result :
         
@@ -205,7 +205,7 @@ Ensure you are still in the "vagrant ssh" session in your terminal program.  Ent
                   
             drwxrws--- 1 vagrant vagrant 4096 Apr 10 02:14 vendor
 
-> $ rails s -b 0.0.0.0   # 0.0.0.0 specification required for vagrant box
+> $ rails s -b 0.0.0.0
   
           Result :
       
@@ -233,7 +233,7 @@ You may now terminate execution of the _Rails_ WEBrick test server, by entering 
 
 This ends preliminary verification of a successful build.  You may now remove the "myapp" scaffolding example app, if you have no other use for it.  If you wish to remove it, you may enter the following command.  (Always double-check your spelling when entering a command which contains "rm -rf ...").
 
-> $ cd ../; rm -rf /vagrant/workspace/myapp     # be careful with rm -rf
+> $ cd ../; rm -rf /vagrant/workspace/myapp
   
         Result :
         
@@ -249,7 +249,7 @@ Starting from within the ".../vagrant-ruby/" directory, (in your regular _host_ 
     
 This will open an _ssh_ terminal shell on the _guest-vbox_.  Next, enter :
 
-> $ ls -l /     # list the contents of the root directory
+> $ ls -l /
     
 The listing which results shows a typical _Ubuntu Server 14.04_ root directory hierarchy, on the _guest-vbox_ file system.
 
@@ -271,7 +271,7 @@ Notice there is one subdirectory not typically found in an _Ubuntu Server_ root 
 
 The _guest-vbox_ "/vagrant/" subdirectory is created by _Vagrant_ during construction of the _guest-vbox_.  Upon loading, "/vagrant/" is sync'd by _VirtualBox_ to a directory you created earlier on the _host_ file system, the one (herein) named ".../vagrant-ruby/".  Due to the _VirtualBox_ sync, _guest-vbox_ "/vagrant/" and _host_ ".../vagrant-ruby/" are effectively "mapped into" a single directory.  You can observe evidence of that by entering the following command :
 
-> $ ls -l /vagrant    # list the contents of the _guest-vbox_ /vagrant dir
+> $ ls -l /vagrant
     
 Note that the _guest-vbox_ _Vagrantfile_ and _.sh_ provisioning _BASH_ files, among others, are listed.
 
