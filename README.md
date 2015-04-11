@@ -10,9 +10,9 @@ Because it can be quickly built or rebuilt if necessary, this _Vagrant Box_ may 
 
 It also allows easy reproduction and distribution of exact duplicates of a development environment shared among multiple project members.
 
-_Git_ can be used for committing _Ruby/Rails_ project files or other sources into repositories.  If you customize the configuration and provisioning files of this _vagrant-ruby-rails_ _Vagrant Box_, saving them in a _Git_ repository will allow you to recreate your custom _vagrant-ruby-rails_ _Vagrant Box_ environment in the future.  Or, using an online _Git_ repository, you can easily share your customized _vagrant-ruby-rails_ _Vagrant Box_ with other users.
+The installed _Git_ software can be used for committing _Ruby/Rails_ project files or other sources into repositories.  If you customize the configuration and provisioning files of this _vagrant-ruby-rails_ _Vagrant Box_, saving them in a _Git_ repository allows you to recreate your custom _vagrant-ruby-rails_ _Vagrant Box_ environment in the future.  Or, using an online _Git_ repository, you can easily share your customized _vagrant-ruby-rails_ _Vagrant Box_ with other users.
 
-Definitions : A "_host_" is a computer on which you will be installing _vagrant-ruby-rails_.  _Vagrant-ruby-rails_ is a "guest" installed onto your "_host_" computer.  Because the _vagrant-ruby-rails_ guest is a _Vagrant Box_, it is referred to in this document as a "_guest-vbox_".
+Definitions : A "_host_" is a computer on which you will be installing _vagrant-ruby-rails_.  _Vagrant-ruby-rails_ is a "guest" installed onto your "_host_" computer.  Because the _vagrant-ruby-rails_ "guest" is a _Vagrant Box_, it is referred to in this document as a _guest-vbox_.
 
 If you are very unfamiliar with the software products listed at the top of this document, you may wish to visit online references before proceeding.  Some relevant online resources are listed in a section near the end of this document, titled "The Short List Of Online References".
 
@@ -20,19 +20,19 @@ If you are very unfamiliar with the software products listed at the top of this 
 
 To install _vagrant-ruby-rails_, your computer needs :
 
-1. An Internet connection
-2. 1GB of available memory (free RAM) - After installation, you may increase or decrease the amount of _host_ memory allocated to the _guest-vbox_.
-3. 3GB of storage (minimum) - Your long term _host_ storage space requirement will be determined by your application.
-4. _Vagrant_ and _VirtualBox_ - Your _host_ computer must have an operating system installed which supports _Vagrant_ and _VirtualBox_, and those must be installed prior to installing _vagrant-ruby-rails_.
-5. A terminal program - previously installed on the _host_.
-6. A zip file extraction program - previously installed on the _host_.
+* An Internet connection
+* 1GB of available memory (free RAM) - After installation, you may increase or decrease the amount of _host_ memory allocated to the _guest-vbox_.
+* 3GB of storage (minimum) - Your long term _host_ storage space requirement will be determined by your application.
+* _Vagrant_ and _VirtualBox_ - Your _host_ computer must have an operating system installed which supports _Vagrant_ and _VirtualBox_, and those must be installed prior to installing _vagrant-ruby-rails_.
+* A terminal program - previously installed on the _host_.
+* A zip file extraction program - previously installed on the _host_.
 
 This set of commands is the minimum required to control a _Vagrant Box_:
 
-1. "vagrant up" - creates a new _Vagrant Box_ on the _host_, directed by the _Vagrantfile_. Also restarts a previously halted _Vagrant Box_.
-2. "vagrant ssh" - opens an _ssh_ terminal session with the _Vagrant Box_, allowing its system administration.
-3. "vagrant halt" - stops execution of a running _Vagrant Box_.
-4. "vagrant destroy" - halts an executing _Vagrant Box_, and then removes its image files, including its file system, from _host_ storage.  When this command finishes executing, the _Vagrant Box_ and its contents have been permanently deleted from _host_ file system storage.
+* "vagrant up" - creates a new _Vagrant Box_ on the _host_, directed by the _Vagrantfile_. Also restarts a previously halted _Vagrant Box_.
+* "vagrant ssh" - opens an _ssh_ terminal session with the _Vagrant Box_, allowing its system administration.
+* "vagrant halt" - stops execution of a running _Vagrant Box_.
+* "vagrant destroy" - halts an executing _Vagrant Box_, and then removes its image files, including its file system, from _host_ storage.  When this command finishes executing, the _Vagrant Box_ and its contents have been permanently deleted from _host_ file system storage.
 
 ## Software Installation
 
@@ -68,7 +68,6 @@ A directory listing shows the following, (or very similar), contents :
         -rw-rw-r-- 1 user group 22112 Apr 11 10:55 README.md
         -rw-rw-r-- 1 user group   110 Apr  9 17:18 ruby221-inst.sh
         -rw-rw-r-- 1 user group   375 Apr  9 16:19 rvm-inst.sh
-        drwxrws--- 3 user group  4096 Apr  9 16:19 .vagrant
         -rw-rw-r-- 1 user group  3250 Apr 10 19:03 Vagrantfile
       
 Enter the following command :
