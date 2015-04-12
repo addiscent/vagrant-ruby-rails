@@ -151,11 +151,8 @@ Enter the following commands.  Notice the components which have been installed, 
           Result :
         
             gemsets for ruby-2.2.1 (found in /usr/local/rvm/gems/ruby-2.2.1)
-          
                 (default)
-              
                 global
-              
                 => rails4.2.1
         
 > $ rails --version
@@ -202,15 +199,12 @@ Enter the following commands.  These commands build and serve a web page from an
           Result :
         
             exist
-                  
             create  README.rdoc
-                  
             create  Rakefile
                       .
                       .
                       .
             * bin/rake: spring inserted
-                  
             * bin/rails: spring inserted
 
 > $ ls -l
@@ -218,15 +212,12 @@ Enter the following commands.  These commands build and serve a web page from an
           Result :
         
             total 100
-        
             drwxrws--- 1 vagrant vagrant 4096 Apr 10 02:14 app
-                  
             drwxrws--- 1 vagrant vagrant 4096 Apr 10 02:14 bin
                       .
                       .
                       .
             drwxrws--- 1 vagrant vagrant 4096 Apr 10 02:14 tmp
-                  
             drwxrws--- 1 vagrant vagrant 4096 Apr 10 02:14 vendor
 
 > $ rails s -b 0.0.0.0
@@ -234,13 +225,11 @@ Enter the following commands.  These commands build and serve a web page from an
           Result :
       
             => Booting WEBrick
-                  
             => Rails 4.2.1 application starting ... on http://0.0.0.0:3000
                       .
                       .
                       .
             [2015-04-10 02:36:11] INFO  ruby 2.2.1 ... [x86_64-linux]
-                  
             [2015-04-10 02:36:11] INFO  WEBrick ... : pid=11540 port=3000
 
 The Rails built-in WEBrick test server is now running.
@@ -274,17 +263,13 @@ Enter the following command :
 The listing which results shows a typical _Ubuntu Server 14.04_ root directory hierarchy, on the _guest-vbox_ file system.
 
         total 92
-        
         drwxr-xr-x  2 root    root     4096 Apr  6 20:06 bin
-        
         drwxr-xr-x  3 root    root     4096 Apr  6 20:06 boot
                       .
                       .
                       .
         drwxrws---  1 vagrant vagrant  4096 Apr  8 08:34 vagrant
-        
         drwxr-xr-x 13 root    root     4096 Apr 11 21:05 var
-        
         lrwxrwxrwx  1 root    root       30 Apr  6 20:05 vmlinuz...
         
 Notice there is one subdirectory not typically found in an _Ubuntu Server_ root directory hierarchy.  It is named "/vagrant/".
@@ -349,12 +334,6 @@ Note that if you change your provisioning files, your installed _guest-vbox_ ima
 
 Please see the _Vagrant_ documentation for more information about provisioning _Vagrant Boxes_.
   
-##### Miscellany About _The Build_
-
-_Ruby_ was built without documentation, to build it run:
-
-        rvm docs generate-ri
-  
 ##### Installing _Vagrant_
 
 The _vagrant-ruby-rails_ _guest-vbox_ is built and managed by _Vagrant_.  The specific version of _Vagrant_ used on the _vagrant-ruby-rails_ project development computer is _Vagrant_ 1.7.2 (DEB-64bit), which is the most recent version.  You may have success with earlier versions of _Vagrant_, but the _vagrant-ruby-rails_ project has been built/tested using only 1.7.2.
@@ -385,7 +364,11 @@ Important milestones can be identified in the terminal messages at intervals dur
 
         ################   Getting RVM PGP key   ###############
                                       .
+                                      .
+                                      .
         ################   Installing RVM stable   ###############
+                                      .
+                                      .
                                       .
         ################   Installing Ruby 2.2.1    ###############
                                       .
@@ -403,9 +386,9 @@ It's possible for a build to fail for quite a few reasons.  Some are :
 
 * Missing, misconfigured, or incompatible versions of _Vagrant_ or _VirtualBox_.
 
-After you have found something suspicious, addressed it, either by changing some configuration of your _host_, (most likely to resolve the problem), or by modifying the provisioning script, (see broken links, above).
+After you have found something suspicious, address it, either by changing some configuration of your _host_, (most likely to resolve the problem), or by modifying the provisioning script, (see broken links, above).
 
-Then, try again to install this software.  Before doing so, be aware that the _.sh_ provisioning scripts in this version of _vagrant-ruby-rails_ are not idempotent, meaning, the likelyhood of producing a correctly provisioned _vagrant-ruby-rails_ _Vagrant Box_ is low if you simply re-run "vagrant up" after installation failed, even after you have implemented a certain fix for an error.  Unless you know otherwise, your best course of action is to execute "vagrant destroy", and then execute "vagrant up" again.
+Then, try again to install _vagrant-ruby-rails_.  Before doing so, be aware that the _.sh_ provisioning scripts in this version of _vagrant-ruby-rails_ are not idempotent, meaning, the likelyhood of producing a correctly provisioned _vagrant-ruby-rails_ _Vagrant Box_ is low if you simply re-run "vagrant up" after installation failed, even after you have implemented a "guaranteed" fix for an error.  Unless you know otherwise, your best course of action is to execute "vagrant destroy", and then execute "vagrant up" again.
 
 ## The Short List Of Online References
 
