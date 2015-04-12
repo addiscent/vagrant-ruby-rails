@@ -50,7 +50,7 @@ Before beginning installation of _vagrant-ruby-rails_, you must already have _Va
 
 #### Prepare For _The Build_
 
-Bring up a terminal on your _host_, and follow the instructions below.  In the following sections, a terminal command prompt is indicated by the symbol $.
+Bring up a terminal on your _host_, and follow the instructions below.  If possible, you may wish to use copy-and-paste to reduce typing while entering the commands.  In the following sections, a terminal command prompt is indicated by the symbol $.
 
 Create a "home" directory for the _guest-vbox_ in a convenient subdirectory location of your choice.  Name it whatever you wish.  Herein, the _guest-vbox_ "home" subdirectory will be referred to as "vagrant-ruby".  At times it may also be referred to as ".../vagrant-ruby/" :
     
@@ -90,7 +90,7 @@ The "vagrant up" command executed below will provision, (create and initialize),
 
 The work done by the provisioning scripts during this initial "vagrant up" build will not be invoked the next time "vagrant up" is executed, because provisioning is a one-time process.  Therefore, subsequent "vagrant up" operations will result in a running _guest-vbox_ within approximately one minute.
 
-There is a large amount of message output during provisioning.  The vast majority of messages log the construction of software which is being placed _into the_  _vagrant-ruby-rails_ _Vagrant Box_.  _Ruby, Gems, Rails, RVM, Git, and Node.js_ are _not_ being placed directly onto your _host_, they are being placed into the _guest-vbox_.  When provisioning of the _guest-vbox_ finishes,  the _guest-vbox_ is then stored onto the _host_.
+There is a large amount of terminal message output during provisioning.  The vast majority of messages log the construction of software which is being placed _into the_  _vagrant-ruby-rails_ _Vagrant Box_.  _Ruby, Gems, Rails, RVM, Git, and Node.js_ are _not_ being placed directly onto your _host_, they are being placed into the _guest-vbox_.  When provisioning of the _guest-vbox_ finishes,  the _guest-vbox_ is then stored onto the _host_.
 
 Enter the following command :
   
@@ -110,7 +110,7 @@ Unfortunately, this messy output makes it difficult to spot any genuine error, i
 
 After the build finishes, you should scroll back through the terminal output messages and scrutinize them for messages which _may_ indicate an obvious error.
 
-If the build does not complete successfully, see the section at near the end of this document titled, "If _The Build_ Fails".
+If you believe _The Build_ did not complete successfully, see the section near the end of this document titled, "If _The Build_ Fails".
 
 After the build completes successfully, the last build message reads :
   
@@ -126,7 +126,7 @@ When the command prompt is subsequently displayed, enter the following command :
   
 > $ vagrant ssh
     
-This will open an _ssh_ terminal shell on the _vagrant-ruby-rails_ _Vagrant Box_.  After a few seconds, you see an _Ubuntu_ shell welcome screen, and a command prompt which reads :
+This will open an _ssh_ terminal shell on the _vagrant-ruby-rails_ _Vagrant Box_.  After a few seconds, an _Ubuntu_ shell welcome screen and a command prompt are displayed. The prompt reads :
     
 >  vagrant@vagrant-ubuntu-trusty-64:~$
         
@@ -166,6 +166,19 @@ Enter the following commands.  Notice the components which have been installed, 
         
           Result : git version 1.9.1
         
+> $ node --version
+        
+          Result : v0.10.25
+        
+> $ nokogiri --version
+        
+          Result :
+          
+            # Nokogiri (1.6.6.2)
+                  .
+                  .
+                  .
+          
 ##### Construct And Test A Minimal App Which Confirms Working _Rails_ Scaffolding
 
 Ensure you are still in the "vagrant ssh" session in your terminal program.
@@ -176,7 +189,7 @@ Enter the following commands.  These commands build and serve a web page from an
   
           Result :
         
-            A command prompt in the terminal.  "myapp" is the cwd.
+            vagrant@vagrant-ubuntu-trusty-64:/vagrant/workspace/myapp$
 
 > $ rvm use ruby-2.2.1@rails4.2.1
   
@@ -234,7 +247,7 @@ The Rails built-in WEBrick test server is now running.
 
 Use a web browser on your _host_ to examine the resulting example web page at URL :
 
-        http://local_host_:3030
+        http://localhost:3030
   
 The example web page shows :
 
@@ -244,21 +257,17 @@ You may now terminate execution of the _Rails_ WEBrick test server, by entering 
 
 This ends preliminary verification of a successful build.  You may now remove the "myapp" scaffolding example app, if you have no other use for it.  If you wish to remove it, you may enter the following command.  (Always double-check your spelling when entering a command which contains "rm -rf ...").
 
-> $ cd ..; rm -rf /vagrant/workspace/myapp
+> $ cd /vagrant/workspace; rm -rf /vagrant/workspace/myapp; cd /vagrant
   
         Result :
         
-          "myapp" deleted.  The current working directory is now "/workspace".
-
+          vagrant@vagrant-ubuntu-trusty-64:/vagrant$
+          
 ## Using _vagrant-ruby-rails_
 
-While following the instructions above, you ventured "inside" the _guest-vbox_, using "vagrant ssh" to verify the success of the build and the versions of its components.  Let's go back in there again, and do some exploring.
+While following the instructions immediately above, you ventured "inside" the _guest-vbox_, using "vagrant ssh" to verify the success of the build and the versions of its components.  Now, let's do some exploring.
 
-Starting from within the ".../vagrant-ruby/" directory, (in your regular _host_ terminal shell), enter the following command :
-    
-> $ vagrant ssh
-    
-This will open an _ssh_ terminal shell on the _guest-vbox_.  Next, enter :
+Enter the following command :
 
 > $ ls -l /
     
@@ -274,6 +283,8 @@ The listing which results shows a typical _Ubuntu Server 14.04_ root directory h
                       .
         drwxrws---  1 vagrant vagrant  4096 Apr  8 08:34 vagrant
         
+        drwxr-xr-x 13 root    root     4096 Apr 11 21:05 var
+        
         lrwxrwxrwx  1 root    root       30 Apr  6 20:05 vmlinuz...
         
 Notice there is one subdirectory not typically found in an _Ubuntu Server_ root directory hierarchy.  It is named "/vagrant/".
@@ -282,21 +293,19 @@ Notice there is one subdirectory not typically found in an _Ubuntu Server_ root 
 
 The _guest-vbox_ "/vagrant/" subdirectory is created by _Vagrant_ during construction of the _guest-vbox_.  Upon loading, "/vagrant/" is sync'd by _VirtualBox_ to a directory you created earlier on the _host_ file system, the one (herein) named ".../vagrant-ruby/".  The result of the _VirtualBox_ sync is that _guest-vbox_ "/vagrant/" and _host_ ".../vagrant-ruby/" are effectively "mapped into" a single directory.  You can observe evidence of that by entering the following command :
 
-> $ ls -l /vagrant
+> $ ls -al /vagrant
     
 Note that the _guest-vbox_ _Vagrantfile_ and _.sh_ provisioning _BASH_ files, among others, are listed.
 
-        -rw-rw-r-- 1 user group 1.1K Apr  9 16:19 LICENSE
-        
-        -rw-rw-r-- 1 user group 1.1K Apr  9 18:46 rails421-inst.sh
-        
-        -rw-rw-r-- 1 user group  24K Apr 10 18:13 README.md
-        
-        -rw-rw-r-- 1 user group  110 Apr  9 17:18 ruby221-inst.sh
-        
-        -rw-rw-r-- 1 user group  375 Apr  9 16:19 rvm-inst.sh
-        
-        -rw-rw-r-- 1 user group 3.2K Apr  9 20:30 Vagrantfile
+        -rw-rw-r--  1 vagrant vagrant    28 Apr 11 20:55 .gitignore
+        -rw-rw-r--  1 vagrant vagrant  1085 Apr 11 20:55 LICENSE
+        -rw-rw-r--  1 vagrant vagrant  1073 Apr 11 20:55 rails421-inst.sh
+        -rw-rw-r--  1 vagrant vagrant 22591 Apr 11 20:55 README.md
+        -rw-rw-r--  1 vagrant vagrant   110 Apr 11 20:55 ruby221-inst.sh
+        -rw-rw-r--  1 vagrant vagrant   375 Apr 11 20:55 rvm-inst.sh
+        drwxrws---  1 vagrant vagrant  4096 Apr 11 21:04 .vagrant
+        -rw-rw-r--  1 vagrant vagrant  3250 Apr 11 20:55 Vagrantfile
+        drwxrws---  1 vagrant vagrant  4096 Apr 12 01:10 workspace
 
 These are the same files you placed into ".../vagrant-ruby/" after you created it, when beginning installation of this product. 
 
@@ -314,7 +323,7 @@ Recall that earlier you created a subdirectory in ".../vagrant-ruby/" named "wor
 
 That is an example of how a subdirectory heirarchy in the _host_ ".../vagrant-ruby/" subdirectory can be used from "within" the _guest-vbox_ file system.
   
-Here is a ".../workspace/"-related tip for using _Git_ : At some point you may wish to commit your _guest-vbox_ _Vagrantfile_ and _.sh_ provisioning files to a _Git_ repository.  However, you probably do _not_ want the files in "workspace/", or equivalent subdirectories of ".../vagrant-ruby/", to be co-mingled with commits of your _guest-vbox_ configuration/provisioning files.  You can prevent that by adding the name "workspace" into your ".../vagrant-ruby/.gitignore" file.  See the _.gitignore_ file which you placed into ".../vagrant-ruby/" during installation.
+Here is a ".../workspace/"-related tip for using _Git_ : At some point you may wish to commit your _guest-vbox_ _Vagrantfile_ and _.sh_ provisioning files to a _Git_ repository.  However, you probably do _not_ want the files in "workspace/", or equivalent subdirectories of ".../vagrant-ruby/", to be co-mingled with commits of your _guest-vbox_ configuration/provisioning files.  You can prevent that by adding the name "workspace" into your ".../vagrant-ruby/.gitignore" file.  The same is true of the hidden ".../vagrant-ruby/.vagrant" subdirectory.  See the _.gitignore_ file which you placed into ".../vagrant-ruby/" during installation.
 
 ## Other Notes
 
@@ -364,7 +373,7 @@ For _VirtualBox_ installation instructions, please visit the _VirtualBox_ web si
 
 ##### If _The Build_ Fails
 
-First of all, be sure to save the terminal output of the "vagrant up" provisioning build for future reference.  This is usually easily done by backscrolling the terminal, highlighting the terminal text, and then doing copy-paste into a file, and saving it.
+First of all, if the build fails, ensure you save the terminal output messages of the "vagrant up" provisioning build for future reference.  This is usually easily done by backscrolling the terminal, highlighting the terminal text, and then doing copy-paste into a file, and saving it.
 
 Only you have access to the necessary configuration information about your _host_, so the only practical advice which can be offered here is :
 
@@ -374,19 +383,19 @@ Identify the "milestone" at which the provisioning error occurred.  Start with t
 
 Important milestones can be identified in the terminal messages at intervals during provisioning.  Search your saved "vagrant up" terminal output file for a string of ##########, e.g. :
 
-        echo "################   Getting RVM PGP key   ###############"
+        ################   Getting RVM PGP key   ###############
                                       .
-        echo "################   Installing RVM stable   ###############"
+        ################   Installing RVM stable   ###############
                                       .
-        echo "################   Installing Ruby 2.2.1    ###############"
+        ################   Installing Ruby 2.2.1    ###############
                                       .
                                       .
 
-It may be obvious from the terminal messages what is wrong, after you identify approximately what the provisioning script was attempting.
+After you identify approximately what the provisioning script was attempting, it may be obvious from the terminal messages what is wrong.
 
-If it's not obvious, then inspect the _.sh_ provisioning files, _rvm-inst.sh_, _ruby221-inst.sh_, and _rails421-inst.sh_.  Find the corresponding milestone locations in the script file.  Narrow down which milestone succeeded, and which did not.  Once you find the most likely script commands, investigate as to why that particular command may have failed.
+If it's not obvious, then inspect the _.sh_ provisioning files;  _rvm-inst.sh_, _ruby221-inst.sh_, and _rails421-inst.sh_.  Find the corresponding milestone locations in the script file.  Narrow down which milestone succeeded, and which did not.  Once you find the most likely script commands, investigate as to why that particular command may have failed.
 
-Its possible for a build to fail for quite a few reasons.  Some are :
+It's possible for a build to fail for quite a few reasons.  Some are :
 
 * Unreliable Internet connection.
 
@@ -396,7 +405,7 @@ Its possible for a build to fail for quite a few reasons.  Some are :
 
 After you have found something suspicious, addressed it, either by changing some configuration of your _host_, (most likely to resolve the problem), or by modifying the provisioning script, (see broken links, above).
 
-Then, try again to install this software.  Before doing so, be aware that the _.sh_ provisioning scripts in this version of _vagrant-ruby-rails_ are not idempotent, meaning, the likelyhood of success is low if you simply re-run "vagrant up" after installation failed, even after you have implemented a certain fix for an error.  Unless you know otherwise, your best course of action is to execute "vagrant destroy", and then execute "vagrant up" again.
+Then, try again to install this software.  Before doing so, be aware that the _.sh_ provisioning scripts in this version of _vagrant-ruby-rails_ are not idempotent, meaning, the likelyhood of producing a correctly provisioned _vagrant-ruby-rails_ _Vagrant Box_ is low if you simply re-run "vagrant up" after installation failed, even after you have implemented a certain fix for an error.  Unless you know otherwise, your best course of action is to execute "vagrant destroy", and then execute "vagrant up" again.
 
 ## The Short List Of Online References
 
