@@ -10,7 +10,7 @@ Because it can be quickly built or rebuilt if necessary, this _Vagrant Box_ may 
 
 It also allows easy reproduction and distribution of exact duplicates of a development environment shared among multiple project members.
 
-The installed _Git_ software can be used for committing _Ruby/Rails_ project files or other sources into repositories.  If you customize the configuration and provisioning files of this _vagrant-ruby-rails_ _Vagrant Box_, and then samve them in a _Git_ repository, you can easily recreate your custom _vagrant-ruby-rails_ _Vagrant Box_ environment in the future.  Or, using an online _Git_ repository, you can easily share your customized _vagrant-ruby-rails_ _Vagrant Box_ with other users.
+The installed _Git_ software can be used for committing _Ruby/Rails_ project files or other sources into repositories.  If you customize the configuration and provisioning files of this _vagrant-ruby-rails_ _Vagrant Box_, and then save them in a _Git_ repository, you can easily recreate your custom _vagrant-ruby-rails_ _Vagrant Box_ environment in the future.  Or, using an online _Git_ repository, you can easily share your customized _vagrant-ruby-rails_ _Vagrant Box_ with other users.
 
 Definitions : A "_host_" is a computer on which you will be installing _vagrant-ruby-rails_.  _Vagrant-ruby-rails_ is a "guest" installed onto your "_host_" computer.  Because the _vagrant-ruby-rails_ "guest" is a _Vagrant Box_, it is referred to in this document as a _guest-vbox_.
 
