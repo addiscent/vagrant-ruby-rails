@@ -4,13 +4,13 @@
 
 ##### Containing Ubuntu Server 14.04, Ruby 2.2.1, Gems 2.4.6, Rails 4.2.1, RVM 1.26.11, Git 1.9.1, Node.js 0.10.25.
 
-This is a _Vagrant Box_, (https://www.vagrantup.com), intended for quick installation of a very basic _Ruby On Rails_ development environment.  Assuming _Vagrant_ and _VirtualBox_ are already installed on your _host_ computer, this _Vagrant Box_ can be easily and quickly installed, and removed.
+This is a _Vagrant Box_, (https://www.vagrantup.com), intended for quick installation of a very basic _Ruby On Rails_ development environment.  Assuming _Vagrant_ and _VirtualBox_ are already installed on your _host_ computer, this _Vagrant Box_ can be easily and quickly installed and removed.
 
 Because it can be quickly built or rebuilt if necessary, this _Vagrant Box_ may be handy for transient work environments, such as tutorials, or experimental work which may sacrifice the development environment.
 
 It also allows easy reproduction and distribution of exact duplicates of a development environment shared among multiple project members.
 
-The installed _Git_ software can be used for committing _Ruby/Rails_ project files or other sources into repositories.  If you customize the configuration and provisioning files of this _vagrant-ruby-rails_ _Vagrant Box_, saving them in a _Git_ repository allows you to recreate your custom _vagrant-ruby-rails_ _Vagrant Box_ environment in the future.  Or, using an online _Git_ repository, you can easily share your customized _vagrant-ruby-rails_ _Vagrant Box_ with other users.
+The installed _Git_ software can be used for committing _Ruby/Rails_ project files or other sources into repositories.  If you customize the configuration and provisioning files of this _vagrant-ruby-rails_ _Vagrant Box_, and then samve them in a _Git_ repository, you can easily recreate your custom _vagrant-ruby-rails_ _Vagrant Box_ environment in the future.  Or, using an online _Git_ repository, you can easily share your customized _vagrant-ruby-rails_ _Vagrant Box_ with other users.
 
 Definitions : A "_host_" is a computer on which you will be installing _vagrant-ruby-rails_.  _Vagrant-ruby-rails_ is a "guest" installed onto your "_host_" computer.  Because the _vagrant-ruby-rails_ "guest" is a _Vagrant Box_, it is referred to in this document as a _guest-vbox_.
 
@@ -138,6 +138,10 @@ Enter the following commands.  Notice the components which have been installed, 
         
             ruby 2.2.1p85 (2015-02-26 revision 49769) [x86_64-linux]
             
+> $ bundler --version
+      
+          Result : Bundler version 1.9.2
+        
 > $ gem --version
       
           Result : 2.4.6
@@ -401,6 +405,7 @@ If you are unfamiliar with the products in this document, you may wish to inform
 ###### _Ruby Gems_      : https://rubygems.org/
 ###### _Git_            : http://git-scm.com/
 ###### _RVM_            : https://rvm.io/
+###### _Node.js_        : https://nodejs.org/
 
 ### Product Pedigree
 
@@ -442,7 +447,7 @@ This product, at this time, is in the _alpha_ stage of development.  Extensive t
 
 The provisioning _BASH_ scripts build a working _Vagrant Box_ by downloading essential components/sources from the Internet.  The provisioning _BASH_ scripts install the components as described herein, but, at this time they have _no_ error detection/handling, per se.  If system environment problems, such as a flaky Internet connection, or lack of storage space, causes errors during the build, the provisioning scripts will not handle these errors gracefully.
 
-### Licensing And Disclaimers
+### Licensing And Disclaimer
 
 _USE THIS PRODUCT AT YOUR OWN RISK. The author and any other contributors are not responsible or liable for adverse consequences caused by use of this product, even if it is used as designed, or as described or implied, herein or elsewhere._
 
