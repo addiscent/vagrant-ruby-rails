@@ -16,6 +16,18 @@ Definitions : A "_host_" is a computer on which you will be installing _vagrant-
 
 If you are very unfamiliar with the software products listed at the top of this document, you may wish to visit online references before proceeding.  Some relevant online resources are listed in a section near the end of this document, titled "The Short List Of Online References".
 
+## Vagrant User's Guide To A New Rails Dev Env And App, In Six Easy Steps
+###### (Copy-and-Paste Commands In Your Terminal Session)
+
+1. Open terminal a session in your storage workspace
+2. "mkdir vagrant-ruby-rails; cd vagrant-ruby-rails; mkdir workspace"
+3. Download ZIP _vagrant-ruby-rails_ file from GitHub,
+   https://github.com/ckthomaston/vagrant-ruby-rails
+   Unzip vagrant-ruby-rails files into "vagrant-ruby-rails"
+4. "vagrant up; vagrant ssh", wait for an _ssh_ prompt. _The Build_ happens only once
+5. "cd /vagrant/workspace;rvm use ruby-2.2.1@rails4.2.1; rails new myapp; cd myapp; rails s -b 0.0.0.0"
+6. Open your web browser on http://localhost:3030  =>  "Welcome aboard.  You’re riding Ruby on Rails!"
+
 ## Overview Of Installation And Use
 
 To install _vagrant-ruby-rails_, your computer needs :
@@ -50,19 +62,18 @@ Before beginning installation of _vagrant-ruby-rails_, you must already have _Va
 
 #### Prepare For _The Build_
 
-Bring up a terminal on your _host_, and follow the instructions below.  If possible, you may wish to use copy-and-paste to reduce typing while entering the commands.  In the following sections, a terminal command prompt is indicated by the symbol $.
+Bring up a terminal on your _host_.  Choose a suitable location for the directory tree which will be created by the commands below.
 
-Create a "home" directory for the _guest-vbox_ in a convenient subdirectory location of your choice.  Name it whatever you wish.  Herein, the _guest-vbox_ "home" subdirectory will be referred to as "vagrant-ruby".  At times it may also be referred to as ".../vagrant-ruby/" :
-    
-> $ mkdir vagrant-ruby
+Enter the following commands on your terminal.  If possible, you may wish to use copy-and-paste to reduce typing while entering the commands.  In the following sections, a terminal command prompt is indicated by the symbol $.
 
-Make the _guest-vbox_ "home" directory your current working directory :
+> $ mkdir vagrant-ruby-rails; cd vagrant-ruby-rails; mkdir workspace
 
-> $ cd vagrant-ruby
+The command above created the "home" directory, named "vagrant-ruby-rails", where your new _vagrant-ruby-rails_ development environment will be installed.  This is the directory from which you will launch your new _vagrant-ruby-rails_ _guest-vbox_.  The "vagrant-ruby-rails" directory is also referred to elsewhere in this document as ".../vagrant-ruby-rails/.  A subdirectory named ".../vagrant-ruby/workspace/" was also created by the command above.  It will be used later.
+      
+Next, visit the _vagrant-ruby-rails_ GitHub repository at, https://github.com/ckthomaston/vagrant-ruby-rails.  On that page, use the 
+Download _ZIP_ button to download ZIP file containing the _vagrant-ruby-rails_ project files.
 
-Download a zip file containing the _vagrant-ruby-rails_ product files from the _GitHub_ repository page, https://github.com/ckthomaston/vagrant-ruby-rails.
-
-Extract those files into this subdirectory, (".../vagrant-ruby/").  During extraction, ensure the same file and subdirectory hierarchy as in the repository is retained.
+Extract those files into the current working directory, (".../vagrant-ruby/").
 
 After extraction, verify the contents of ".../vagrant-ruby/".  Enter the following command :
   
@@ -77,12 +88,7 @@ A directory listing shows the following, (or very similar), contents :
         -rw-rw-r-- 1 user group   110 Apr  9 17:18 ruby221-inst.sh
         -rw-rw-r-- 1 user group   375 Apr  9 16:19 rvm-inst.sh
         -rw-rw-r-- 1 user group  3250 Apr 10 19:03 Vagrantfile
-      
-Enter the following command :
-  
-> $ mkdir workspace
-      
-A subdirectory named ".../vagrant-ruby/workspace/" is created.  It will be used later.
+        drwxrwsr-x 2 user group  4096 Apr 12 14:30 workspace
       
 #### Do _The Build_
 
@@ -94,7 +100,7 @@ There is a large amount of terminal message output during provisioning.  The vas
 
 Enter the following command :
   
-> $ vagrant up
+> $ vagrant up; vagrant ssh
       
 _The Build_ starts.
 
@@ -122,11 +128,7 @@ After the build completes successfully, the last build message reads :
 
 ##### Verify The Toolset Has Properly Installed
 
-When the command prompt is subsequently displayed, enter the following command :
-  
-> $ vagrant ssh
-    
-This will open an _ssh_ terminal shell on the _vagrant-ruby-rails_ _Vagrant Box_.  After a few seconds, an _Ubuntu_ shell welcome screen and a command prompt are displayed. The prompt reads :
+When _The Build_ is finished, an _Ubuntu_ shell welcome screen and a command prompt are displayed.  The command prompt shows :
     
 >  vagrant@vagrant-ubuntu-trusty-64:~$
         
@@ -186,22 +188,12 @@ Ensure you are still in the "vagrant ssh" session in your terminal program.
 
 Enter the following commands.  These commands build and serve a web page from an example _Rails_ app named "myapp" :
     
-> $ cd /vagrant/workspace; mkdir myapp; cd myapp
-  
-          Result :
-        
+> cd /vagrant/workspace;rvm use ruby-2.2.1@rails4.2.1; rails new myapp; cd myapp; rails s -b 0.0.0.0
+
+Terminal output messages show the progress of the command above, which selects desired versions of Ruby and Rails, builds the scaffolding for a new Rails app named "myapp", and then executes the Rails WEBrick server.
+
             vagrant@vagrant-ubuntu-trusty-64:/vagrant/workspace/myapp$
-
-> $ rvm use ruby-2.2.1@rails4.2.1
-  
-          Result :
-          
             Using /usr/local/rvm/gems/ruby-2.2.1 with gemset rails4.2.1
-
-> $ rails new .
-  
-          Result :
-        
             exist
             create  README.rdoc
             create  Rakefile
@@ -210,24 +202,6 @@ Enter the following commands.  These commands build and serve a web page from an
                       .
             * bin/rake: spring inserted
             * bin/rails: spring inserted
-
-> $ ls -l
-  
-          Result :
-        
-            total 100
-            drwxrws--- 1 vagrant vagrant 4096 Apr 10 02:14 app
-            drwxrws--- 1 vagrant vagrant 4096 Apr 10 02:14 bin
-                      .
-                      .
-                      .
-            drwxrws--- 1 vagrant vagrant 4096 Apr 10 02:14 tmp
-            drwxrws--- 1 vagrant vagrant 4096 Apr 10 02:14 vendor
-
-> $ rails s -b 0.0.0.0
-  
-          Result :
-      
             => Booting WEBrick
             => Rails 4.2.1 application starting ... on http://0.0.0.0:3000
                       .
@@ -248,7 +222,7 @@ The example web page shows :
 
 You may now terminate execution of the _Rails_ WEBrick test server, by entering _Ctrl-C_ in the _guest-vbox_ terminal.
 
-This ends preliminary verification of a successful build.  You may now remove the "myapp" scaffolding example app, if you have no other use for it.  If you wish to remove it, you may enter the following command.  (Always double-check your spelling when entering a command which contains "rm -rf ...").
+This ends verification of a successful build.  You may now continue to develop this new app "myapp" scaffolding example app, or you may remove it if you have no other use for it.  If you wish to remove it, you may enter the following command.  (Always double-check your spelling when entering a command which contains "rm -rf ...").
 
 > $ cd /vagrant/workspace; rm -rf /vagrant/workspace/myapp; cd /vagrant
   
