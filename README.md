@@ -16,19 +16,20 @@ Definitions : A "_host_" is a computer on which you will be installing _vagrant-
 
 If you are very unfamiliar with the software products listed at the top of this document, you may wish to visit online references before proceeding.  Some relevant online resources are listed in a section near the end of this document, titled "The Short List Of Online References".
 
-## Vagrant User's Guide To A New Rails Dev Env And App, In Six Easy Steps
+#### Quickstart For Experts Already Running Vagrant with VirtualBox
+
+##### A New Rails Dev Env And App, In Six Easy Steps
+
 ###### (Copy-and-Paste Commands In Your Terminal Session)
 
 1. Open terminal a session in your storage workspace
 2. "mkdir vagrant-ruby-rails; cd vagrant-ruby-rails; mkdir workspace"
-3. Download ZIP _vagrant-ruby-rails_ file from GitHub,
-   https://github.com/ckthomaston/vagrant-ruby-rails
-   Unzip vagrant-ruby-rails files into "vagrant-ruby-rails"
-4. "vagrant up; vagrant ssh", wait for an _ssh_ prompt. _The Build_ happens only once
-5. "cd /vagrant/workspace;rvm use ruby-2.2.1@rails4.2.1; rails new myapp; cd myapp; rails s -b 0.0.0.0"
+3. Download ZIP _vagrant-ruby-rails_ file from GitHub, https://github.com/ckthomaston/vagrant-ruby-rails.  Unzip vagrant-ruby-rails files into "vagrant-ruby-rails".
+4. "vagrant up; vagrant ssh", and wait a short while for an _ssh_ prompt.
+5. "cd /vagrant/workspace; rvm use ruby-2.2.1@rails4.2.1; rails new myapp; cd myapp; rails s -b 0.0.0.0"
 6. Open your web browser on http://localhost:3030  =>  "Welcome aboard.  You’re riding Ruby on Rails!"
 
-## Overview Of Installation And Use
+## Introductin to Installation And Use
 
 To install _vagrant-ruby-rails_, your computer needs :
 
