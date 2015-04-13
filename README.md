@@ -2,7 +2,7 @@
 
 ### A Ruby On Rails Development Environment (Basic)
 
-##### Containing Ubuntu Server 14.04, Ruby 2.2.1, Gems 2.4.6, Rails 4.2.1, RVM 1.26.11, Git 1.9.1, Node.js 0.10.25.
+##### Containing Ubuntu Server 14.04, Ruby 2.2.1, Gems 2.4.6, Rails 4.2.1, RVM 1.26.11, Git 1.9.1, Node.js 0.12.2
 
 This is a _Vagrant Box_, (https://www.vagrantup.com), intended for quick installation of a very basic _Ruby On Rails_ development environment.  Assuming _Vagrant_ and _VirtualBox_ are already installed on your _host_ computer, this _Vagrant Box_ can be easily and quickly installed and removed.
 
@@ -22,10 +22,10 @@ If you are very unfamiliar with the software products listed at the top of this 
 
 ###### Copy-and-Paste Quoted Commands Into Your Terminal Session
 
-1. Open a terminal session in your _host_ computer storage workspace
+1. Open a terminal session in your _host_ computer storage workspace.
 2. "mkdir vagrant-ruby-rails; cd vagrant-ruby-rails; mkdir workspace"
 3. Download ZIP _vagrant-ruby-rails_ file from GitHub, https://github.com/ckthomaston/vagrant-ruby-rails.  Unzip _vagrant-ruby-rails_ files into current working directory, "vagrant-ruby-rails".
-4. "vagrant up; vagrant ssh".  Now wait a short while for vagrant@vagrant-ubuntu-trusty-64:~$ prompt.
+4. "vagrant up; vagrant ssh".  Now wait a short while for _vagrant@vagrant-ubuntu-trusty-64:~$_ prompt.
 5. "cd /vagrant/workspace; rvm use ruby-2.2.1@rails4.2.1; rails new myapp; cd myapp; rails s -b 0.0.0.0"
 
 Open your web browser : http://localhost:3030
@@ -97,7 +97,7 @@ A directory listing shows the following, (or very similar), contents :
       
 #### Do _The Build_
 
-The "vagrant up" command executed below will provision and start a _vagrant-ruby-rails_ _Vagrant Box_.  Depending on the speed of your computer and the speed of your Internet connection, the build done by this "vagrant up" will take approximately eight minutes or more, but should take no more than twenty minutes.
+The "vagrant up" command executed below will provision and start a _vagrant-ruby-rails_ _Vagrant Box_.  Depending on the speed of your computer and the speed of your Internet connection, the build done by this "vagrant up" will take approximately fourteen minutes or more, but should take no more than twenty minutes unless the _host_ is very slow or has a very slow Internet connection.
 
 The work done by the provisioning scripts during this "vagrant up" provisioning build will not be invoked the next time "vagrant up" is executed, because provisioning is a one-time process.  Therefore, subsequent "vagrant up" operations will result in a running _guest-vbox_ within approximately one minute.
 
@@ -174,9 +174,9 @@ Enter the following commands.  Notice the components which have been installed, 
         
           Result : git version 1.9.1
         
-> $ node --version
+> $ nodejs --version
         
-          Result : v0.10.25
+          Result : v0.12.2
         
 > $ nokogiri --version
         
@@ -229,11 +229,13 @@ You may now terminate execution of the _Rails_ _WEBrick_ test server, by enterin
 
 This ends verification of a successful build.  You may now continue to develop this new app "myapp" scaffolding example app, or you may remove it if you have no other use for it.  If you wish to remove it, you may enter the following command.  (Always double-check your spelling when entering a command which contains "rm -rf ...").
 
-> $ cd /vagrant/workspace; rm -rf /vagrant/workspace/myapp; cd /vagrant
+> $ cd; rm -rf /vagrant/workspace/myapp
   
         Result :
         
-          vagrant@vagrant-ubuntu-trusty-64:/vagrant$
+          vagrant@vagrant-ubuntu-trusty-64:~$
+          
+          The "myapp" directory and its subdirectories are deleted.
           
 ## Using _vagrant-ruby-rails_
 
@@ -406,9 +408,9 @@ _RVM_ is installed using _curl_ and the instructions at https://rvm.io/.
   
 _Git_ is installed using the official _Canonical Ubuntu_ package repositories, "sudo apt-get install -y git".
 
-##### _Node.js_ 0.10.25
+##### _Node.js_ 0.12.2
   
-_Node.js_ is installed using the official _Canonical Ubuntu_ package repositories, "sudo apt-get install -y nodejs".
+_Node.js_ is installed using the instructions at Nodesource, https://nodesource.com/blog/nodejs-v012-iojs-and-the-nodesource-linux-repositories.
 
 ##### _Nokogiri_ 1.6.6.2
   

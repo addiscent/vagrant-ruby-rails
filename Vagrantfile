@@ -37,7 +37,7 @@ Vagrant.configure(2) do |config|
   # the path on the host to the actual folder. The second argument is
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
-  config.vm.synced_folder "./workspace/", "/workspace/"
+    config.vm.synced_folder "./workspace/", "/workspace/"
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
@@ -64,14 +64,17 @@ Vagrant.configure(2) do |config|
   # Enable provisioning with a shell script. Additional provisioners such as
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
-    config.vm.provision "shell", inline: <<-SHELL
+  
+  $script = <<-SCRIPT
         sudo apt-get update
 
-        bash --login /vagrant/rvm-inst.sh
+        bash /vagrant/rvm-inst.sh
         bash --login /vagrant/ruby221-inst.sh
         bash --login /vagrant/rails421-inst.sh
         
         echo "################   apt-get install -y git    ###############"
         sudo apt-get install -y git
-    SHELL
+    SCRIPT
+  
+    config.vm.provision "shell", inline: $script, privileged: false
 end

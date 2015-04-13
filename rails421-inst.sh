@@ -3,10 +3,8 @@
 echo "################   Installing Rails 4.2.1    ###############"
 
 echo "########### sudo apt-get install -y nodejs  ##########"
+curl -sL https://deb.nodesource.com/setup_0.12 | sudo bash -
 sudo apt-get install -y nodejs
-
-echo "########### ssudo mv /usr/bin/nodejs /usr/bin/node  ##########"
-sudo cp /usr/bin/nodejs /usr/bin/node
 
 echo "########### gem install rubygems-update --no-document  ##########"
 gem install rubygems-update --no-document
@@ -28,9 +26,6 @@ rvm use ruby-2.2.1@rails4.2.1 --create
 
 echo "########### gem install rails --no-document  ##########"
 gem install rails --no-document
-
-echo "###########  rvm gemset use rails4.2.1 >> /home/vagrant/.bashrc  ##########"
-echo "rvm gemset use rails4.2.1" >> /home/vagrant/.bashrc
 
 exit
 
