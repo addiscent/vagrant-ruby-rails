@@ -10,7 +10,7 @@ Because it can be quickly built or rebuilt if necessary, this _Vagrant Box_ may 
 
 It also allows easy reproduction and distribution of exact duplicates of a development environment shared among multiple project members.
 
-The installed _Git_ software can be used for committing _Ruby/Rails_ project files or other sources into repositories.  If you customize the configuration and provisioning files of this _vagrant-ruby-rails_ _Vagrant Box_, and then save them in a _Git_ repository, you can easily recreate your custom _vagrant-ruby-rails_ _Vagrant Box_ environment in the future.  Or, using an online _Git_ repository, you can easily share your customized _vagrant-ruby-rails_ _Vagrant Box_ with other users.
+The installed _Git_ software can be used for committing _Ruby/Rails_ project files or other sources into repositories.  If you customize the configuration and provisioning files of this _vagrant-ruby-rails_ _Vagrant Box_, and then save them in a _Git_ repository, you can easily recreate your custom _vagrant-ruby-rails_ _Vagrant Box_ development environment in the future.  Or, using an online _Git_ repository, you can easily share your customized _vagrant-ruby-rails_ _Vagrant Box_ with other users.
 
 Definitions : A "_host_" is a computer on which you will be installing _vagrant-ruby-rails_.  _Vagrant-ruby-rails_ is a "guest" installed onto your "_host_" computer.  Because the _vagrant-ruby-rails_ "guest" is a _Vagrant Box_, it is referred to in this document as a _guest-vbox_.
 
@@ -69,11 +69,11 @@ Before beginning installation of _vagrant-ruby-rails_, you must already have _Va
 
 Bring up a terminal on your _host_.  Choose a suitable location for the directory tree which will be created by the commands below.
 
-Enter the following command one-line on your terminal.  In the following sections, a terminal command prompt is indicated by the symbol $.
+Enter the following single-line command on your terminal.  In the following sections, a terminal command prompt is indicated by the symbol $.
 
 > $ mkdir vagrant-ruby-rails; cd vagrant-ruby-rails; mkdir workspace
 
-The command above created the "home" directory, named "vagrant-ruby-rails", where your new _vagrant-ruby-rails_ development environment will be installed.  This is the directory from which you will launch your new _vagrant-ruby-rails_ _guest-vbox_.  The "vagrant-ruby-rails" directory is also referred to elsewhere in this document as ".../vagrant-ruby-rails/.  A subdirectory named ".../vagrant-ruby-rails/workspace/" was also created by the command above.  It will be used later.
+The command above created the "home" directory, named "vagrant-ruby-rails", where your new _vagrant-ruby-rails_ development environment will be installed.  This is the directory from which you will launch your new _vagrant-ruby-rails_ _guest-vbox_.  The "vagrant-ruby-rails" directory is also referred to elsewhere in this document as ".../vagrant-ruby-rails/.  A subdirectory named ".../vagrant-ruby-rails/workspace/" is also created by the command above.  It will be used later.
       
 Next, visit the _vagrant-ruby-rails_ GitHub repository at, https://github.com/ckthomaston/vagrant-ruby-rails.  On that page, use the 
 "Download ZIP" button to download a ZIP file containing the _vagrant-ruby-rails_ project files.
@@ -115,7 +115,7 @@ A very long list of text messages is output during the build process, beginning 
               .
               .
      
-The build tools will output numerous status/progress messages.  If you are using a terminal which is configured to show colored text, most of the informational messages displayed are green in color, but, there will also be a _lot_ of red-color text output.  The output messages of _gpg_ and _curl_ are _red_ and the formatting is very _broken_.
+The build tools will output numerous status/progress messages.  If you are using a terminal which is configured to show color text, most of the informational messages displayed are green in color, but, there will also be a _lot_ of red-color text output.  The output messages of _gpg_ and _curl_ are _red_ and the formatting is very _broken_.
 
 Unfortunately, this messy output makes it difficult to spot any genuine error, if one occurs.  Typically, if the build fails, it will often stop with an obvious error message, but in some unusual cases it does not.
 
@@ -178,6 +178,10 @@ Enter the following commands.  Notice the components which have been installed, 
         
           Result : v0.12.2
         
+> $ npm --version
+        
+          Result : 2.7.4
+          
 > $ nokogiri --version
         
           Result :
@@ -311,11 +315,11 @@ _VirtualBox_ will dynamically increase the size of the _Ubuntu Server_ virtual d
 
 ##### Provisioning
 
-Provisioning is a process during which all of the components needed for the _vagrant-ruby-rails_ _guest-vbox_ are downloaded, built, and placed on your storage.  By default, _Vagrant_ executes this time-consumng provisioning of the _guest-vbox_ only the first time "vagrant up" is executed.  Subsequent "vagrant up" commands will load the previously provisioned image from your local storage, rather than redundantly provisioning the _guest-vbox_ every time "vagrant up" is executed.
+Provisioning is a process during which all of the components needed for the _vagrant-ruby-rails_ _guest-vbox_ are downloaded, built, and placed into the _vagrant-ruby-rails_ _guest-vbox_.  By default, _Vagrant_ executes this time-consumng provisioning of the _guest-vbox_ only the first time "vagrant up" is executed.  Subsequent "vagrant up" commands will fetch the previously provisioned image from _host_ local storage, rather than redundantly provisioning the _guest-vbox_ every time "vagrant up" is executed.
 
 The provisioning files, _rvm-inst.sh_, _ruby221-inst.sh_, and _rails421-inst.sh_, are _BASH_ scripts.  By understanding how the _Vagrantfile_ and the _.sh_ provisioning files work together, and by editing the contents of those files, you can easily change the default versions of the components installed, or add/remove components, as desired.
 
-Note that if you change your provisioning files, your installed _guest-vbox_ image will need to be modified, (re-provisioned), to implement those changes.  Depending on the changes specified in the provisioning scripts, you may be able to simply modify your existing installed _guest-vbox_ image, by executing the "vagrant provision" command.  In other cases your _guest-vbox_ must be "vagrant destroyed", and a full "rebuild" done.
+Note that if you change your provisioning files, your installed _guest-vbox_ image will need to be modified, (re-provisioned), to implement those changes.  Depending on the changes specified in the provisioning scripts, you may be able to simply modify your existing installed _guest-vbox_ image, by executing the "vagrant provision" command.  In other cases your _guest-vbox_ must be "vagrant destroyed", and a "full rebuild" done.
 
 Please see the _Vagrant_ documentation for more information about provisioning _Vagrant Boxes_.
   
@@ -337,7 +341,7 @@ For _VirtualBox_ installation instructions, please visit the _VirtualBox_ web si
 
 ##### If _The Build_ Fails
 
-First of all, if the build fails, ensure you save the terminal output messages of the "vagrant up" provisioning build for future reference.  This is usually easily done by backscrolling the terminal, highlighting the terminal text, and then doing copy-paste into a file, and saving it.
+First, ensure you save the terminal output messages of the "vagrant up" provisioning build for future reference.  This is usually easily done by backscrolling the terminal, highlighting the terminal text, and then doing copy-paste into a file, and saving it.
 
 Only you have access to the necessary configuration information about your _host_, so the only practical advice which can be offered here is :
 
@@ -367,13 +371,13 @@ It's possible for a build to fail for quite a few reasons.  Some are :
 
 * Unreliable Internet connection.
 
-* One or more web sites which provide source code, or build scripts, have become unavailable, (broken links, or temporarily offline). 
+* One or more web sites which provide source code, or build scripts, have become unavailable, (broken links, temporarily or permanently offline). 
 
 * Missing, misconfigured, or incompatible versions of _Vagrant_ or _VirtualBox_.
 
 After you have found something suspicious, address it, either by changing some configuration of your _host_, (most likely to resolve the problem), or by modifying the provisioning script, (see broken links, above).
 
-Then, try again to install _vagrant-ruby-rails_.  Before doing so, be aware that the _.sh_ provisioning scripts in this version of _vagrant-ruby-rails_ are not idempotent, meaning, the likelyhood of producing a correctly provisioned _vagrant-ruby-rails_ _Vagrant Box_ is low if you simply re-run "vagrant up" after installation failed, even after you have implemented a "guaranteed" fix for an error.  Unless you know otherwise, your best course of action is to execute "vagrant destroy", and then execute "vagrant up" again.
+Then, try again to "vagrant up" _vagrant-ruby-rails_.  Before doing so, be aware that the _.sh_ provisioning scripts in this version of _vagrant-ruby-rails_ are not idempotent, meaning, the likelyhood of producing a correctly provisioned _vagrant-ruby-rails_ _Vagrant Box_ is low if you simply re-run "vagrant up" after installation failed, even after you have implemented a "guaranteed" fix for an error.  Unless you know otherwise, your best course of action after implementing an error correction is to execute "vagrant destroy", and then execute "vagrant up" again.
 
 ## The Short List Of Online References
 
@@ -426,7 +430,7 @@ This product, at this time, is in the _alpha_ stage of development.  Extensive t
 
 ##### The Provisioning Scripts Are Incomplete
 
-The provisioning _BASH_ scripts build a working _Vagrant Box_ by downloading essential components/sources from the Internet.  The provisioning _BASH_ scripts install the components as described herein, but, at this time they have _no_ error detection/handling, per se.  If system environment problems, such as a flaky Internet connection, or lack of storage space, causes errors during the build, the provisioning scripts will not handle these errors gracefully.
+The provisioning _BASH_ scripts build a working _Vagrant Box_ by downloading essential components/sources from the Internet.  The provisioning _BASH_ scripts install the components as described herein, but, at this time they have _no_ error detection/handling, per se.  If system environment problems, such as a flaky Internet connection, or lack of storage space, causes errors during provisioning, these scripts will not handle errors gracefully.
 
 ### Licensing And Disclaimer
 
