@@ -28,12 +28,12 @@ If you are very unfamiliar with the software products listed at the top of this 
 4. "vagrant up; vagrant ssh".  Now wait a short while for _vagrant@vagrant-ubuntu-trusty-64:~$_ prompt.
 5. "cd /vagrant/workspace; rvm use ruby-2.2.1@rails4.2.1; rails new myapp; cd myapp; rails s -b 0.0.0.0"
 
-Open your web browser : http://localhost:3030
+Open a web browser to http://localhost:3030
 
         Welcome aboard.
         You’re riding Ruby on Rails!
 
-## Introduction to Installation And Use
+## Introduction To Installation And Use
 
 To install _vagrant-ruby-rails_, your computer needs :
 
@@ -97,7 +97,7 @@ A directory listing shows the following, (or very similar), contents :
       
 #### Do _The Build_
 
-The "vagrant up" command executed below will provision and start a _vagrant-ruby-rails_ _Vagrant Box_.  Depending on the speed of your computer and the speed of your Internet connection, the build done by this "vagrant up" will take approximately fourteen minutes or more, but should take no more than twenty minutes unless the _host_ is very slow or has a very slow Internet connection.
+The "vagrant up" command executed below will provision and start a _vagrant-ruby-rails_ _Vagrant Box_.  Depending on the speed of your computer and the speed of your Internet connection, the build done by this "vagrant up" will take approximately fifteen minutes or more.
 
 The work done by the provisioning scripts during this "vagrant up" provisioning build will not be invoked the next time "vagrant up" is executed, because provisioning is a one-time process.  Therefore, subsequent "vagrant up" operations will result in a running _guest-vbox_ within approximately one minute.
 
@@ -231,7 +231,7 @@ The example web page shows :
 
 You may now terminate execution of the _Rails_ _WEBrick_ test server, by entering _Ctrl-C_ in the _guest-vbox_ terminal.
 
-This ends verification of a successful build.  You may now continue to develop this new app "myapp" scaffolding example app, or you may remove it if you have no other use for it.  If you wish to remove it, you may enter the following command.  (Always double-check your spelling when entering a command which contains "rm -rf ...").
+This ends verification of a successful build.  You may now continue to experiment with "myapp", or you may remove it if you have no other use for it.  If you wish to remove it, you may enter the following command.
 
 > $ cd; rm -rf /vagrant/workspace/myapp
   
