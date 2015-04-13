@@ -20,7 +20,7 @@ If you are very unfamiliar with the software products listed at the top of this 
 
 ##### A New Rails Dev Env And App, In Five Easy Steps
 
-###### (Copy-and-Paste Commands In Your Terminal Session)
+###### Copy-and-Paste Quoted Commands In Your Terminal Session
 
 1. Open a terminal session in your _host_ computer storage workspace
 2. "mkdir vagrant-ruby-rails; cd vagrant-ruby-rails; mkdir workspace"
@@ -28,7 +28,10 @@ If you are very unfamiliar with the software products listed at the top of this 
 4. "vagrant up; vagrant ssh".  Now wait a short while for vagrant@vagrant-ubuntu-trusty-64:~$ prompt.
 5. "cd /vagrant/workspace; rvm use ruby-2.2.1@rails4.2.1; rails new myapp; cd myapp; rails s -b 0.0.0.0"
 
-Open your web browser on http://localhost:3030  =>  "Welcome aboard.  You’re riding Ruby on Rails!"
+Open your web browser on, http://localhost:3030.
+
+        Welcome aboard.
+        You’re riding Ruby on Rails!
 
 ## Introduction to Installation And Use
 
@@ -66,18 +69,18 @@ Before beginning installation of _vagrant-ruby-rails_, you must already have _Va
 
 Bring up a terminal on your _host_.  Choose a suitable location for the directory tree which will be created by the commands below.
 
-Enter the following commands on your terminal.  If possible, you may wish to use copy-and-paste to reduce typing while entering the commands.  In the following sections, a terminal command prompt is indicated by the symbol $.
+Enter the following command one-line on your terminal.  In the following sections, a terminal command prompt is indicated by the symbol $.
 
 > $ mkdir vagrant-ruby-rails; cd vagrant-ruby-rails; mkdir workspace
 
-The command above created the "home" directory, named "vagrant-ruby-rails", where your new _vagrant-ruby-rails_ development environment will be installed.  This is the directory from which you will launch your new _vagrant-ruby-rails_ _guest-vbox_.  The "vagrant-ruby-rails" directory is also referred to elsewhere in this document as ".../vagrant-ruby-rails/.  A subdirectory named ".../vagrant-ruby/workspace/" was also created by the command above.  It will be used later.
+The command above created the "home" directory, named "vagrant-ruby-rails", where your new _vagrant-ruby-rails_ development environment will be installed.  This is the directory from which you will launch your new _vagrant-ruby-rails_ _guest-vbox_.  The "vagrant-ruby-rails" directory is also referred to elsewhere in this document as ".../vagrant-ruby-rails/.  A subdirectory named ".../vagrant-ruby-rails/workspace/" was also created by the command above.  It will be used later.
       
 Next, visit the _vagrant-ruby-rails_ GitHub repository at, https://github.com/ckthomaston/vagrant-ruby-rails.  On that page, use the 
-Download _ZIP_ button to download ZIP file containing the _vagrant-ruby-rails_ project files.
+"Download ZIP" button to download a ZIP file containing the _vagrant-ruby-rails_ project files.
 
-Extract those files into the current working directory, (".../vagrant-ruby/").
+Extract those files into the current working directory, (".../vagrant-ruby-rails/").
 
-After extraction, verify the contents of ".../vagrant-ruby/".  Enter the following command :
+After extraction, verify the contents of ".../vagrant-ruby-rails/".  Enter the following command :
   
 > $ ls -al
       
@@ -94,9 +97,9 @@ A directory listing shows the following, (or very similar), contents :
       
 #### Do _The Build_
 
-The "vagrant up" command executed below will provision, (create and initialize), a _vagrant-ruby-rails_ _Vagrant Box_, and start it.  Depending on the speed of your computer and the speed of your Internet connection, the build done by this "vagrant up" will take approximately eight minutes or more, but should take no more than twenty minutes.
+The "vagrant up" command executed below will provision and start a _vagrant-ruby-rails_ _Vagrant Box_.  Depending on the speed of your computer and the speed of your Internet connection, the build done by this "vagrant up" will take approximately eight minutes or more, but should take no more than twenty minutes.
 
-The work done by the provisioning scripts during this initial "vagrant up" build will not be invoked the next time "vagrant up" is executed, because provisioning is a one-time process.  Therefore, subsequent "vagrant up" operations will result in a running _guest-vbox_ within approximately one minute.
+The work done by the provisioning scripts during this "vagrant up" provisioning build will not be invoked the next time "vagrant up" is executed, because provisioning is a one-time process.  Therefore, subsequent "vagrant up" operations will result in a running _guest-vbox_ within approximately one minute.
 
 There is a large amount of terminal message output during provisioning.  The vast majority of messages log the construction of software which is being placed _into the_  _vagrant-ruby-rails_ _Vagrant Box_.  _Ruby, Gems, Rails, RVM, Git, and Node.js_ are _not_ being placed directly onto your _host_, they are being placed into the _guest-vbox_.  When provisioning of the _guest-vbox_ finishes,  the _guest-vbox_ is then stored onto the _host_.
 
@@ -188,13 +191,12 @@ Enter the following commands.  Notice the components which have been installed, 
 
 Ensure you are still in the "vagrant ssh" session in your terminal program.
 
-Enter the following commands.  These commands build and serve a web page from an example _Rails_ app named "myapp" :
+Enter the following commands.  These commands build and _WEBrick_ serve a web page from an example _Rails_ app named "myapp" :
     
 > cd /vagrant/workspace; rvm use ruby-2.2.1@rails4.2.1; rails new myapp; cd myapp; rails s -b 0.0.0.0
 
-Terminal output messages show the progress of the command above, which selects desired versions of Ruby and Rails, builds the scaffolding for a new Rails app named "myapp", and then executes the Rails WEBrick server.
+Terminal output messages show the progress of the command above, which selects desired versions of Ruby and Rails, builds the scaffolding for a new Rails app named "myapp", and then executes the Rails _WEBrick_ server.
 
-            vagrant@vagrant-ubuntu-trusty-64:/vagrant/workspace/myapp$
             Using /usr/local/rvm/gems/ruby-2.2.1 with gemset rails4.2.1
             exist
             create  README.rdoc
@@ -210,9 +212,9 @@ Terminal output messages show the progress of the command above, which selects d
                       .
                       .
             [2015-04-10 02:36:11] INFO  ruby 2.2.1 ... [x86_64-linux]
-            [2015-04-10 02:36:11] INFO  WEBrick ... : pid=11540 port=3000
+            [2015-04-10 02:36:11] INFO  _WEBrick_ ... : pid=11540 port=3000
 
-The Rails built-in WEBrick test server is now running.
+The Rails built-in _WEBrick_ test server is now running.
 
 Use a web browser on your _host_ to examine the resulting example web page at URL :
 
@@ -220,9 +222,10 @@ Use a web browser on your _host_ to examine the resulting example web page at UR
   
 The example web page shows :
 
-        "Welcome aboard. You’re riding Ruby on Rails!".
+        Welcome aboard
+        You’re riding Ruby on Rails!
 
-You may now terminate execution of the _Rails_ WEBrick test server, by entering _Ctrl-C_ in the _guest-vbox_ terminal.
+You may now terminate execution of the _Rails_ _WEBrick_ test server, by entering _Ctrl-C_ in the _guest-vbox_ terminal.
 
 This ends verification of a successful build.  You may now continue to develop this new app "myapp" scaffolding example app, or you may remove it if you have no other use for it.  If you wish to remove it, you may enter the following command.  (Always double-check your spelling when entering a command which contains "rm -rf ...").
 
@@ -256,7 +259,7 @@ Notice there is one subdirectory not typically found in an _Ubuntu Server_ root 
 
 #### Guest VBox "/vagrant/" Subdirectory
 
-The _guest-vbox_ "/vagrant/" subdirectory is created by _Vagrant_ during construction of the _guest-vbox_.  Upon loading, "/vagrant/" is sync'd by _VirtualBox_ to a directory you created earlier on the _host_ file system, the one (herein) named ".../vagrant-ruby/".  The result of the _VirtualBox_ sync is that _guest-vbox_ "/vagrant/" and _host_ ".../vagrant-ruby/" are effectively "mapped into" a single directory.  You can observe evidence of that by entering the following command :
+The _guest-vbox_ "/vagrant/" subdirectory is created by _Vagrant_ during construction of the _guest-vbox_.  Upon loading, "/vagrant/" is sync'd by _VirtualBox_ to a directory you created earlier on the _host_ file system, the one (herein) named ".../vagrant-ruby-rails/".  The result of the _VirtualBox_ sync is that _guest-vbox_ "/vagrant/" and _host_ ".../vagrant-ruby-rails/" are effectively "mapped into" a single directory.  You can observe evidence of that by entering the following command :
 
 > $ ls -al /vagrant
     
@@ -272,9 +275,9 @@ Note that the _guest-vbox_ _Vagrantfile_ and _.sh_ provisioning _BASH_ files, am
         -rw-rw-r--  1 vagrant vagrant  3250 Apr 11 20:55 Vagrantfile
         drwxrws---  1 vagrant vagrant  4096 Apr 12 01:10 workspace
 
-These are the same files you placed into ".../vagrant-ruby/" after you created it, when beginning installation of this product. 
+These are the same files you placed into ".../vagrant-ruby-rails/" after you created it, when beginning installation of this product. 
 
-You can manage or edit those files either from "within" the _guest-vbox_, (in _guest-vbox_ "/vagrant/"), or from "outside" the _guest-vbox_, (in _host_ ".../vagrant-ruby/").
+You can manage or edit those files either from "within" the _guest-vbox_, (in _guest-vbox_ "/vagrant/"), or from "outside" the _guest-vbox_, (in _host_ ".../vagrant-ruby-rails/").
   
 It is important to clearly understand that the files which _appear_ in _guest-vbox_ "/vagrant/" can have _create-read-write-delete_ operations done on them from that _guest-vbox_ directory, but, those files are not _stored_ in the _guest-vbox_ file system.  Those files reside on the _host_ file system.
 
@@ -284,17 +287,17 @@ Conversely, any files _stored_ on the _guest-vbox_ file system, in any other sub
 
 #### Guest VBox ".../workspace/" Subdirectory
 
-Recall that earlier you created a subdirectory in ".../vagrant-ruby/" named "workspace/".  You created it while in a terminal session on the _host_ computer, on its file system.  Later, while in a "vagrant ssh" session, you created a _Rails_ app in _guest-vbox_ "/vagrant/workspace", and served its web pages from the WEBrick server.
+Recall that earlier you created a subdirectory in ".../vagrant-ruby-rails/" named "workspace/".  You created it while in a terminal session on the _host_ computer, on its file system.  Later, while in a "vagrant ssh" session, you created a _Rails_ app in _guest-vbox_ "/vagrant/workspace", and served its web pages from the _WEBrick_ server.
 
-That is an example of how a subdirectory heirarchy in the _host_ ".../vagrant-ruby/" subdirectory can be used from "within" the _guest-vbox_ file system.
+That is an example of how a subdirectory heirarchy in the _host_ ".../vagrant-ruby-rails/" subdirectory can be used from "within" the _guest-vbox_ file system.
   
-Here is a ".../workspace/"-related tip for using _Git_ : At some point you may wish to commit your _guest-vbox_ _Vagrantfile_ and _.sh_ provisioning files to a _Git_ repository.  However, you probably do _not_ want the files in "workspace/", or equivalent subdirectories of ".../vagrant-ruby/", to be co-mingled with commits of your _guest-vbox_ configuration/provisioning files.  You can prevent that by adding the name "workspace" into your ".../vagrant-ruby/.gitignore" file.  The same is true of the hidden ".../vagrant-ruby/.vagrant" subdirectory.  See the _.gitignore_ file which you placed into ".../vagrant-ruby/" during installation.
+Here is a ".../workspace/"-related tip for using _Git_ : At some point you may wish to commit your _guest-vbox_ _Vagrantfile_ and _.sh_ provisioning files to a _Git_ repository.  However, you probably do _not_ want the files in "workspace/", or equivalent subdirectories of ".../vagrant-ruby-rails/", to be co-mingled with commits of your _guest-vbox_ configuration/provisioning files.  You can prevent that by adding the name "workspace" into your ".../vagrant-ruby-rails/.gitignore" file.  The same is true of the hidden ".../vagrant-ruby-rails/.vagrant" subdirectory.  See the _.gitignore_ file which you placed into ".../vagrant-ruby-rails/" during installation.
 
 ## Other Notes
 
 ##### Port Mapping
 
-The _Rails_ WEBrick server port default number is 3000.  The _vagrant-ruby-rails_ _Vagrantfile_ maps _guest-vbox_ port number 3000 to _host_ port number 3030.  The choice of port number 3030 is arbitrary.  If you wish to change this port mapping to a _host_ number port which better suits your needs, you can do so by editing the _Vagrantfile_.  For more information, see the _Vagrant_ documentation about the _config.vm.network_ directive.
+The _Rails_ _WEBrick_ server port default number is 3000.  The _vagrant-ruby-rails_ _Vagrantfile_ maps _guest-vbox_ port number 3000 to _host_ port number 3030.  The choice of port number 3030 is arbitrary.  If you wish to change this port mapping to a _host_ number port which better suits your needs, you can do so by editing the _Vagrantfile_.  For more information, see the _Vagrant_ documentation about the _config.vm.network_ directive.
 
 ##### Memory (RAM) Usage
 
