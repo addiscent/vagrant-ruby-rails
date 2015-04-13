@@ -18,18 +18,19 @@ If you are very unfamiliar with the software products listed at the top of this 
 
 #### Quickstart For Experts Already Running Vagrant with VirtualBox
 
-##### A New Rails Dev Env And App, In Six Easy Steps
+##### A New Rails Dev Env And App, In Five Easy Steps
 
 ###### (Copy-and-Paste Commands In Your Terminal Session)
 
-1. Open terminal a session in your storage workspace
+1. Open a terminal session in your _host_ computer storage workspace
 2. "mkdir vagrant-ruby-rails; cd vagrant-ruby-rails; mkdir workspace"
-3. Download ZIP _vagrant-ruby-rails_ file from GitHub, https://github.com/ckthomaston/vagrant-ruby-rails.  Unzip vagrant-ruby-rails files into "vagrant-ruby-rails".
-4. "vagrant up; vagrant ssh", and wait a short while for an _ssh_ prompt.
+3. Download ZIP _vagrant-ruby-rails_ file from GitHub, https://github.com/ckthomaston/vagrant-ruby-rails.  Unzip vagrant-ruby-rails files into current working directory, "vagrant-ruby-rails".
+4. "vagrant up; vagrant ssh".  Now wait a short while for vagrant@vagrant-ubuntu-trusty-64:~$ prompt.
 5. "cd /vagrant/workspace; rvm use ruby-2.2.1@rails4.2.1; rails new myapp; cd myapp; rails s -b 0.0.0.0"
-6. Open your web browser on http://localhost:3030  =>  "Welcome aboard.  You’re riding Ruby on Rails!"
 
-## Introductin to Installation And Use
+Open your web browser on http://localhost:3030  =>  "Welcome aboard.  You’re riding Ruby on Rails!"
+
+## Introduction to Installation And Use
 
 To install _vagrant-ruby-rails_, your computer needs :
 
@@ -189,7 +190,7 @@ Ensure you are still in the "vagrant ssh" session in your terminal program.
 
 Enter the following commands.  These commands build and serve a web page from an example _Rails_ app named "myapp" :
     
-> cd /vagrant/workspace;rvm use ruby-2.2.1@rails4.2.1; rails new myapp; cd myapp; rails s -b 0.0.0.0
+> cd /vagrant/workspace; rvm use ruby-2.2.1@rails4.2.1; rails new myapp; cd myapp; rails s -b 0.0.0.0
 
 Terminal output messages show the progress of the command above, which selects desired versions of Ruby and Rails, builds the scaffolding for a new Rails app named "myapp", and then executes the Rails WEBrick server.
 
