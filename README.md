@@ -20,15 +20,15 @@ If you are very unfamiliar with the software products listed at the top of this 
 
 ##### A New Rails Dev Env And App, In Five Easy Steps
 
-###### Copy-and-Paste Quoted Commands In Your Terminal Session
+###### Copy-and-Paste Quoted Commands Into Your Terminal Session
 
 1. Open a terminal session in your _host_ computer storage workspace
 2. "mkdir vagrant-ruby-rails; cd vagrant-ruby-rails; mkdir workspace"
-3. Download ZIP _vagrant-ruby-rails_ file from GitHub, https://github.com/ckthomaston/vagrant-ruby-rails.  Unzip vagrant-ruby-rails files into current working directory, "vagrant-ruby-rails".
+3. Download ZIP _vagrant-ruby-rails_ file from GitHub, https://github.com/ckthomaston/vagrant-ruby-rails.  Unzip _vagrant-ruby-rails_ files into current working directory, "vagrant-ruby-rails".
 4. "vagrant up; vagrant ssh".  Now wait a short while for vagrant@vagrant-ubuntu-trusty-64:~$ prompt.
 5. "cd /vagrant/workspace; rvm use ruby-2.2.1@rails4.2.1; rails new myapp; cd myapp; rails s -b 0.0.0.0"
 
-Open your web browser on, http://localhost:3030.
+Open your web browser : http://localhost:3030
 
         Welcome aboard.
         You’re riding Ruby on Rails!
