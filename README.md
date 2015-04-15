@@ -39,7 +39,7 @@ To install _vagrant-ruby-rails_, your computer needs :
 
   * An Internet connection
 
-  * 1GB of available memory (free RAM) - After installation, you may increase or decrease the amount of _host_ memory allocated to the _guest-vbox_.
+  * 512MB of available memory (free RAM) - After installation, you may increase or decrease the amount of _host_ memory allocated to the _guest-vbox_.
 
   * 3GB of storage (minimum) - Your long term _host_ storage space requirement will be determined by your application.
 
@@ -147,7 +147,7 @@ Enter the following commands.  Notice the components which have been installed, 
             
 > $ bundler --version
       
-          Result : Bundler version 1.9.2
+          Result : Bundler version 1.9.4
         
 > $ gem --version
       
@@ -307,7 +307,7 @@ The _Rails_ _WEBrick_ server port default number is 3000.  The _vagrant-ruby-rai
 
 ##### Memory (RAM) Usage
 
-This _guest-vbox_ needs 1GB of memory allocated to it during installation, because it compiles component sources at that time.  However, after installation of this _guest-vbox_, you may wish to reduce or increase the amount of memory allocated to your _guest-vbox_.  If that is the case, you can use the _Vagrantfile_ directive _vb.memory_ to change that amount of memory.  For more information, see the _Vagrant_ documentation.
+Based on your application needs you may wish to reduce or increase the amount of memory allocated to your _guest-vbox_.  If that is the case, after installation of this _guest-vbox_, you can use the _Vagrantfile_ directive _vb.memory_ to change the amount of allocated memory.  For more information, see the _Vagrant_ documentation.
 
 ##### Storage Usage
 
@@ -436,7 +436,7 @@ The provisioning _BASH_ scripts build a working _Vagrant Box_ by downloading ess
 
 _USE THIS PRODUCT AT YOUR OWN RISK. The author and other contributors are not responsible or liable for adverse consequences caused by use of this product, even if used as designed, or as described or implied, herein or elsewhere._
 
-Please read the _Apache 2.0 License_ included with this README file for important licensing information and disclaimers.
+Please read the _Apache License, Version 2.0_ included with this README file for important licensing information and disclaimers.
 
 
 
