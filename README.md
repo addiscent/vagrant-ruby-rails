@@ -16,7 +16,7 @@ Definitions : A "_host_" is a computer on which you will be installing _vagrant-
 
 If you are very unfamiliar with the software products listed at the top of this document, you may wish to visit online references before proceeding.  Some relevant online resources are listed in a section near the end of this document, titled "The Short List Of Online References".
 
-#### Quickstart For Experts Already Running Vagrant with VirtualBox
+#### Quickstart For Experts Already Running Vagrant with VirtualBox On Linux
 
 ##### A New Rails Dev Env And App, In Five Easy Steps
 
@@ -434,9 +434,9 @@ The provisioning _BASH_ scripts build a working _Vagrant Box_ by downloading ess
 
 ### Licensing And Disclaimer
 
-_USE THIS PRODUCT AT YOUR OWN RISK. The author and any other contributors are not responsible or liable for adverse consequences caused by use of this product, even if it is used as designed, or as described or implied, herein or elsewhere._
+_USE THIS PRODUCT AT YOUR OWN RISK. The author and other contributors are not responsible or liable for adverse consequences caused by use of this product, even if used as designed, or as described or implied, herein or elsewhere._
 
-Please read the _MIT License_ included with this README file for important licensing information and disclaimers.
+Please read the _Apache 2.0 License_ included with this README file for important licensing information and disclaimers.
 
 
 
