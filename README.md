@@ -2,7 +2,7 @@
 
 ### A Ruby On Rails Development Environment (Basic)
 
-##### Containing Ubuntu Server 14.04, Ruby 2.2.1, Gems 2.4.6, Rails 4.2.1, RVM 1.26.11, Git 1.9.1, Node.js 0.12.2
+##### Containing Ubuntu Server 14.04, Ruby 2.2.2, Rails 4.2.1, Git 1.9.1, Node.js 0.10.37
 
 This is a _Vagrant Box_, (https://www.vagrantup.com), intended for quick installation of a very basic _Ruby On Rails_ development environment.  Assuming _Vagrant_ and _VirtualBox_ are already installed on your _host_ computer, this _Vagrant Box_ can be easily and quickly installed and removed.
 
@@ -26,7 +26,7 @@ If you are very unfamiliar with the software products listed at the top of this 
 2. "mkdir vagrant-ruby-rails; cd vagrant-ruby-rails; mkdir workspace"
 3. Download ZIP _vagrant-ruby-rails_ file from GitHub, https://github.com/ckthomaston/vagrant-ruby-rails.  Unzip _vagrant-ruby-rails_ files into current working directory, "vagrant-ruby-rails".
 4. "vagrant up; vagrant ssh".  Now wait a short while for _vagrant@vagrant-ubuntu-trusty-64:~$_ prompt.
-5. "cd /vagrant/workspace; rvm use ruby-2.2.1@rails4.2.1; rails new myapp; cd myapp; rails s -b 0.0.0.0"
+5. "cd /vagrant/workspace; rails new myapp; cd myapp; rails s -b 0.0.0.0"
 
 Open a web browser to http://localhost:3030
 
@@ -35,13 +35,13 @@ Open a web browser to http://localhost:3030
 
 ## Introduction To Installation And Use
 
-To install _vagrant-ruby-rails_, your computer needs :
+To install _vagrant-ruby-rails_, your _host_ computer needs :
 
   * An Internet connection
 
   * 512MB of available memory (free RAM) - After installation, you may increase or decrease the amount of _host_ memory allocated to the _guest-vbox_.
 
-  * 3GB of storage (minimum) - Your long term _host_ storage space requirement will be determined by your application.
+  * 2.5GB of storage (minimum) - Your long term _host_ storage space requirement will be determined by your application.
 
   * _Vagrant_ and _VirtualBox_ - Your _host_ computer must have an operating system installed which supports _Vagrant_ and _VirtualBox_, and those must be installed prior to installing _vagrant-ruby-rails_.
 
@@ -86,22 +86,27 @@ After extraction, verify the contents of ".../vagrant-ruby-rails/".  Enter the f
       
 A directory listing shows the following, (or very similar), contents :
     
-        -rw-rw-r-- 1 user group    20 Apr  9 16:19 .gitignore
-        -rw-rw-r-- 1 user group  1085 Apr  9 16:19 LICENSE
-        -rw-rw-r-- 1 user group  1073 Apr  9 18:46 rails421-inst.sh
-        -rw-rw-r-- 1 user group 22112 Apr 11 10:55 README.md
-        -rw-rw-r-- 1 user group   110 Apr  9 17:18 ruby221-inst.sh
-        -rw-rw-r-- 1 user group   375 Apr  9 16:19 rvm-inst.sh
-        -rw-rw-r-- 1 user group  3250 Apr 10 19:03 Vagrantfile
-        drwxrwsr-x 2 user group  4096 Apr 12 14:30 workspace
+        -rw-rw-r--  1 ckt admins   210 Mar  8 15:06 buildconfig
+        -rwxr-xr-x  1 ckt admins   572 Apr 17 15:21 enable_repos.sh
+        -rw-rw-r--  1 ckt admins    28 Apr 17 11:37 .gitignore
+        -rwxr-xr-x  1 ckt admins   143 Apr 17 13:19 install.sh
+        -rw-rw-r--  1 ckt admins 11350 Apr 17 11:37 LICENSE
+        -rwxr-xr-x  1 ckt admins   187 Apr 17 15:28 prepare.sh
+        -rw-rw-r--  1 ckt admins 26965 Apr 17 14:37 README.md
+        -rwxr-xr-x  1 ckt admins  1013 Apr 17 13:20 ruby2.2.sh
+        -rwxr-xr-x  1 ckt admins  1692 Apr 17 12:50 ruby-finalize.sh
+        -rwxr-xr-x  1 ckt admins  6027 Mar  8 15:06 ruby-switch
+        -rwxr-xr-x  1 ckt admins   265 Apr 17 12:49 utilities.sh
+        -rw-rw-r--  1 ckt admins  3050 Apr 17 13:22 Vagrantfile
+        drwxrws---  2 ckt admins  4096 Apr 17 15:29 workspace
       
 #### Do _The Build_
 
-The "vagrant up" command executed below will provision and start a _vagrant-ruby-rails_ _Vagrant Box_.  Depending on the speed of your computer and the speed of your Internet connection, the build done by this "vagrant up" will take approximately fifteen minutes or more.
+The "vagrant up" command executed below will provision and start a _vagrant-ruby-rails_ _Vagrant Box_.  Depending on the speed of your computer and the speed of your Internet connection, the build done by this "vagrant up" will take approximately ten minutes or more.
 
 The work done by the provisioning scripts during this "vagrant up" provisioning build will not be invoked the next time "vagrant up" is executed, because provisioning is a one-time process.  Therefore, subsequent "vagrant up" operations will result in a running _guest-vbox_ within approximately one minute.
 
-There is a large amount of terminal message output during provisioning.  The vast majority of messages log the construction of software which is being placed _into the_  _vagrant-ruby-rails_ _Vagrant Box_.  _Ruby, Gems, Rails, RVM, Git, and Node.js_ are _not_ being placed directly onto your _host_, they are being placed into the _guest-vbox_.  When provisioning of the _guest-vbox_ finishes,  the _guest-vbox_ is then stored onto the _host_.
+There is a large amount of terminal message output during provisioning.  The vast majority of messages log the construction of software which is being placed _into the_  _vagrant-ruby-rails_ _Vagrant Box_.  _Ruby, Gems, Rails, Git, and Node.js_ are _not_ being placed directly onto your _host_, they are being placed into the _guest-vbox_.  When provisioning of the _guest-vbox_ finishes,  the _guest-vbox_ is then stored onto the _host_.
 
 Enter the following command :
   
@@ -115,9 +120,9 @@ A very long list of text messages is output during the build process, beginning 
               .
               .
      
-The build tools will output numerous status/progress messages.  If you are using a terminal which is configured to show color text, most of the informational messages displayed are green in color, but, there will also be a _lot_ of red-color text output.  The output messages of _gpg_ and _curl_ are _red_ and the formatting is very _broken_.
+The build tools will output numerous status/progress messages.  If you are using a terminal which is configured to show color text, most of the informational messages displayed are green in color, but, some will also be red-color text output.  The output messages are color coded by _Vagrant_; green messages indicate those of STDOUT, red messages indicate those of STDERR.
 
-Unfortunately, this messy output makes it difficult to spot any genuine error, if one occurs.  Typically, if the build fails, it will often stop with an obvious error message, but in some unusual cases it does not.
+Typically, if the build fails, it will often stop with an obvious error message, but in some unusual cases it does not.
 
 After the build finishes, you should scroll back through the terminal output messages and scrutinize them for messages which _may_ indicate an obvious error.
 
@@ -127,7 +132,7 @@ After the build completes successfully, the last build message reads :
   
               .
               .
-        "==> default: Setting up git (1:1.9.1-1ubuntu0.1) ..."
+        "==> default: 30 gems installed"
   
 #### Verify _The Build_
 
@@ -143,7 +148,7 @@ Enter the following commands.  Notice the components which have been installed, 
         
           Result :
         
-            ruby 2.2.1p85 (2015-02-26 revision 49769) [x86_64-linux]
+            ruby 2.2.2p95 (2015-04-13 revision 50295) [x86_64-linux-gnu]
             
 > $ bundler --version
       
@@ -151,20 +156,7 @@ Enter the following commands.  Notice the components which have been installed, 
         
 > $ gem --version
       
-          Result : 2.4.6
-        
-> $ rvm --version
-        
-          Result : rvm 1.26.11 (latest) by Wayne E. Seguin...
-        
-> $ rvm gemset list
-      
-          Result :
-        
-            gemsets for ruby-2.2.1 (found in /usr/local/rvm/gems/ruby-2.2.1)
-                (default)
-                global
-                => rails4.2.1
+          Result : 2.4.5
         
 > $ rails --version
       
@@ -176,11 +168,11 @@ Enter the following commands.  Notice the components which have been installed, 
         
 > $ nodejs --version
         
-          Result : v0.12.2
+          Result : v0.10.37
         
 > $ npm --version
         
-          Result : 2.7.4
+          Result : 1.4.28
           
 > $ nokogiri --version
         
@@ -197,26 +189,27 @@ Ensure you are still in the "vagrant ssh" session in your terminal program.
 
 Enter the following commands.  These commands build and _WEBrick_ serve a web page from an example _Rails_ app named "myapp" :
     
-> cd /vagrant/workspace; rvm use ruby-2.2.1@rails4.2.1; rails new myapp; cd myapp; rails s -b 0.0.0.0
+> cd /vagrant/workspace; rails new myapp; cd myapp; rails s -b 0.0.0.0
 
 Terminal output messages show the progress of the command above, which selects desired versions of Ruby and Rails, builds the scaffolding for a new Rails app named "myapp", and then executes the Rails _WEBrick_ server.
 
-            Using /usr/local/rvm/gems/ruby-2.2.1 with gemset rails4.2.1
-            exist
-            create  README.rdoc
-            create  Rakefile
-                      .
-                      .
-                      .
-            * bin/rake: spring inserted
-            * bin/rails: spring inserted
-            => Booting WEBrick
-            => Rails 4.2.1 application starting ... on http://0.0.0.0:3000
-                      .
-                      .
-                      .
-            [2015-04-10 02:36:11] INFO  ruby 2.2.1 ... [x86_64-linux]
-            [2015-04-10 02:36:11] INFO  _WEBrick_ ... : pid=11540 port=3000
+        exist
+        create  README.rdoc
+        create  Rakefile
+                  .
+                  .
+                  .
+        * bin/rake: spring inserted
+        * bin/rails: spring inserted
+                  .
+                  .
+                  .
+        => Booting WEBrick
+        => Rails 4.2.1 application starting...
+                  .
+                  .
+                  .
+        [2015-04-17 23:08:48] INFO  WEBrick::HTTPServer...
 
 The Rails built-in _WEBrick_ test server is now running.
 
@@ -269,17 +262,23 @@ The _guest-vbox_ "/vagrant/" subdirectory is created by _Vagrant_ during constru
 
 > $ ls -al /vagrant
     
-Note that the _guest-vbox_ _Vagrantfile_ and _.sh_ provisioning _BASH_ files, among others, are listed.
+Note that the _guest-vbox_ _Vagrantfile_ and _.sh_ provisioning _Bash_ files, among others, are listed.
 
-        -rw-rw-r--  1 vagrant vagrant    28 Apr 11 20:55 .gitignore
-        -rw-rw-r--  1 vagrant vagrant  1085 Apr 11 20:55 LICENSE
-        -rw-rw-r--  1 vagrant vagrant  1073 Apr 11 20:55 rails421-inst.sh
-        -rw-rw-r--  1 vagrant vagrant 22591 Apr 11 20:55 README.md
-        -rw-rw-r--  1 vagrant vagrant   110 Apr 11 20:55 ruby221-inst.sh
-        -rw-rw-r--  1 vagrant vagrant   375 Apr 11 20:55 rvm-inst.sh
-        drwxrws---  1 vagrant vagrant  4096 Apr 11 21:04 .vagrant
-        -rw-rw-r--  1 vagrant vagrant  3250 Apr 11 20:55 Vagrantfile
-        drwxrws---  1 vagrant vagrant  4096 Apr 12 01:10 workspace
+        -rw-rw-r--  1 vagrant vagrant   210 Mar  8 22:06 buildconfig
+        -rwxr-xr-x  1 vagrant vagrant   572 Apr 17 22:21 enable_repos.sh
+        drwxrws---  1 vagrant vagrant  4096 Apr 17 18:37 .git
+        -rw-rw-r--  1 vagrant vagrant    28 Apr 17 18:37 .gitignore
+        -rwxr-xr-x  1 vagrant vagrant   143 Apr 17 20:19 install.sh
+        -rw-rw-r--  1 vagrant vagrant 11350 Apr 17 18:37 LICENSE
+        -rwxr-xr-x  1 vagrant vagrant   187 Apr 17 22:28 prepare.sh
+        -rw-rw-r--  1 vagrant vagrant 26751 Apr 17 23:12 README.md
+        -rwxr-xr-x  1 vagrant vagrant  1013 Apr 17 20:20 ruby2.2.sh
+        -rwxr-xr-x  1 vagrant vagrant  1692 Apr 17 19:50 ruby-finalize.sh
+        -rwxr-xr-x  1 vagrant vagrant  6027 Mar  8 22:06 ruby-switch
+        -rwxr-xr-x  1 vagrant vagrant   265 Apr 17 19:49 utilities.sh
+        drwxrws---  1 vagrant vagrant  4096 Apr 17 19:40 .vagrant
+        -rw-rw-r--  1 vagrant vagrant  3050 Apr 17 20:22 Vagrantfile
+        drwxrws---  1 vagrant vagrant  4096 Apr 17 23:08 workspace
 
 These are the same files you placed into ".../vagrant-ruby-rails/" after you created it, when beginning installation of this product. 
 
@@ -317,7 +316,7 @@ _VirtualBox_ will dynamically increase the size of the _Ubuntu Server_ virtual d
 
 Provisioning is a process during which all of the components needed for the _vagrant-ruby-rails_ _guest-vbox_ are downloaded, built, and placed into the _vagrant-ruby-rails_ _guest-vbox_.  By default, _Vagrant_ executes this time-consumng provisioning of the _guest-vbox_ only the first time "vagrant up" is executed.  Subsequent "vagrant up" commands will fetch the previously provisioned image from _host_ local storage, rather than redundantly provisioning the _guest-vbox_ every time "vagrant up" is executed.
 
-The provisioning files, _rvm-inst.sh_, _ruby221-inst.sh_, and _rails421-inst.sh_, are _BASH_ scripts.  By understanding how the _Vagrantfile_ and the _.sh_ provisioning files work together, and by editing the contents of those files, you can easily change the default versions of the components installed, or add/remove components, as desired.
+The provisioning files are _Bash_ scripts.  By understanding how the _Vagrantfile_ and the _.sh_ provisioning files work together, and by editing the contents of those files, you can easily change the default versions of the components installed, or add/remove components, as desired.
 
 Note that if you change your provisioning files, your installed _guest-vbox_ image will need to be modified, (re-provisioned), to implement those changes.  Depending on the changes specified in the provisioning scripts, you may be able to simply modify your existing installed _guest-vbox_ image, by executing the "vagrant provision" command.  In other cases your _guest-vbox_ must be "vagrant destroyed", and a "full rebuild" done.
 
@@ -347,25 +346,7 @@ Only you have access to the necessary configuration information about your _host
 
 ###### Divide And Conquer
 
-Identify the "milestone" at which the provisioning error occurred.  Start with the terminal output produced by the "vagrant up" command.  Use a keen eye, sometimes the clue you need is well hidden by the messy terminal output of "vagrant up" provisioning.
-
-Important milestones can be identified in the terminal messages at intervals during provisioning.  Search your saved "vagrant up" terminal output file for a string of ##########, e.g. :
-
-        ################   Getting RVM PGP key   ###############
-                                      .
-                                      .
-                                      .
-        ################   Installing RVM stable   ###############
-                                      .
-                                      .
-                                      .
-        ################   Installing Ruby 2.2.1    ###############
-                                      .
-                                      .
-
-After you identify approximately what the provisioning script was attempting, it may be obvious from the terminal messages what is wrong.
-
-If it's not obvious, then inspect the _.sh_ provisioning files;  _rvm-inst.sh_, _ruby221-inst.sh_, and _rails421-inst.sh_.  Find the corresponding milestone locations in the script file.  Narrow down which milestone succeeded, and which did not.  Once you find the most likely script commands, investigate as to why that particular command may have failed.
+Identify the "milestone" at which the provisioning error occurred.  Inspect the _.sh_ provisioning files.  Find the milestone locations in the script file at which the terminal messages indicate an eror.  Narrow down which milestone succeeded, and which did not.  Once you find the most likely script commands, investigate as to why that particular command may have failed.
 
 It's possible for a build to fail for quite a few reasons.  Some are :
 
@@ -389,7 +370,6 @@ If you are unfamiliar with the products in this document, you may wish to inform
 ###### _Ruby_           : https://www.ruby-lang.org/en/
 ###### _Ruby Gems_      : https://rubygems.org/
 ###### _Git_            : http://git-scm.com/
-###### _RVM_            : https://rvm.io/
 ###### _Node.js_        : https://nodejs.org/
 
 ### Product Pedigree
@@ -398,27 +378,19 @@ The software components installed by the provisioning scripts are noted here.  T
 
 ##### _Ubuntu Server_ 14.04 "ubuntu/trusty64"
   
-_Ubuntu Server_ "ubuntu/trusty64" is an "official" image from https://atlas.hashicorp.com/boxes/search.
+_Ubuntu Server_ "ubuntu/trusty64" is an "official" image pulled by Vagrant from https://atlas.hashicorp.com/boxes/search.
         
-##### _Ruby_ 2.2.1, _Gems_ 2.4.6, _Rails_ 4.2.1
+##### _Ruby_ 2.2.2
   
-_Ruby_ and _Gems_ are downloaded and compiled by _RVM_.  _RVM_ compiles them using _make_ sources from https://github.com/postmodern/ruby-install.
-        
-##### _RVM_ 1.26.11, (Ruby Version Manager).
-  
-_RVM_ is installed using _curl_ and the instructions at https://rvm.io/.
+_Ruby_ is installed using apt-get and BrightBox's Ruby NG PPA at https://launchpad.net/~brightbox/+archive/ubuntu/ruby-ng.
         
 ##### _Git_ 1.9.1
   
-_Git_ is installed using the official _Canonical Ubuntu_ package repositories, "sudo apt-get install -y git".
+_Git_ is installed using apt-get.
 
-##### _Node.js_ 0.12.2
+##### _Node.js_ 0.10.37
   
-_Node.js_ is installed using the instructions at Nodesource, https://nodesource.com/blog/nodejs-v012-iojs-and-the-nodesource-linux-repositories.
-
-##### _Nokogiri_ 1.6.6.2
-  
-_Nokogiri_ is installed by _Gem_, "gem install nokogiri --no-document".
+_Node.js_ is installed using apt-get and Chris Lea's Node.js PPA, https://launchpad.net/~chris-lea/+archive/ubuntu/node.js.
 
 ### Caveats And Known Issues
 
@@ -427,10 +399,6 @@ _Nokogiri_ is installed by _Gem_, "gem install nokogiri --no-document".
 ##### "works on my machine"
 
 This product, at this time, is in the _alpha_ stage of development.  Extensive testing has not been done on its components, only its gross operation has been confirmed .  _Host_ hardware and _host_ OS environment testing has been limited to the single generic _AMD/Ubuntu Linux_ box used for development.
-
-##### The Provisioning Scripts Are Incomplete
-
-The provisioning _BASH_ scripts build a working _Vagrant Box_ by downloading essential components/sources from the Internet.  The provisioning _BASH_ scripts install the components as described herein, but, at this time they have _no_ error detection/handling, per se.  If system environment problems, such as a flaky Internet connection, or lack of storage space, causes errors during provisioning, these scripts will not handle errors gracefully.
 
 ### Licensing And Disclaimer
 
