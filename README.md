@@ -86,19 +86,20 @@ After extraction, verify the contents of ".../vagrant-ruby-rails/".  Enter the f
       
 A directory listing shows the following, (or very similar), contents :
     
-        -rw-rw-r--  1 ckt admins   210 Mar  8 15:06 buildconfig
-        -rwxr-xr-x  1 ckt admins   572 Apr 17 15:21 enable_repos.sh
-        -rw-rw-r--  1 ckt admins    28 Apr 17 11:37 .gitignore
-        -rwxr-xr-x  1 ckt admins   143 Apr 17 13:19 install.sh
-        -rw-rw-r--  1 ckt admins 11350 Apr 17 11:37 LICENSE
-        -rwxr-xr-x  1 ckt admins   187 Apr 17 15:28 prepare.sh
-        -rw-rw-r--  1 ckt admins 26965 Apr 17 14:37 README.md
-        -rwxr-xr-x  1 ckt admins  1013 Apr 17 13:20 ruby2.2.sh
-        -rwxr-xr-x  1 ckt admins  1692 Apr 17 12:50 ruby-finalize.sh
-        -rwxr-xr-x  1 ckt admins  6027 Mar  8 15:06 ruby-switch
-        -rwxr-xr-x  1 ckt admins   265 Apr 17 12:49 utilities.sh
-        -rw-rw-r--  1 ckt admins  3050 Apr 17 13:22 Vagrantfile
-        drwxrws---  2 ckt admins  4096 Apr 17 15:29 workspace
+        -rw-rw-r--  1 user group   210 Mar  8 15:06 buildconfig
+        -rwxr-xr-x  1 user group   572 Apr 17 15:21 enable_repos.sh
+        -rw-rw-r--  1 user group    28 Apr 17 11:37 .gitignore
+        -rwxr-xr-x  1 user group   143 Apr 17 13:19 install.sh
+        -rw-rw-r--  1 user group 11350 Apr 17 11:37 LICENSE
+        -rwxr-xr-x  1 user group   187 Apr 17 15:28 prepare.sh
+        -rw-rw-r--  1 user group 26965 Apr 17 14:37 README.md
+        -rwxr-xr-x  1 user group  1013 Apr 17 13:20 ruby2.2.sh
+        -rwxr-xr-x  1 user group  1692 Apr 17 12:50 ruby-finalize.sh
+        -rwxr-xr-x  1 user group  6027 Mar  8 15:06 ruby-switch
+        -rwxr-xr-x  1 user group   265 Apr 17 12:49 utilities.sh
+        drwxrwsr-x  1 user group  4096 Apr 18 01:43 .vagrant
+        -rw-rw-r--  1 user group  3050 Apr 17 13:22 Vagrantfile
+        drwxrws---  2 user group  4096 Apr 17 15:29 workspace
       
 #### Do _The Build_
 
@@ -156,7 +157,7 @@ Enter the following commands.  Notice the components which have been installed, 
         
 > $ gem --version
       
-          Result : 2.4.5
+          Result : 2.4.6
         
 > $ rails --version
       
@@ -173,15 +174,6 @@ Enter the following commands.  Notice the components which have been installed, 
 > $ npm --version
         
           Result : 1.4.28
-          
-> $ nokogiri --version
-        
-          Result :
-          
-            # Nokogiri (1.6.6.2)
-                  .
-                  .
-                  .
           
 ##### Construct And Test A Minimal App Which Confirms Working _Rails_ Scaffolding
 
@@ -266,8 +258,6 @@ Note that the _guest-vbox_ _Vagrantfile_ and _.sh_ provisioning _Bash_ files, am
 
         -rw-rw-r--  1 vagrant vagrant   210 Mar  8 22:06 buildconfig
         -rwxr-xr-x  1 vagrant vagrant   572 Apr 17 22:21 enable_repos.sh
-        drwxrws---  1 vagrant vagrant  4096 Apr 17 18:37 .git
-        -rw-rw-r--  1 vagrant vagrant    28 Apr 17 18:37 .gitignore
         -rwxr-xr-x  1 vagrant vagrant   143 Apr 17 20:19 install.sh
         -rw-rw-r--  1 vagrant vagrant 11350 Apr 17 18:37 LICENSE
         -rwxr-xr-x  1 vagrant vagrant   187 Apr 17 22:28 prepare.sh
@@ -276,7 +266,6 @@ Note that the _guest-vbox_ _Vagrantfile_ and _.sh_ provisioning _Bash_ files, am
         -rwxr-xr-x  1 vagrant vagrant  1692 Apr 17 19:50 ruby-finalize.sh
         -rwxr-xr-x  1 vagrant vagrant  6027 Mar  8 22:06 ruby-switch
         -rwxr-xr-x  1 vagrant vagrant   265 Apr 17 19:49 utilities.sh
-        drwxrws---  1 vagrant vagrant  4096 Apr 17 19:40 .vagrant
         -rw-rw-r--  1 vagrant vagrant  3050 Apr 17 20:22 Vagrantfile
         drwxrws---  1 vagrant vagrant  4096 Apr 17 23:08 workspace
 

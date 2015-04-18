@@ -21,4 +21,5 @@ update-alternatives \
 gem2.2 install rake bundler --no-rdoc --no-ri
 /vagrant/ruby-finalize.sh
 gem install rails
+gem update --system
 
