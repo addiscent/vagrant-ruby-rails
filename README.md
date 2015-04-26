@@ -16,23 +16,6 @@ Definitions : A "_host_" is a computer on which you will be installing _vagrant-
 
 If you are very unfamiliar with the software products listed at the top of this document, you may wish to visit online references before proceeding.  Some relevant online resources are listed in a section near the end of this document, titled "The Short List Of Online References".
 
-#### Quickstart For Experts Already Running Vagrant with VirtualBox On Linux
-
-##### A New Rails Dev Env And App, In Five Easy Steps
-
-###### Copy-and-Paste Quoted Commands Into Your Terminal Session
-
-1. Open a terminal session in your _host_ computer storage workspace.
-2. "mkdir vagrant-ruby-rails; cd vagrant-ruby-rails; mkdir workspace"
-3. Download ZIP _vagrant-ruby-rails_ file from GitHub, https://github.com/ckthomaston/vagrant-ruby-rails.  Unzip _vagrant-ruby-rails_ files into current working directory, "vagrant-ruby-rails".
-4. "vagrant up; vagrant ssh".  Now wait a short while for _vagrant@vagrant-ubuntu-trusty-64:~$_ prompt.
-5. "cd /vagrant/workspace; rails new myapp; cd myapp; rails s -b 0.0.0.0"
-
-Open a web browser to http://localhost:3030
-
-        Welcome aboard.
-        You’re riding Ruby on Rails!
-
 ## Introduction To Installation And Use
 
 To install _vagrant-ruby-rails_, your _host_ computer needs :
@@ -45,11 +28,35 @@ To install _vagrant-ruby-rails_, your _host_ computer needs :
 
   * _Vagrant_ and _VirtualBox_ - Your _host_ computer must have an operating system installed which supports _Vagrant_ and _VirtualBox_, and those must be installed prior to installing _vagrant-ruby-rails_.
 
-  * A terminal program - previously installed on the _host_.
+  * A terminal/shell program - previously installed on the _host_.
 
   * A zip file extraction program - previously installed on the _host_.
   
-This set of commands is the minimum required to control a _Vagrant Box_:
+This project has been tested on _Ubuntu 14.04_ and _Windows 7_ _hosts_, but _not_ on _OS X_.
+  
+#### Quickstart For Experts Already Running Vagrant with VirtualBox On Linux
+
+##### A New Rails Dev Env And App, In Five Easy Steps
+
+###### Copy-and-Paste Quoted Commands Into Your Terminal Session
+
+1. Open a terminal session in your _host_ computer storage workspace.
+2. "mkdir vagrant-ruby-rails; cd vagrant-ruby-rails; mkdir workspace"
+  * Windows users note : This "one-liner" command above works in PowerShell, but the "Command Prompt Window" will not process this line properly; you must split it into separate commands like this:
+    * > mkdir vagrant-ruby-rails
+    * > cd vagrant-ruby-rails
+    * > mkdir workspace
+3. Download ZIP _vagrant-ruby-rails_ file from GitHub, https://github.com/ckthomaston/vagrant-ruby-rails.  Unzip _vagrant-ruby-rails_ files into current working directory, "vagrant-ruby-rails".
+4. "vagrant up; vagrant ssh".  Now wait a short while for _vagrant@vagrant-ubuntu-trusty-64:~$_ prompt.
+  * Windows users note : Same "Command Prompt Window" caveat as above.
+5. "cd /vagrant/workspace; rails new myapp; cd myapp; rails s -b 0.0.0.0"
+
+Open a web browser to http://localhost:3030
+
+        Welcome aboard.
+        You’re riding Ruby on Rails!
+
+The following set of commands is the minimum required to control a _Vagrant Box_:
 
   * "vagrant up" - creates a new _Vagrant Box_ on the _host_, directed by the _Vagrantfile_. Also restarts a previously halted _Vagrant Box_.
 
@@ -72,6 +79,10 @@ Bring up a terminal on your _host_.  Choose a suitable location for the director
 Enter the following single-line command on your terminal.  In the following sections, a terminal command prompt is indicated by the symbol $.
 
 > $ mkdir vagrant-ruby-rails; cd vagrant-ruby-rails; mkdir workspace
+  * Windows users note : This "one-liner" command above works in PowerShell, but the Command Prompt box will not process this line properly; you must split it into separate commands like this:
+    * > mkdir vagrant-ruby-rails
+    * > cd vagrant-ruby-rails
+    * > mkdir workspace
 
 The command above created the "home" directory, named "vagrant-ruby-rails", where your new _vagrant-ruby-rails_ development environment will be installed.  This is the directory from which you will launch your new _vagrant-ruby-rails_ _guest-vbox_.  The "vagrant-ruby-rails" directory is also referred to elsewhere in this document as ".../vagrant-ruby-rails/.  A subdirectory named ".../vagrant-ruby-rails/workspace/" is also created by the command above.  It will be used later.
       
@@ -112,6 +123,7 @@ There is a large amount of terminal message output during provisioning.  The vas
 Enter the following command :
   
 > $ vagrant up; vagrant ssh
+  * Windows users note : Same "Command Prompt Window" caveat as above.
       
 _The Build_ starts.
 
@@ -383,11 +395,11 @@ _Node.js_ is installed using apt-get and Chris Lea's Node.js PPA, https://launch
 
 ### Caveats And Known Issues
 
-###### The computer used for development of this project is a generic _AMD/Linux_ box running _Ubuntu Desktop 14.04 LTS_. If you install this _guest-vbox_ on _OS X_ or _Windows_, you are venturing into unexplored territory; installation may be successful, or it may not.  Which of the two is unknown as of this writing.  For _OS X_ or _Windows_, you may also need to install other software unknown to the author of this document.
-
 ##### "works on my machine"
 
-This product, at this time, is in the _alpha_ stage of development.  Extensive testing has not been done on its components, only its gross operation has been confirmed .  _Host_ hardware and _host_ OS environment testing has been limited to the single generic _AMD/Ubuntu Linux_ box used for development.
+This product, at this time, is in the _alpha_ stage of development.  Extensive testing has not been done on its components, only its gross operation has been confirmed .  _Host_ hardware and _host_ OS environment testing has been limited to the single generic _AMD/Ubuntu Linux/Windows_ box used for development.
+
+Your feedback is appreciated, especially with regard to success or problems using this product on _OS X_.
 
 ### Licensing And Disclaimer
 
