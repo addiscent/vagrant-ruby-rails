@@ -42,7 +42,7 @@ This project has been tested on _Ubuntu 14.04_ and _Windows 7_ _hosts_, but _not
 
 1. Open a terminal session in your _host_ computer storage workspace.
 2. "mkdir vagrant-ruby-rails; cd vagrant-ruby-rails; mkdir workspace"
-  * Windows users note : This "one-liner" command above works in PowerShell, but the "Command Prompt Window" will not process this line properly; you must split it into separate commands like this:
+  Windows users note : This "one-liner" command above works in PowerShell, but the "Command Prompt Window" will not process this line properly; you must split it into separate commands like this:
     * > mkdir vagrant-ruby-rails
     * > cd vagrant-ruby-rails
     * > mkdir workspace
@@ -79,10 +79,12 @@ Bring up a terminal on your _host_.  Choose a suitable location for the director
 Enter the following single-line command on your terminal.  In the following sections, a terminal command prompt is indicated by the symbol $.
 
 > $ mkdir vagrant-ruby-rails; cd vagrant-ruby-rails; mkdir workspace
-  * Windows users note : This "one-liner" command above works in PowerShell, but the Command Prompt box will not process this line properly; you must split it into separate commands like this:
-    * > mkdir vagrant-ruby-rails
-    * > cd vagrant-ruby-rails
-    * > mkdir workspace
+
+Windows users note : This "one-liner" command above works in PowerShell, but the Command Prompt box will not process this line properly; you must split it into separate commands like this:
+
+  -> mkdir vagrant-ruby-rails
+  -> cd vagrant-ruby-rails
+  -> mkdir workspace
 
 The command above created the "home" directory, named "vagrant-ruby-rails", where your new _vagrant-ruby-rails_ development environment will be installed.  This is the directory from which you will launch your new _vagrant-ruby-rails_ _guest-vbox_.  The "vagrant-ruby-rails" directory is also referred to elsewhere in this document as ".../vagrant-ruby-rails/.  A subdirectory named ".../vagrant-ruby-rails/workspace/" is also created by the command above.  It will be used later.
       
@@ -123,7 +125,8 @@ There is a large amount of terminal message output during provisioning.  The vas
 Enter the following command :
   
 > $ vagrant up; vagrant ssh
-  * Windows users note : Same "Command Prompt Window" caveat as above.
+
+Windows users note : Same "Command Prompt Window" caveat as above.
       
 _The Build_ starts.
 
