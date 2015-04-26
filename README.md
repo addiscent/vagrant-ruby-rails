@@ -44,9 +44,10 @@ This project has been tested on _Ubuntu 14.04_ and _Windows 7_ _hosts_, but _not
 2. "mkdir vagrant-ruby-rails; cd vagrant-ruby-rails; mkdir workspace"
 
   Windows users note : This "one-liner" command above works in PowerShell, but the "Command Prompt Window" will not process this line properly; you must split it into separate commands like this:
-    \ > mkdir vagrant-ruby-rails
-    \ > cd vagrant-ruby-rails
-    \ > mkdir workspace
+  
+    \> mkdir vagrant-ruby-rails
+    \> cd vagrant-ruby-rails
+    \> mkdir workspace
     
 3. Download ZIP _vagrant-ruby-rails_ file from GitHub, https://github.com/ckthomaston/vagrant-ruby-rails.  Unzip _vagrant-ruby-rails_ files into current working directory, "vagrant-ruby-rails".
 
