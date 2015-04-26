@@ -47,9 +47,12 @@ This project has been tested on _Ubuntu 14.04_ and _Windows 7_ _hosts_, but _not
     * > mkdir vagrant-ruby-rails
     * > cd vagrant-ruby-rails
     * > mkdir workspace
+    
 3. Download ZIP _vagrant-ruby-rails_ file from GitHub, https://github.com/ckthomaston/vagrant-ruby-rails.  Unzip _vagrant-ruby-rails_ files into current working directory, "vagrant-ruby-rails".
+
 4. "vagrant up; vagrant ssh".  Now wait a short while for _vagrant@vagrant-ubuntu-trusty-64:~$_ prompt.
   * Windows users note : Same "Command Prompt Window" caveat as above.
+  
 5. "cd /vagrant/workspace; rails new myapp; cd myapp; rails s -b 0.0.0.0"
 
 Open a web browser to http://localhost:3030
