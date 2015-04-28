@@ -12,7 +12,7 @@ It also allows easy reproduction and distribution of exact duplicates of a devel
 
 The installed _Git_ software can be used for committing _Ruby/Rails_ project files or other sources into repositories.  If you customize the configuration and provisioning files of this _vagrant-ruby-rails_ _Vagrant Box_, and then save them in a _Git_ repository, you can easily recreate your custom _vagrant-ruby-rails_ _Vagrant Box_ development environment in the future.  Or, using an online _Git_ repository, you can easily share your customized _vagrant-ruby-rails_ _Vagrant Box_ with other users.
 
-Definitions : A "_host_" is a computer on which you will be installing _vagrant-ruby-rails_.  _Vagrant-ruby-rails_ is a "guest" installed onto your "_host_" computer.  Because the _vagrant-ruby-rails_ "guest" is a _Vagrant Box_, it is referred to in this document as a _guest-vbox_.
+Definitions : A "_host_" is a computer on which you will be installing _vagrant-ruby-rails_.  _Vagrant-ruby-rails_ is a "_guest_" installed onto your "_host_" computer.  Because the _vagrant-ruby-rails_ "_guest_" is a _Vagrant Box_, it is referred to in this document as a _guest-vbox_.
 
 If you are very unfamiliar with the software products listed at the top of this document, you may wish to visit online references before proceeding.  Some relevant online resources are listed in a section near the end of this document, titled "The Short List Of Online References".
 
@@ -36,7 +36,7 @@ This project has been tested on _Ubuntu 14.04_ and _Windows 7_ _hosts_, but _not
   
 #### Quickstart For Experts Already Running Vagrant with VirtualBox On Linux or Windows
 
-##### A New Rails Dev Env And App, In Five Easy Steps
+##### A New Rails Dev Env And App, In Five Easy Steps, (for details, see _Software Installation_)
 
 ###### Copy-and-Paste Quoted Commands Into Your Terminal Session
 
@@ -96,7 +96,7 @@ Windows users note : This "one-liner" command above works in PowerShell, but the
 
 > \> mkdir workspace
 
-The command above created the "home" directory, named "vagrant-ruby-rails", where your new _vagrant-ruby-rails_ development environment will be installed.  This is the directory from which you will launch your new _vagrant-ruby-rails_ _guest-vbox_.  The "vagrant-ruby-rails" directory is also referred to elsewhere in this document as ".../vagrant-ruby-rails/.  A subdirectory named ".../vagrant-ruby-rails/workspace/" is also created by the command above.  It will be used later.
+The command above created the "home" directory, named "vagrant-ruby-rails", where your new _vagrant-ruby-rails_ development environment will be installed.  This is the directory from which you will launch your new _vagrant-ruby-rails_ _guest-vbox_.  The "vagrant-ruby-rails" directory is also referred to elsewhere in this document as ".../vagrant-ruby-rails/".  A subdirectory named ".../vagrant-ruby-rails/workspace/" is also created by the command above.  It will be used later.
       
 Next, visit the _vagrant-ruby-rails_ GitHub repository at, https://github.com/ckthomaston/vagrant-ruby-rails.  On that page, use the 
 "Download ZIP" button to download a ZIP file containing the _vagrant-ruby-rails_ project files.
@@ -208,7 +208,7 @@ Enter the following commands.  These commands build and _WEBrick_ serve a web pa
     
 > cd /vagrant/workspace; rails new myapp; cd myapp; rails s -b 0.0.0.0
 
-Terminal output messages show the progress of the command above, which selects desired versions of Ruby and Rails, builds the scaffolding for a new Rails app named "myapp", and then executes the Rails _WEBrick_ server.
+Terminal output messages show the progress of the command above, which builds the scaffolding for a new Rails app named "myapp", and then executes the Rails _WEBrick_ server.
 
         exist
         create  README.rdoc
@@ -300,7 +300,7 @@ You can manage or edit those files either from "within" the _guest-vbox_, (in _g
   
 It is important to clearly understand that the files which _appear_ in _guest-vbox_ "/vagrant/" can have _create-read-write-delete_ operations done on them from that _guest-vbox_ directory, but, those files are not _stored_ in the _guest-vbox_ file system.  Those files reside on the _host_ file system.
 
-That implementation detail means that files which you place in the _guest-vbox_ "/vagrant" subdirectory tree are _not_ deleted by a "vagrant destroy" command.  This is because those files can be _referenced_ in _guest-vbox_ "/vagrant", but they are _stored_ on the _host_, in ".../vagrant-ruby".
+That implementation detail means that files which you place in the _guest-vbox_ "/vagrant" subdirectory tree are _not_ deleted by a "vagrant destroy" command.  This is because those files can be _referenced_ in _guest-vbox_ "/vagrant", but they are _stored_ on the _host_, in ".../vagrant-ruby-rails".
 
 Conversely, any files _stored_ on the _guest-vbox_ file system, in any other subdirectory hierarchy, _are deleted_ along with the _guest-vbox_, by a "vagrant destroy" command.
 
@@ -324,7 +324,7 @@ Based on your application needs you may wish to reduce or increase the amount of
 
 ##### Storage Usage
 
-_VirtualBox_ will dynamically increase the size of the _Ubuntu Server_ virtual disk drive as you add new files into its file system.  The maximum virtual disk drive size of this _guest-vbox_ _Ubuntu Server_ is 40GB.
+_VirtualBox_ will dynamically increase the size of the _guest-vbox_ _Ubuntu Server_ virtual disk drive as you add new files into its file system.  The maximum virtual disk drive size of this _guest-vbox_ _Ubuntu Server_ is 40GB.
 
 ##### Provisioning
 
