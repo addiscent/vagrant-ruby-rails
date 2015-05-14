@@ -34,7 +34,7 @@ To install _vagrant-ruby-rails_, your _host_ computer needs :
   
 This project has been tested on _Ubuntu 14.04_ and _Windows 7_ _hosts_, but _not_ on _OS X_.
   
-#### Quickstart For Experts Already Running Vagrant with VirtualBox On Linux or Windows
+#### Quickstart For Experts Already Running Vagrant With VirtualBox On Linux or Windows
 
 ##### A New Rails Dev Env And App, In Five Easy Steps, (for details, see _Software Installation_)
 
@@ -51,7 +51,7 @@ This project has been tested on _Ubuntu 14.04_ and _Windows 7_ _hosts_, but _not
     
   \> mkdir workspace
     
-3. Download ZIP _vagrant-ruby-rails_ file from GitHub, https://github.com/ckthomaston/vagrant-ruby-rails.  Unzip _vagrant-ruby-rails_ files into current working directory, "vagrant-ruby-rails".
+3. Download ZIP _vagrant-ruby-rails_ file from GitHub, https://github.com/addiscent/vagrant-ruby-rails.  Unzip _vagrant-ruby-rails_ files into current working directory, "vagrant-ruby-rails".
 
 4. "vagrant up; vagrant ssh"
 
@@ -98,7 +98,7 @@ Windows users note : This "one-liner" command above works in PowerShell, but the
 
 The command above created the "home" directory, named "vagrant-ruby-rails", where your new _vagrant-ruby-rails_ development environment will be installed.  This is the directory from which you will launch your new _vagrant-ruby-rails_ _guest-vbox_.  The "vagrant-ruby-rails" directory is also referred to elsewhere in this document as ".../vagrant-ruby-rails/".  A subdirectory named ".../vagrant-ruby-rails/workspace/" is also created by the command above.  It will be used later.
       
-Next, visit the _vagrant-ruby-rails_ GitHub repository at, https://github.com/ckthomaston/vagrant-ruby-rails.  On that page, use the 
+Next, visit the _vagrant-ruby-rails_ GitHub repository at, https://github.com/addiscent/vagrant-ruby-rails.  On that page, use the 
 "Download ZIP" button to download a ZIP file containing the _vagrant-ruby-rails_ project files.
 
 Extract those files into the current working directory, (".../vagrant-ruby-rails/").
