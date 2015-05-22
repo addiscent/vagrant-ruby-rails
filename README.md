@@ -28,7 +28,7 @@ To install _vagrant-ruby-rails_, your _host_ computer needs :
 
   * _Vagrant_ and _VirtualBox_ - Your _host_ computer must have an operating system installed which supports _Vagrant_ and _VirtualBox_, and those must be installed prior to installing _vagrant-ruby-rails_.
 
-  * A _host_ CPU capable of running a 64bit Ubuntu Linux image.  It is possible to use a 32bit Ubuntu Linux image, but the Vagrant file must be slightly revised after installation of _vagrant-ruby-rails_.  See the section near the end of this document titled "Using Ubuntu/Trusty32".
+  * A _host_ CPU capable of running a 64bit Ubuntu Linux image inside the _guest-vbox_.  It is possible to use a 32bit Ubuntu Linux image inside the _guest-vbox_, but the _Vagrantfile_ must be revised after installation of _vagrant-ruby-rails_.  See the section near the end of this document titled "Using Ubuntu/Trusty32".
 
   * A terminal/shell program - previously installed on the _host_.
 
@@ -356,19 +356,25 @@ For _VirtualBox_ installation instructions, please visit the _VirtualBox_ web si
 
 ##### Using Ubuntu/Trusty32
 
-The Vagrantfile specifies that the _VirtualBox_ image to be loaded during provisioning is _ubuntu/trusty64_. If "vagrant ssh" times out while attempting to ssh into the _guest-vbox_, one cause may be that your CPU is not capable of executing the _ubuntu/trusty64_ image.  If that is the case, revise the Vagrantfile, so that it specifies _ubuntu/trusty32_ instead of _ubuntu/trusty64_, e.g., find and change:
+The _Vagrantfile_ specifies that the _VirtualBox_ image to be loaded during provisioning is _ubuntu/trusty64_, which is a 64-bit CPU image.  It is not strictly required, you may choose to use a 32-bit Ubuntu Linux image if necessary.  If that is the case, revise the _Vagrantfile_, to specify _ubuntu/trusty32_ instead of _ubuntu/trusty64_, e.g., find and change:
 
         config.vm.box = "ubuntu/trusty64"
 
 to:
 
-        config.vm.box = "ubuntu/trusty32"
+        config.vm.box = "ubuntu/trusty32".
 
-  After revising the Vagrantfile, execute "vagrant destroy", then execute "vagrant up".
+If you previously provisioned a _guest-vbox_, then after revising the _Vagrantfile_, execute "vagrant destroy", then execute "vagrant up".  The 32-bit _VirtualBox_ image is downloaded from the Hashicorp Ubuntu repository and used to build the _guest-vbox_.
 
 ##### Misc Troubleshooting Tips
 
-When using _ssh_ from a remote terminal to shell into the _guest-vbox_, if it times out instead of presenting a _guest-vbox_ prompt, investigate the _host_ firewall settings.  The default _ssh_ port number of the _guest-vbox_ is 2222.
+###### "Vagrant SSH" Times Out
+
+If "vagrant ssh" times out while attempting to shell into the _guest-vbox_, one cause may be that your CPU is not capable of executing the _ubuntu/trusty64_ image.  See "Using Ubuntu/Trusty32" above.
+
+###### Remote SSH Times Out
+
+When using _ssh_ from a remote terminal to shell into the _guest-vbox_, if it times out instead of presenting a _guest-vbox_ prompt, investigate the _host_ firewall settings and ensure it does not block the _guest-vbox_ _ssh_ port.  The default _ssh_ port number of the _guest-vbox_ is 2222.
 
 ##### If _The Build_ Fails
 
