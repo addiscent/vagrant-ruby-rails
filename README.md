@@ -28,36 +28,38 @@ To install _vagrant-ruby-rails_, your _host_ computer needs :
 
   * _Vagrant_ and _VirtualBox_ - Your _host_ computer must have an operating system installed which supports _Vagrant_ and _VirtualBox_, and those must be installed prior to installing _vagrant-ruby-rails_.
 
+  * A _host_ CPU capable of running a 64bit Ubuntu Linux image.  It is possible to use a 32bit Ubuntu Linux image, but the Vagrant file must be slightly revised after installation of _vagrant-ruby-rails_.  See the section near the end of this document titled "Using Ubuntu/Trusty32".
+
   * A terminal/shell program - previously installed on the _host_.
 
   * A zip file extraction program - previously installed on the _host_.
-  
+
 This project has been tested on _Ubuntu 14.04_ and _Windows 7_ _hosts_, but _not_ on _OS X_.
-  
+
 #### Quickstart For Experts Already Running Vagrant With VirtualBox On Linux or Windows
 
 ##### A New Rails Dev Env And App, In Five Easy Steps, (for details, see _Software Installation_)
 
-###### Copy-and-Paste Quoted Commands Into Your Terminal Session
+###### Copy-and-Paste The Given Commands Into Your Terminal Session
 
 1. Open a terminal session in your _host_ computer storage workspace.
-2. "mkdir vagrant-ruby-rails; cd vagrant-ruby-rails; mkdir workspace"
+2. $ mkdir vagrant-ruby-rails; cd vagrant-ruby-rails; mkdir workspace
 
   Windows users note : This "one-liner" command above works in PowerShell, but the "Command Prompt Window" will not process this line properly; you must split it into separate commands like this:
-  
+
   \> mkdir vagrant-ruby-rails
-    
+
   \> cd vagrant-ruby-rails
-    
+
   \> mkdir workspace
-    
+
 3. Download ZIP _vagrant-ruby-rails_ file from GitHub, https://github.com/addiscent/vagrant-ruby-rails.  Unzip _vagrant-ruby-rails_ files into current working directory, "vagrant-ruby-rails".
 
-4. "vagrant up; vagrant ssh"
+4. $ vagrant up; vagrant ssh
 
   Now wait a short while for _vagrant@vagrant-ubuntu-trusty-64:~$_ prompt.  Windows users note : Same "Command Prompt Window" caveat as above.
-  
-5. "cd /vagrant/workspace; rails new myapp; cd myapp; rails s -b 0.0.0.0"
+
+5. $ cd /vagrant/workspace; rails new myapp; cd myapp; rails s -b 0.0.0.0
 
 Open a web browser to http://localhost:3030
 
@@ -97,18 +99,18 @@ Windows users note : This "one-liner" command above works in PowerShell, but the
 > \> mkdir workspace
 
 The command above created the "home" directory, named "vagrant-ruby-rails", where your new _vagrant-ruby-rails_ development environment will be installed.  This is the directory from which you will launch your new _vagrant-ruby-rails_ _guest-vbox_.  The "vagrant-ruby-rails" directory is also referred to elsewhere in this document as ".../vagrant-ruby-rails/".  A subdirectory named ".../vagrant-ruby-rails/workspace/" is also created by the command above.  It will be used later.
-      
-Next, visit the _vagrant-ruby-rails_ GitHub repository at, https://github.com/addiscent/vagrant-ruby-rails.  On that page, use the 
+
+Next, visit the _vagrant-ruby-rails_ GitHub repository at, https://github.com/addiscent/vagrant-ruby-rails.  On that page, use the
 "Download ZIP" button to download a ZIP file containing the _vagrant-ruby-rails_ project files.
 
 Extract those files into the current working directory, (".../vagrant-ruby-rails/").
 
 After extraction, verify the contents of ".../vagrant-ruby-rails/".  Enter the following command :
-  
+
 > $ ls -al
-      
+
 A directory listing shows the following, (or very similar), contents :
-    
+
         -rw-rw-r--  1 user group   210 Mar  8 15:06 buildconfig
         -rwxr-xr-x  1 user group   572 Apr 17 15:21 enable_repos.sh
         -rw-rw-r--  1 user group    28 Apr 17 11:37 .gitignore
@@ -123,7 +125,7 @@ A directory listing shows the following, (or very similar), contents :
         drwxrwsr-x  1 user group  4096 Apr 18 01:43 .vagrant
         -rw-rw-r--  1 user group  3050 Apr 17 13:22 Vagrantfile
         drwxrws---  2 user group  4096 Apr 17 15:29 workspace
-      
+
 #### Do _The Build_
 
 The "vagrant up" command executed below will provision and start a _vagrant-ruby-rails_ _Vagrant Box_.  Depending on the speed of your computer and the speed of your Internet connection, the build done by this "vagrant up" will take approximately ten minutes or more.
@@ -133,19 +135,19 @@ The work done by the provisioning scripts during this "vagrant up" provisioning 
 There is a large amount of terminal message output during provisioning.  The vast majority of messages log the construction of software which is being placed _into the_  _vagrant-ruby-rails_ _Vagrant Box_.  _Ruby, Gems, Rails, Git, and Node.js_ are _not_ being placed directly onto your _host_, they are being placed into the _guest-vbox_.  When provisioning of the _guest-vbox_ finishes,  the _guest-vbox_ is then stored onto the _host_.
 
 Enter the following command :
-  
+
 > $ vagrant up; vagrant ssh
 
   Windows users note : Same "Command Prompt Window" caveat as above.
-      
+
 _The Build_ starts.
 
 A very long list of text messages is output during the build process, beginning with :
-  
+
         "==> Bringing machine 'default' up with 'virtualbox' provider..."
               .
               .
-     
+
 The build tools will output numerous status/progress messages.  If you are using a terminal which is configured to show color text, most of the informational messages displayed are green in color, but, some will also be red-color text output.  The output messages are color coded by _Vagrant_; green messages indicate those of STDOUT, red messages indicate those of STDERR.
 
 Typically, if the build fails, it will often stop with an obvious error message, but in some unusual cases it does not.
@@ -155,57 +157,57 @@ After the build finishes, you should scroll back through the terminal output mes
 If you believe _The Build_ did not complete successfully, see the section near the end of this document titled, "If _The Build_ Fails".
 
 After the build completes successfully, the last build message reads :
-  
+
               .
               .
         "==> default: 30 gems installed"
-  
+
 #### Verify _The Build_
 
 ##### Verify The Toolset Has Properly Installed
 
 When _The Build_ is finished, an _Ubuntu_ shell welcome screen and a command prompt are displayed.  The command prompt shows :
-    
+
 >  vagrant@vagrant-ubuntu-trusty-64:~$
-        
+
 Enter the following commands.  Notice the components which have been installed, and their associated version numbers :
-    
+
 > $ ruby --version
-        
+
           Result :
-        
+
             ruby 2.2.2p95 (2015-04-13 revision 50295) [x86_64-linux-gnu]
-            
+
 > $ bundler --version
-      
+
           Result : Bundler version 1.9.4
-        
+
 > $ gem --version
-      
+
           Result : 2.4.6
-        
+
 > $ rails --version
-      
+
           Result : 4.2.1
-        
+
 > $ git --version
-        
+
           Result : git version 1.9.1
-        
+
 > $ nodejs --version
-        
+
           Result : v0.10.37
-        
+
 > $ npm --version
-        
+
           Result : 1.4.28
-          
+
 ##### Construct And Test A Minimal App Which Confirms Working _Rails_ Scaffolding
 
 Ensure you are still in the "vagrant ssh" session in your terminal program.
 
 Enter the following commands.  These commands build and _WEBrick_ serve a web page from an example _Rails_ app named "myapp" :
-    
+
 > cd /vagrant/workspace; rails new myapp; cd myapp; rails s -b 0.0.0.0
 
 Terminal output messages show the progress of the command above, which builds the scaffolding for a new Rails app named "myapp", and then executes the Rails _WEBrick_ server.
@@ -233,7 +235,7 @@ The Rails built-in _WEBrick_ test server is now running.
 Use a web browser on your _host_ to examine the resulting example web page at URL :
 
         http://localhost:3030
-  
+
 The example web page shows :
 
         Welcome aboard
@@ -244,13 +246,13 @@ You may now terminate execution of the _Rails_ _WEBrick_ test server, by enterin
 This ends verification of a successful build.  You may now continue to experiment with "myapp", or you may remove it if you have no other use for it.  If you wish to remove it, you may enter the following command.
 
 > $ cd; rm -rf /vagrant/workspace/myapp
-  
+
         Result :
-        
+
           vagrant@vagrant-ubuntu-trusty-64:~$
-          
+
           The "myapp" directory and its subdirectories are deleted.
-          
+
 ## Using _vagrant-ruby-rails_
 
 While following the instructions immediately above, you ventured "inside" the _guest-vbox_, using "vagrant ssh" to verify the success of the build and the versions of its components.  Now, let's do some exploring.
@@ -258,7 +260,7 @@ While following the instructions immediately above, you ventured "inside" the _g
 Enter the following command :
 
 > $ ls -l /
-    
+
 The listing which results shows a typical _Ubuntu Server 14.04_ root directory hierarchy, on the _guest-vbox_ file system.
 
         total 92
@@ -270,7 +272,7 @@ The listing which results shows a typical _Ubuntu Server 14.04_ root directory h
         drwxrws---  1 vagrant vagrant  4096 Apr  8 08:34 vagrant
         drwxr-xr-x 13 root    root     4096 Apr 11 21:05 var
         lrwxrwxrwx  1 root    root       30 Apr  6 20:05 vmlinuz...
-        
+
 Notice there is one subdirectory not typically found in an _Ubuntu Server_ root directory hierarchy.  It is named "/vagrant/".
 
 #### Guest VBox "/vagrant/" Subdirectory
@@ -278,7 +280,7 @@ Notice there is one subdirectory not typically found in an _Ubuntu Server_ root 
 The _guest-vbox_ "/vagrant/" subdirectory is created by _Vagrant_ during construction of the _guest-vbox_.  Upon loading, "/vagrant/" is sync'd by _VirtualBox_ to a directory you created earlier on the _host_ file system, the one (herein) named ".../vagrant-ruby-rails/".  The result of the _VirtualBox_ sync is that _guest-vbox_ "/vagrant/" and _host_ ".../vagrant-ruby-rails/" are effectively "mapped into" a single directory.  You can observe evidence of that by entering the following command :
 
 > $ ls -al /vagrant
-    
+
 Note that the _guest-vbox_ _Vagrantfile_ and _.sh_ provisioning _Bash_ files, among others, are listed.
 
         -rw-rw-r--  1 vagrant vagrant   210 Mar  8 22:06 buildconfig
@@ -294,10 +296,10 @@ Note that the _guest-vbox_ _Vagrantfile_ and _.sh_ provisioning _Bash_ files, am
         -rw-rw-r--  1 vagrant vagrant  3050 Apr 17 20:22 Vagrantfile
         drwxrws---  1 vagrant vagrant  4096 Apr 17 23:08 workspace
 
-These are the same files you placed into ".../vagrant-ruby-rails/" after you created it, when beginning installation of this product. 
+These are the same files you placed into ".../vagrant-ruby-rails/" after you created it, when beginning installation of this product.
 
 You can manage or edit those files either from "within" the _guest-vbox_, (in _guest-vbox_ "/vagrant/"), or from "outside" the _guest-vbox_, (in _host_ ".../vagrant-ruby-rails/").
-  
+
 It is important to clearly understand that the files which _appear_ in _guest-vbox_ "/vagrant/" can have _create-read-write-delete_ operations done on them from that _guest-vbox_ directory, but, those files are not _stored_ in the _guest-vbox_ file system.  Those files reside on the _host_ file system.
 
 That implementation detail means that files which you place in the _guest-vbox_ "/vagrant" subdirectory tree are _not_ deleted by a "vagrant destroy" command.  This is because those files can be _referenced_ in _guest-vbox_ "/vagrant", but they are _stored_ on the _host_, in ".../vagrant-ruby-rails".
@@ -309,7 +311,7 @@ Conversely, any files _stored_ on the _guest-vbox_ file system, in any other sub
 Recall that earlier you created a subdirectory in ".../vagrant-ruby-rails/" named "workspace/".  You created it while in a terminal session on the _host_ computer, on its file system.  Later, while in a "vagrant ssh" session, you created a _Rails_ app in _guest-vbox_ "/vagrant/workspace", and served its web pages from the _WEBrick_ server.
 
 That is an example of how a subdirectory heirarchy in the _host_ ".../vagrant-ruby-rails/" subdirectory can be used from "within" the _guest-vbox_ file system.
-  
+
 Here is a ".../workspace/"-related tip for using _Git_ : At some point you may wish to commit your _guest-vbox_ _Vagrantfile_ and _.sh_ provisioning files to a _Git_ repository.  However, you probably do _not_ want the files in "workspace/", or equivalent subdirectories of ".../vagrant-ruby-rails/", to be co-mingled with commits of your _guest-vbox_ configuration/provisioning files.  You can prevent that by adding the name "workspace" into your ".../vagrant-ruby-rails/.gitignore" file.  The same is true of the hidden ".../vagrant-ruby-rails/.vagrant" subdirectory.  See the _.gitignore_ file which you placed into ".../vagrant-ruby-rails/" during installation.
 
 ## Other Notes
@@ -335,7 +337,7 @@ The provisioning files are _Bash_ scripts.  By understanding how the _Vagrantfil
 Note that if you change your provisioning files, your installed _guest-vbox_ image will need to be modified, (re-provisioned), to implement those changes.  Depending on the changes specified in the provisioning scripts, you may be able to simply modify your existing installed _guest-vbox_ image, by executing the "vagrant provision" command.  In other cases your _guest-vbox_ must be "vagrant destroyed", and a "full rebuild" done.
 
 Please see the _Vagrant_ documentation for more information about provisioning _Vagrant Boxes_.
-  
+
 ##### Installing _Vagrant_
 
 The _vagrant-ruby-rails_ _guest-vbox_ is built and managed by _Vagrant_.  The specific version of _Vagrant_ used on the _vagrant-ruby-rails_ project development computer is _Vagrant_ 1.7.2 (DEB-64bit), which is the most recent version.  You may have success with earlier versions of _Vagrant_, but the _vagrant-ruby-rails_ project has been built/tested using only 1.7.2.
@@ -344,13 +346,29 @@ _Vagrant_ installation is typically not difficult for those persons familiar wit
 
 For _Vagrant_ installation instructions, please visit the _Vagrant_ web site : http://docs.vagrantup.com/v2/installation/index.html
 
-##### Installing _VirtualBox_ 
+##### Installing _VirtualBox_
 
 _vagrant-ruby-rails_ uses _VirtualBox_ as the provider.  The specific version of _VirtualBox_ used as the provider on the _vagrant-ruby-rails_ project development computer is _VirtualBox_ 4.3.10 (AMD64).  You will probably have success with slightly earlier versions of _VirtualBox_, or the most recent stable version, but the _vagrant-ruby-rails_ project has not tested those.
 
 _VirtualBox_ installation is typically not difficult for those persons familiar with installation of software on their operating system.
 
 For _VirtualBox_ installation instructions, please visit the _VirtualBox_ web site : https://www.virtualbox.org/
+
+##### Using Ubuntu/Trusty32
+
+The Vagrantfile specifies that the _VirtualBox_ image to be loaded during provisioning is _ubuntu/trusty64_. If "vagrant ssh" times out while attempting to ssh into the _guest-vbox_, one cause may be that your CPU is not capable of executing the _ubuntu/trusty64_ image.  If that is the case, revise the Vagrantfile, so that it specifies _ubuntu/trusty32_ instead of _ubuntu/trusty64_, e.g., find and change:
+
+        config.vm.box = "ubuntu/trusty64"
+
+to:
+
+        config.vm.box = "ubuntu/trusty32"
+
+  After revising the Vagrantfile, execute "vagrant destroy", then execute "vagrant up".
+
+##### Misc Troubleshooting Tips
+
+When using _ssh_ from a remote terminal to shell into the _guest-vbox_, if it times out instead of presenting a _guest-vbox_ prompt, investigate the _host_ firewall settings.  The default _ssh_ port number of the _guest-vbox_ is 2222.
 
 ##### If _The Build_ Fails
 
@@ -366,7 +384,7 @@ It's possible for a build to fail for quite a few reasons.  Some are :
 
 * Unreliable Internet connection.
 
-* One or more web sites which provide source code, or build scripts, have become unavailable, (broken links, temporarily or permanently offline). 
+* One or more web sites which provide source code, or build scripts, have become unavailable, (broken links, temporarily or permanently offline).
 
 * Missing, misconfigured, or incompatible versions of _Vagrant_ or _VirtualBox_.
 
@@ -391,19 +409,19 @@ If you are unfamiliar with the products in this document, you may wish to inform
 The software components installed by the provisioning scripts are noted here.  Their versions may be updated in the future.  Their initial commit versions are :
 
 ##### _Ubuntu Server_ 14.04 "ubuntu/trusty64"
-  
+
 _Ubuntu Server_ "ubuntu/trusty64" is an "official" image pulled by Vagrant from https://atlas.hashicorp.com/boxes/search.
-        
+
 ##### _Ruby_ 2.2.2
-  
+
 _Ruby_ is installed using apt-get and BrightBox's Ruby NG PPA at https://launchpad.net/~brightbox/+archive/ubuntu/ruby-ng.
-        
+
 ##### _Git_ 1.9.1
-  
+
 _Git_ is installed using apt-get.
 
 ##### _Node.js_ 0.10.37
-  
+
 _Node.js_ is installed using apt-get and Chris Lea's Node.js PPA, https://launchpad.net/~chris-lea/+archive/ubuntu/node.js.
 
 ### Caveats And Known Issues
@@ -422,7 +440,6 @@ Please read the _Apache License, Version 2.0_ included with this README file for
 
 
 
-  
+
 ###### Copyright 2015 CK Thomaston, all rights reserved.
 ###### DalorWeb LLC, http://dalorweb.com
-
