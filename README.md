@@ -370,7 +370,7 @@ If you previously provisioned a _guest-vbox_, then after revising the _Vagrantfi
 
 ###### "Vagrant SSH" Times Out
 
-If "vagrant ssh" times out while attempting to shell into the _guest-vbox_, one cause may be that your CPU is not capable of executing the _ubuntu/trusty64_ _guest-vbox_ image.  See "Using _Ubuntu/Trusty32_", above.
+If "vagrant ssh" times out while attempting to shell into the _guest-vbox_, one cause may be that the _host_ CPU is not capable of executing the _ubuntu/trusty64_ _guest-vbox_ image.  See "Using _Ubuntu/Trusty32_", above.
 
 ###### Remote SSH Times Out
 
