@@ -60,7 +60,8 @@ This project has been tested on _Ubuntu 14.04_ and _Windows 7_ _hosts_, but _not
 
   Now wait a while for _vagrant@vagrant-ubuntu-trusty-64:~$_ prompt. The amount of time you wait is determined by the speed of your ISP connection and computer; twenty minutes is average.
 
-7. $ cd /vagrant/workspace && rails new myapp && cd myapp && rails s -b 0.0.0.0
+7. Create a new Rails app and start the thin web server
+> $ cd /vagrant/workspace && rails new myapp && cd myapp && rails s -b 0.0.0.0
 
 Open a web browser to http://localhost:3030
 
