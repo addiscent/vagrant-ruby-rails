@@ -60,13 +60,13 @@ This project has been tested on _Ubuntu 14.04_ and _Windows 7_ _hosts_, but _not
 
   Now wait a while for the _Ubuntu Server 14.04_ image to download and provision. The amount of wait time is mostly determined by the speed of the connection to Atlas/Hashicorp.  Typically, the _Ubuntu Server 14.04_ image requires 18 minutes to download.  The time required to provision the downloaded image is approximately eight minutes. These operations happen only once, the first time _vagrant up_ is executed.
   
-  After the image finishes downloading and provisioning is complete, you will see the prompt of the _guest-vbox_ :
+  After the image finishes downloading and provisioning is complete, you see the prompt of the _guest-vbox_ :
 > _vagrant@vagrant-ubuntu-trusty-64:~$_
 
 7. Create a new Rails app and start the thin web server
 > $ cd /vagrant/workspace && rails new myapp && cd myapp && rails s -b 0.0.0.0
 
-Open a web browser to http://localhost:3030
+Open a web browser to _http://localhost:3030_
 
         Welcome aboard
         You’re riding Ruby on Rails!
@@ -93,7 +93,7 @@ Bring up a terminal on your _host_.  Choose a suitable location for the director
 
 Enter the following single-line command on your terminal.  In the following sections, a terminal command prompt is indicated by the symbol $.
 
-> $ mkdir vagrant-ruby-rails; cd vagrant-ruby-rails; mkdir workspace
+> $ mkdir vagrant-ruby-rails && cd vagrant-ruby-rails && mkdir workspace
 
 Windows users note : This "one-liner" command above works in PowerShell, but the "Windows Command Prompt" will not process this line properly; you must split it into separate commands like this:
 
@@ -105,8 +105,7 @@ Windows users note : This "one-liner" command above works in PowerShell, but the
 
 The command above created the "home" directory, named "vagrant-ruby-rails", where your new _vagrant-ruby-rails_ development environment will be installed.  This is the directory from which you will launch your new _vagrant-ruby-rails_ _guest-vbox_.  The "vagrant-ruby-rails" directory is also referred to elsewhere in this document as ".../vagrant-ruby-rails/".  A subdirectory named ".../vagrant-ruby-rails/workspace/" is also created by the command above.  It will be used later.
 
-Next, visit the _vagrant-ruby-rails_ GitHub repository at, https://github.com/addiscent/vagrant-ruby-rails.  On that page, use the
-"Download ZIP" button to download a ZIP file containing the _vagrant-ruby-rails_ project files.
+Next, visit the _vagrant-ruby-rails_ GitHub repository at, https://github.com/addiscent/vagrant-ruby-rails.  On that page, click the "(tag) releases" link near the top.  On the subsequent page, download a ZIP file containing the _vagrant-ruby-rails_ project files.  Select the most recent tagged version.
 
 Extract those files into the current working directory, (".../vagrant-ruby-rails/").
 
@@ -135,11 +134,11 @@ A directory listing shows the following, (or very similar), contents :
 
 The "vagrant up" command executed below will provision and start a _vagrant-ruby-rails_ _Vagrant Box_.
 
-The work done by Vagrant and the provisioning scripts during this initial "vagrant up" operation will _not_ be performed the next time "vagrant up" is executed, because downloading the image and provisioning it is a one-time process.  Therefore, subsequent "vagrant up" operations will result in a running _guest-vbox_ within approximately one minute.
+The work done by Vagrant and the provisioning scripts during this initial "vagrant up" operation will only be performed once; downloading the image and provisioning it is a one-time process.  Therefore, subsequent "vagrant up" operations will result in a running _guest-vbox_ within approximately one minute.
 
-However, downloading and provisioning the _Ubuntu Server 14.04_ image the first time consumes a rather substantial amount of time.  The total time is mostly determined by the speed of the Internet connection to Atlas/Hashicorp.  Typically, the _Ubuntu Server 14.04_ image requires 18 minutes to download.  This happens only once, the first time _vagrant up_ is executed.  In the future, whenever an _Ubuntu Server 14.04_ image is needed, it is fetched from the local host's cache of Vagrant Boxes.
+However, downloading and provisioning the _Ubuntu Server 14.04_ image the first time consumes a rather substantial amount of time.  The total time is mostly determined by the speed of the _host's_ Internet connection to Atlas/Hashicorp.  Typically, the _Ubuntu Server 14.04_ image requires 18 minutes to download.  This happens only once, the first time _vagrant up_ is executed.  In the future, whenever an _Ubuntu Server 14.04_ image is needed, it is fetched from the local host's cache of Vagrant Boxes.
 
-There is a large amount of terminal message output during provisioning.  The vast majority of messages log the construction of software which is being placed _into the_  _vagrant-ruby-rails_ _Vagrant Box_.  _Ruby, Gems, Rails, Git, and Node.js_ are _not_ placed directly onto your _host_, they are placed into the _guest-vbox_.  When provisioning of the _guest-vbox_ finishes,  the _guest-vbox_ is then stored onto the _host_.
+Provisioning is also a one-time only operation.  Provisioning typically takes eight minutes.  There is a large amount of terminal message output during provisioning.  The vast majority of messages log the construction of software which is being placed _into the_  _vagrant-ruby-rails_ _Vagrant Box_.  During this procedure, _Ruby, Gems, Rails, Git, and Node.js_ are _not_ placed directly onto your _host_, they are placed into the _guest-vbox_.  When provisioning of the _guest-vbox_ finishes,  the _guest-vbox_ is then stored onto the _host_.
 
 Enter the following command :
 
@@ -155,7 +154,7 @@ A very long list of text messages is output during the build process, beginning 
               .
               .
 
-The build tools will output numerous status/progress messages.  If you are using a terminal which is configured to show color text, most of the informational messages displayed are green in color, but, some will also be red-color text output.  The output messages are color coded by _Vagrant_; green messages indicate those of STDOUT, red messages indicate those of STDERR.
+The build tools will output numerous status/progress messages.  If you are using a terminal which is configured to show color text, most of the informational messages displayed are green in color, but, some are red-color text output.  The output messages are color coded by _Vagrant_; green messages indicate those of STDOUT from the _guest-vbox_, while red messages indicate those of STDERR from the _guest-vbox_.
 
 Red-color messages are common, they do not indicate an error has definitely occured; the author of that particular software simply chose to use STDERR to output trace/status messages.  Typically, if the build fails, it will often stop with an obvious error message, but in some unusual cases it does not.  After the build finishes, you should scroll back through the terminal output messages and scrutinize them for messages which _may_ indicate a legitimate error.  If you believe _The Build_ did not complete successfully, see the section near the end of this document titled, "If _The Build_ Fails".
 
