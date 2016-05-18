@@ -2,7 +2,7 @@
 
 ### A Ruby On Rails Development Environment (Basic)
 
-##### Containing Ubuntu Server 14.04, Ruby 2.2.2, Rails 4.2.1, Git 1.9.1, Node.js 0.10.37
+##### Containing Ubuntu Server 14.04, Ruby 2.2.4, Rails 4.2.6, Git 1.9.1, Node.js 0.10.37
 
 This is a _Vagrant Box_, (https://www.vagrantup.com), intended for quick installation of a very basic _Ruby On Rails_ development environment.  Assuming _Vagrant_ and _VirtualBox_ are already installed on your _host_ computer, this _Vagrant Box_ can be easily and quickly installed and removed.
 
@@ -38,28 +38,29 @@ This project has been tested on _Ubuntu 14.04_ and _Windows 7_ _hosts_, but _not
 
 #### Quickstart For Experts Already Running Vagrant With VirtualBox On Linux or Windows
 
-##### A New Rails Dev Env And App, In Five Easy Steps, (for details, see _Software Installation_)
+##### A New Rails Dev Env And App, In Seven Easy Steps, (for details, see _Software Installation_)
 
 ###### Copy-and-Paste The Given Commands Into Your Terminal Session
 
 1. Open a terminal session in your _host_ computer storage workspace.
-2. $ mkdir vagrant-ruby-rails; cd vagrant-ruby-rails; mkdir workspace
 
-  Windows users note : This "one-liner" command above works in PowerShell, but the "Command Prompt Window" will not process this line properly; you must split it into separate commands like this:
+2. Navigate to a location where you wish to create a directory which will contain _vagrant-ruby-rails_.
 
-  \> mkdir vagrant-ruby-rails
+3. Download ZIP _vagrant-ruby-rails_ file from GitHub into the current dirctory, (or move it here if downloaded to a different directory)., e.g.,
+$ wget -O  vagrant-ruby-rails  https://github.com/addiscent/vagrant-ruby-rails/archive/v0.0.4.zip
 
-  \> cd vagrant-ruby-rails
+4. Unzip _vagrant-ruby-rails_ files from the zip file, e.g.,
+$ unzip  v0.0.4.zip
 
-  \> mkdir workspace
+5. Navigate into the vagrant-ruby-rails directory created by unzipping, e.g.,
+$ cd  vagrant-ruby-rails-0.0.4
 
-3. Download ZIP _vagrant-ruby-rails_ file from GitHub, https://github.com/addiscent/vagrant-ruby-rails.  Unzip _vagrant-ruby-rails_ files into current working directory, "vagrant-ruby-rails".
+6. Create a directory and spin up a Vagrant Box.  The spin-up provisioning installs Rails.
+$ mkdir workspace && $ vagrant up && vagrant ssh
 
-4. $ vagrant up; vagrant ssh
+  Now wait a while for _vagrant@vagrant-ubuntu-trusty-64:~$_ prompt. The amount of time you wait is determined by the speed of your ISP connection and computer; twenty minutes is average.
 
-  Now wait a short while for _vagrant@vagrant-ubuntu-trusty-64:~$_ prompt.  Windows users note : Same "Command Prompt Window" caveat as above.
-
-5. $ cd /vagrant/workspace; rails new myapp; cd myapp; rails s -b 0.0.0.0
+7. $ cd /vagrant/workspace; rails new myapp; cd myapp; rails s -b 0.0.0.0
 
 Open a web browser to http://localhost:3030
 
@@ -176,19 +177,19 @@ Enter the following commands.  Notice the components which have been installed, 
 
           Result :
 
-            ruby 2.2.2p95 (2015-04-13 revision 50295) [x86_64-linux-gnu]
+            ruby 2.2.4p230 (2015-12-16 revision 53155) [x86_64-linux-gnu]]
 
 > $ bundler --version
 
-          Result : Bundler version 1.9.4
+          Result : Bundler version 1.12.4
 
 > $ gem --version
 
-          Result : 2.4.6
+          Result : 2.6.4
 
 > $ rails --version
 
-          Result : 4.2.1
+          Result : 4.2.6
 
 > $ git --version
 
@@ -208,7 +209,7 @@ Ensure you are still in the "vagrant ssh" session in your terminal program.
 
 Enter the following commands.  These commands build and _WEBrick_ serve a web page from an example _Rails_ app named "myapp" :
 
-> cd /vagrant/workspace; rails new myapp; cd myapp; rails s -b 0.0.0.0
+> $ cd /vagrant/workspace; rails new myapp; cd myapp; rails s -b 0.0.0.0
 
 Terminal output messages show the progress of the command above, which builds the scaffolding for a new Rails app named "myapp", and then executes the Rails _WEBrick_ server.
 
@@ -224,11 +225,11 @@ Terminal output messages show the progress of the command above, which builds th
                   .
                   .
         => Booting WEBrick
-        => Rails 4.2.1 application starting...
+        => Rails 4.2.6 application starting...
                   .
                   .
                   .
-        [2015-04-17 23:08:48] INFO  WEBrick::HTTPServer...
+        [2015-04-17 23:08:48] INFO  WEBrick::HTTPServer#start: pid=7526 port=3000
 
 The Rails built-in _WEBrick_ test server is now running.
 
