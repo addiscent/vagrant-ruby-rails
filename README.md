@@ -65,7 +65,7 @@ This project has been tested on _Ubuntu 14.04_ and _Windows 7_ _hosts_, but _not
 
 Open a web browser to http://localhost:3030
 
-        #####Welcome aboard
+        __Welcome aboard__
         You’re riding Ruby on Rails!
 
 The following set of commands is the minimum required to control a _Vagrant Box_:
