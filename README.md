@@ -58,7 +58,10 @@ This project has been tested on _Ubuntu 14.04_ and _Windows 7_ _hosts_, but _not
 6. Create a directory and spin up a Vagrant Box.  The spin-up provisioning installs Rails.
 > $ mkdir workspace && vagrant up && vagrant ssh
 
-  Now wait a while for _vagrant@vagrant-ubuntu-trusty-64:~$_ prompt. The amount of time you wait is determined by the speed of your ISP connection and computer; twelve minutes is average.
+  Now wait a while for the _Ubuntu Server 14.04_ image to download and provision. The amount of wait time is mostly determined by the speed of the connection to Atlas/Hashicorp.  Typically, the _Ubuntu Server 14.04_ image requires 18 minutes to download.  The time required to provision the downloaded image is approximately eight minutes. These operations happen only once, the first time _vagrant up_ is executed.
+  
+  After the image finishes downloading and provisioning is complete, you will see the prompt of the _guest-vbox_ :
+> _vagrant@vagrant-ubuntu-trusty-64:~$_
 
 7. Create a new Rails app and start the thin web server
 > $ cd /vagrant/workspace && rails new myapp && cd myapp && rails s -b 0.0.0.0
@@ -130,15 +133,17 @@ A directory listing shows the following, (or very similar), contents :
 
 #### Do _The Build_
 
-The "vagrant up" command executed below will provision and start a _vagrant-ruby-rails_ _Vagrant Box_.  Depending on the speed of your computer and the speed of your Internet connection, the build done by this "vagrant up" will take approximately ten minutes or more.
+The "vagrant up" command executed below will provision and start a _vagrant-ruby-rails_ _Vagrant Box_.
 
-The work done by the provisioning scripts during this "vagrant up" provisioning build will not be invoked the next time "vagrant up" is executed, because provisioning is a one-time process.  Therefore, subsequent "vagrant up" operations will result in a running _guest-vbox_ within approximately one minute.
+The work done by Vagrant and the provisioning scripts during this initial "vagrant up" operation will _not_ be performed the next time "vagrant up" is executed, because downloading the image and provisioning it is a one-time process.  Therefore, subsequent "vagrant up" operations will result in a running _guest-vbox_ within approximately one minute.
 
-There is a large amount of terminal message output during provisioning.  The vast majority of messages log the construction of software which is being placed _into the_  _vagrant-ruby-rails_ _Vagrant Box_.  _Ruby, Gems, Rails, Git, and Node.js_ are _not_ being placed directly onto your _host_, they are being placed into the _guest-vbox_.  When provisioning of the _guest-vbox_ finishes,  the _guest-vbox_ is then stored onto the _host_.
+However, downloading and provisioning the _Ubuntu Server 14.04_ image the first time consumes a rather substantial amount of time.  The total time is mostly determined by the speed of the Internet connection to Atlas/Hashicorp.  Typically, the _Ubuntu Server 14.04_ image requires 18 minutes to download.  This happens only once, the first time _vagrant up_ is executed.  In the future, whenever an _Ubuntu Server 14.04_ image is needed, it is fetched from the local host's cache of Vagrant Boxes.
+
+There is a large amount of terminal message output during provisioning.  The vast majority of messages log the construction of software which is being placed _into the_  _vagrant-ruby-rails_ _Vagrant Box_.  _Ruby, Gems, Rails, Git, and Node.js_ are _not_ placed directly onto your _host_, they are placed into the _guest-vbox_.  When provisioning of the _guest-vbox_ finishes,  the _guest-vbox_ is then stored onto the _host_.
 
 Enter the following command :
 
-> $ vagrant up; vagrant ssh
+> $ vagrant up && vagrant ssh
 
   Windows users note : Same "Command Prompt Window" caveat as above.
 
@@ -152,17 +157,13 @@ A very long list of text messages is output during the build process, beginning 
 
 The build tools will output numerous status/progress messages.  If you are using a terminal which is configured to show color text, most of the informational messages displayed are green in color, but, some will also be red-color text output.  The output messages are color coded by _Vagrant_; green messages indicate those of STDOUT, red messages indicate those of STDERR.
 
-Typically, if the build fails, it will often stop with an obvious error message, but in some unusual cases it does not.
+Red-color messages are common, they do not indicate an error has definitely occured; the author of that particular software simply chose to use STDERR to output trace/status messages.  Typically, if the build fails, it will often stop with an obvious error message, but in some unusual cases it does not.  After the build finishes, you should scroll back through the terminal output messages and scrutinize them for messages which _may_ indicate a legitimate error.  If you believe _The Build_ did not complete successfully, see the section near the end of this document titled, "If _The Build_ Fails".
 
-After the build finishes, you should scroll back through the terminal output messages and scrutinize them for messages which _may_ indicate an obvious error.
-
-If you believe _The Build_ did not complete successfully, see the section near the end of this document titled, "If _The Build_ Fails".
-
-After the build completes successfully, the last build message reads :
+After the build completes successfully, the last build message reads similar to the following :
 
               .
               .
-        "==> default: 30 gems installed"
+        "==> default: RubyGems system software updated"
 
 #### Verify _The Build_
 
@@ -210,7 +211,7 @@ Ensure you are still in the "vagrant ssh" session in your terminal program.
 
 Enter the following commands.  These commands build and _WEBrick_ serve a web page from an example _Rails_ app named "myapp" :
 
-> $ cd /vagrant/workspace; rails new myapp; cd myapp; rails s -b 0.0.0.0
+> $ cd /vagrant/workspace && rails new myapp && cd myapp && rails s -b 0.0.0.0
 
 Terminal output messages show the progress of the command above, which builds the scaffolding for a new Rails app named "myapp", and then executes the Rails _WEBrick_ server.
 
@@ -247,7 +248,7 @@ You may now terminate execution of the _Rails_ _WEBrick_ test server, by enterin
 
 This ends verification of a successful build.  You may now continue to experiment with "myapp", or you may remove it if you have no other use for it.  If you wish to remove it, you may enter the following command.
 
-> $ cd; rm -rf /vagrant/workspace/myapp
+> $ cd && rm -rf /vagrant/workspace/myapp
 
         Result :
 
@@ -328,7 +329,7 @@ Based on your application needs you may wish to reduce or increase the amount of
 
 ##### Storage Usage
 
-_VirtualBox_ will dynamically increase the size of the _guest-vbox_ _Ubuntu Server_ virtual disk drive as you add new files into its file system.  The maximum virtual disk drive size of this _guest-vbox_ _Ubuntu Server_ is 40GB.
+_VirtualBox_ will dynamically increase the size of the _guest-vbox_ _Ubuntu Server_ virtual disk drive as you add new files into its file system.  The maximum virtual disk drive size of this _guest-vbox_ _Ubuntu Server_ is 40GB.  This limit was set by the original developer of the _Ubuntu Server 14.04_ _VirtualBox_ image; it cannot be changed by the user.
 
 ##### Provisioning
 
@@ -342,7 +343,7 @@ Please see the _Vagrant_ documentation for more information about provisioning _
 
 ##### Installing _Vagrant_
 
-The _vagrant-ruby-rails_ _guest-vbox_ is built and managed by _Vagrant_.  The specific version of _Vagrant_ used on the _vagrant-ruby-rails_ project development computer is _Vagrant_ 1.7.2 (DEB-64bit), which is the most recent version.  You may have success with earlier versions of _Vagrant_, but the _vagrant-ruby-rails_ project has been built/tested using only 1.7.2.
+The _vagrant-ruby-rails_ _guest-vbox_ is built and managed by _Vagrant_.  The specific version of _Vagrant_ used on the _vagrant-ruby-rails_ project development computer is _Vagrant_ 1.8.1 (DEB-64bit).  You may have success with earlier versions of _Vagrant_, but the _vagrant-ruby-rails_ project has been built/tested using only 1.8.1.
 
 _Vagrant_ installation is typically not difficult for those persons familiar with installation of software on their operating system.
 
@@ -350,7 +351,7 @@ For _Vagrant_ installation instructions, please visit the _Vagrant_ web site : h
 
 ##### Installing _VirtualBox_
 
-_vagrant-ruby-rails_ uses _VirtualBox_ as the provider.  The specific version of _VirtualBox_ used as the provider on the _vagrant-ruby-rails_ project development computer is _VirtualBox_ 4.3.10 (AMD64).  You will probably have success with slightly earlier versions of _VirtualBox_, or the most recent stable version, but the _vagrant-ruby-rails_ project has not tested those.
+_vagrant-ruby-rails_ uses _VirtualBox_ as the provider.  The specific version of _VirtualBox_ used as the provider on the _vagrant-ruby-rails_ project development computer is _VirtualBox_ 5.0.20 r106931 (AMD64).  You will probably have success with slightly earlier versions of _VirtualBox_, or the most recent stable version, but the _vagrant-ruby-rails_ project has not tested those.
 
 _VirtualBox_ installation is typically not difficult for those persons familiar with installation of software on their operating system.
 
@@ -420,7 +421,7 @@ The software components installed by the provisioning scripts are noted here.  T
 
 _Ubuntu Server_ "ubuntu/trusty64" is an "official" image pulled by Vagrant from https://atlas.hashicorp.com/boxes/search.
 
-##### _Ruby_ 2.2.2
+##### _Ruby_ 2.2.4
 
 _Ruby_ is installed using apt-get and BrightBox's Ruby NG PPA at https://launchpad.net/~brightbox/+archive/ubuntu/ruby-ng.
 
@@ -449,5 +450,5 @@ Please read the _Apache License, Version 2.0_ included with this README file for
 
 
 
-###### Copyright 2015 CK Thomaston, all rights reserved.
-###### DalorWeb LLC, http://dalorweb.com
+###### Copyright 2016 Rex Addiscentis, all rights reserved.
+###### http://stopbeingpetty.com        http://addiscent.com
