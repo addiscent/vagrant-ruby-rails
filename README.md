@@ -28,7 +28,7 @@ To install _vagrant-ruby-rails_, your _host_ computer needs :
 
   * _Vagrant_ and _VirtualBox_ - Your _host_ computer must have an operating system installed which supports _Vagrant_ and _VirtualBox_, and those must be installed prior to installing _vagrant-ruby-rails_.
 
-  * A _host_ CPU capable of running a 64bit Ubuntu Linux image inside the _guest-vbox_.  It is possible to use a 32bit Ubuntu Linux image inside the _guest-vbox_, but the _Vagrantfile_ must be revised after installation of _vagrant-ruby-rails_.  See the section near the end of this document titled "Using _Ubuntu/Trusty32_".
+  * A _host_ CPU capable of running a 64bit Ubuntu Linux image inside the _guest-vbox_.  It is possible to use a 32bit Ubuntu Linux image inside the _guest-vbox_, but the _Vagrantfile_ must be revised after downloading the _vagrant-ruby-rails_ setup files.  See the section near the end of this document titled "Using _Ubuntu/Trusty32_".
 
   * A terminal/shell program - previously installed on the _host_.
 
