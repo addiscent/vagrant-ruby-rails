@@ -8,3 +8,5 @@ set -x
 /vagrant/utilities.sh
 /vagrant/ruby2.2.sh
 
+chown -R vagrant:vagrant /var/lib/gems/
+chown -R vagrant:vagrant /usr/local/bin
