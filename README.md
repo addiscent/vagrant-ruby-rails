@@ -325,6 +325,10 @@ Here is a ".../workspace/"-related tip for using _Git_ : At some point you may w
 
 ## Other Notes
 
+##### Gems Documentation Is Not Built-in
+
+In order to minimize both the build time and the storage space consumed by this _guest-vbox_, _Gems_ documentation is not included during _The Build_.
+
 ##### Port Mapping
 
 The _Rails_ _WEBrick_ server port default number is 3000.  The _vagrant-ruby-rails_ _Vagrantfile_ maps _guest-vbox_ port number 3000 to _host_ port number 3030.  The choice of port number 3030 is arbitrary.  If you wish to change this port mapping to a _host_ number port which better suits your needs, you can do so by editing the _Vagrantfile_.  For more information, see the _Vagrant_ documentation about the _config.vm.network_ directive.
