@@ -204,6 +204,13 @@ Enter the following commands.  Notice the components which have been installed, 
 
           Result : 1.4.28
 
+Note the name of the currrently logged-in user is _vagrant_.  The user _vagrant_ is the user logged in by default on this _vagrantbox_.
+
+You may need to know the following credentials for some admin activities in this _vagrantbox_ :
+
+      user : vagrant
+      password : vagrant
+
 ##### Construct And Test A Minimal App Which Confirms Working _Rails_ Scaffolding
 
 Ensure you are still in the "vagrant ssh" session in your terminal program.
