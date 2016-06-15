@@ -47,13 +47,13 @@ This project has been tested on _Ubuntu 14.04_ and _Windows 7_ _hosts_, but _not
 2. Navigate to a location where you wish to create a directory which will contain _vagrant-ruby-rails_.
 
 3. Download ZIP _vagrant-ruby-rails_ file from GitHub into the current dirctory, (or move it here if downloaded to a different directory)., e.g.,
-> $ wget -O  vagrant-ruby-rails.zip  https://github.com/addiscent/vagrant-ruby-rails/archive/v0.0.5.zip
+> $ wget -O  vagrant-ruby-rails.zip  https://github.com/addiscent/vagrant-ruby-rails/archive/master.zip
 
 4. Unzip _vagrant-ruby-rails_ files from the zip file, e.g.,
 > $ unzip  vagrant-ruby-rails.zip
 
 5. Navigate into the vagrant-ruby-rails directory created by unzipping, e.g.,
-> $ cd  vagrant-ruby-rails-0.0.5
+> $ cd  vagrant-ruby-rails-master
 
 6. Create a directory and spin up a Vagrant Box.  The spin-up provisioning installs Rails.
 > $ mkdir workspace && vagrant up && vagrant ssh
