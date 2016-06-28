@@ -10,3 +10,6 @@ set -x
 
 chown -R vagrant:vagrant /var/lib/gems/
 chown -R vagrant:vagrant /usr/local/bin
+
+apt-get autoremove -y
+
