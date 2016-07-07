@@ -2,7 +2,7 @@
 
 ### A Ruby On Rails Development Environment (Basic)
 
-##### Containing Ubuntu Server 14.04, Ruby 2.2.4, Rails 4.2.6, Git 1.9.1, Node.js 0.10.37
+##### Containing Ubuntu Server 14.04, Ruby 2.3.1, Gem 2.6.6, Rails 5.0.0, Git 1.9.1, Node.js 0.10.37
 
 This is a _Vagrant Box_, (https://www.vagrantup.com), intended for quick installation of a very basic _Ruby On Rails_ development environment.  Assuming _Vagrant_ and _VirtualBox_ are already installed on your _host_ computer, this _Vagrant Box_ can be easily and quickly installed and removed.
 
@@ -68,8 +68,7 @@ This project has been tested on _Ubuntu 14.04_ and _Windows 7_ _hosts_, but _not
 
 Open a web browser to _http://localhost:3030_
 
-        Welcome aboard
-        You’re riding Ruby on Rails!
+        Yay! You’re on Rails!
 
 The following set of commands is the minimum required to control a _Vagrant Box_:
 
@@ -123,6 +122,7 @@ A directory listing shows the following, (or very similar), contents :
         -rwxr-xr-x  1 user group   187 Apr 17 15:28 prepare.sh
         -rw-rw-r--  1 user group 26965 Apr 17 14:37 README.md
         -rwxr-xr-x  1 user group  1013 Apr 17 13:20 ruby2.2.sh
+        -rwxr-xr-x  1 user group  1013 Apr 17 13:20 ruby2.3.sh
         -rwxr-xr-x  1 user group  1692 Apr 17 12:50 ruby-finalize.sh
         -rwxr-xr-x  1 user group  6027 Mar  8 15:06 ruby-switch
         -rwxr-xr-x  1 user group   265 Apr 17 12:49 utilities.sh
@@ -162,7 +162,11 @@ After the build completes successfully, the last build message reads similar to 
 
               .
               .
-        "==> default: RubyGems system software updated"
+        ==> default: RubyGems system software updated
+              .
+              .
+        ==> default: Reading state information...
+        ==> default: 0 upgraded, 0 newly installed, 0 to remove and 2 not upgraded.
 
 #### Verify _The Build_
 
@@ -178,19 +182,19 @@ Enter the following commands.  Notice the components which have been installed, 
 
           Result :
 
-            ruby 2.2.4p230 (2015-12-16 revision 53155) [x86_64-linux-gnu]]
+            ruby 2.3.1p112 (2016-04-26 revision 54768) [x86_64-linux-gnu]
 
 > $ bundler --version
 
-          Result : Bundler version 1.12.4
+          Result : Bundler version 1.12.5
 
 > $ gem --version
 
-          Result : 2.6.4
+          Result : 2.6.6
 
 > $ rails --version
 
-          Result : 4.2.6
+          Result : Rails 5.0.0
 
 > $ git --version
 
@@ -215,31 +219,21 @@ You may need to know the following credentials for some admin activities in this
 
 Ensure you are still in the "vagrant ssh" session in your terminal program.
 
-Enter the following commands.  These commands build and _WEBrick_ serve a web page from an example _Rails_ app named "myapp" :
+Enter the following commands.  These commands build and serve a web page from an example _Rails_ app named "myapp" :
 
 > $ cd /vagrant/workspace && rails new myapp && cd myapp && rails s -b 0.0.0.0
 
-Terminal output messages show the progress of the command above, which builds the scaffolding for a new Rails app named "myapp", and then executes the Rails _WEBrick_ server.
+Terminal output messages shown below trace the progress of the command above, which builds the scaffolding for a new Rails app named "myapp", and then executes the Rails server.
 
-        exist
-        create  README.rdoc
-        create  Rakefile
-                  .
-                  .
-                  .
-        * bin/rake: spring inserted
-        * bin/rails: spring inserted
-                  .
-                  .
-                  .
-        => Booting WEBrick
-        => Rails 4.2.6 application starting...
-                  .
-                  .
-                  .
-        [2015-04-17 23:08:48] INFO  WEBrick::HTTPServer#start: pid=7526 port=3000
+            .
+            .
+        Puma starting in single mode...
+        * Version 3.4.0 (ruby 2.3.1-p112), codename: Owl Bowl Brawl
+            .
+            .
+        Use Ctrl-C to stop
 
-The Rails built-in _WEBrick_ test server is now running.
+The Rails default test server, Puma, is now running.
 
 Use a web browser on your _host_ to examine the resulting example web page at URL :
 
@@ -247,10 +241,9 @@ Use a web browser on your _host_ to examine the resulting example web page at UR
 
 The example web page shows :
 
-        Welcome aboard
-        You’re riding Ruby on Rails!
+        Yay! You’re on Rails!
 
-You may now terminate execution of the _Rails_ _WEBrick_ test server, by entering _Ctrl-C_ in the _guest-vbox_ terminal.
+You may now terminate execution of the test server, by entering _Ctrl-C_ in the _guest-vbox_ terminal.
 
 This ends verification of a successful build.  You may now continue to experiment with "myapp", or you may remove it if you have no other use for it.  If you wish to remove it, you may enter the following command.
 
@@ -299,6 +292,7 @@ Note that the _guest-vbox_ _Vagrantfile_ and _.sh_ provisioning _Bash_ files, am
         -rwxr-xr-x  1 vagrant vagrant   187 Apr 17 22:28 prepare.sh
         -rw-rw-r--  1 vagrant vagrant 26751 Apr 17 23:12 README.md
         -rwxr-xr-x  1 vagrant vagrant  1013 Apr 17 20:20 ruby2.2.sh
+        -rwxr-xr-x  1 vagrant vagrant  1013 Apr 17 20:20 ruby2.3.sh
         -rwxr-xr-x  1 vagrant vagrant  1692 Apr 17 19:50 ruby-finalize.sh
         -rwxr-xr-x  1 vagrant vagrant  6027 Mar  8 22:06 ruby-switch
         -rwxr-xr-x  1 vagrant vagrant   265 Apr 17 19:49 utilities.sh
@@ -317,7 +311,7 @@ Conversely, any files _stored_ on the _guest-vbox_ file system, in any other sub
 
 #### Guest VBox ".../workspace/" Subdirectory
 
-Recall that earlier you created a subdirectory in ".../vagrant-ruby-rails/" named "workspace/".  You created it while in a terminal session on the _host_ computer, on its file system.  Later, while in a "vagrant ssh" session, you created a _Rails_ app in _guest-vbox_ "/vagrant/workspace", and served its web pages from the _WEBrick_ server.
+Recall that earlier you created a subdirectory in ".../vagrant-ruby-rails/" named "workspace/".  You created it while in a terminal session on the _host_ computer, on its file system.  Later, while in a "vagrant ssh" session, you created a _Rails_ app in _guest-vbox_ "/vagrant/workspace", and served its web pages from the server.
 
 That is an example of how a subdirectory heirarchy in the _host_ ".../vagrant-ruby-rails/" subdirectory can be used from "within" the _guest-vbox_ file system.
 
@@ -331,7 +325,7 @@ In order to minimize both the build time and the storage space consumed by this 
 
 ##### Port Mapping
 
-The _Rails_ _WEBrick_ server port default number is 3000.  The _vagrant-ruby-rails_ _Vagrantfile_ maps _guest-vbox_ port number 3000 to _host_ port number 3030.  The choice of port number 3030 is arbitrary.  If you wish to change this port mapping to a _host_ number port which better suits your needs, you can do so by editing the _Vagrantfile_.  For more information, see the _Vagrant_ documentation about the _config.vm.network_ directive.
+The _Rails_ server port default number is 3000.  The _vagrant-ruby-rails_ _Vagrantfile_ maps _guest-vbox_ port number 3000 to _host_ port number 3030.  The choice of port number 3030 is arbitrary.  If you wish to change this port mapping to a _host_ number port which better suits your needs, you can do so by editing the _Vagrantfile_.  For more information, see the _Vagrant_ documentation about the _config.vm.network_ directive.
 
 ##### Memory (RAM) Usage
 
@@ -431,7 +425,7 @@ The software components installed by the provisioning scripts are noted here.  T
 
 _Ubuntu Server_ "ubuntu/trusty64" is an "official" image pulled by Vagrant from https://atlas.hashicorp.com/boxes/search.
 
-##### _Ruby_ 2.2.4
+##### _Ruby_ 2.3.1
 
 _Ruby_ is installed using apt-get and BrightBox's Ruby NG PPA at https://launchpad.net/~brightbox/+archive/ubuntu/ruby-ng.
 
