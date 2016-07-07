@@ -132,13 +132,11 @@ A directory listing shows the following, (or very similar), contents :
 
 #### Do _The Build_
 
-The "vagrant up" command executed below will provision and start a _vagrant-ruby-rails_ _Vagrant Box_.
+The "vagrant up" command executed below will provision and start a _vagrant-ruby-rails_ _Vagrant Box_.  The work done by Vagrant and the provisioning scripts during this initial "vagrant up" operation will only be performed once.
 
-The work done by Vagrant and the provisioning scripts during this initial "vagrant up" operation will only be performed once; downloading the image and provisioning it is a one-time process.  Therefore, subsequent "vagrant up" operations will result in a running _guest-vbox_ within approximately one minute.
+Downloading and provisioning the _Ubuntu Server 14.04_ image the first time consumes a rather substantial amount of time.  The total time is mostly determined by the speed of the source servers, including Cannonical, (for Ubuntu updates), Atlas/Hashicorp, (for the Vagrant box), and for other servers of Ruby and Gem packages.  Typically, the _guest-vbox_ image requires 15 minutes to download and build.  Subsequent "vagrant up" operations will result in a running _guest-vbox_ within approximately one minute.
 
-However, downloading and provisioning the _Ubuntu Server 14.04_ image the first time consumes a rather substantial amount of time.  The total time is mostly determined by the speed of the _host's_ Internet connection to Atlas/Hashicorp.  Typically, the _Ubuntu Server 14.04_ image requires 18 minutes to download.  This happens only once, the first time _vagrant up_ is executed.  In the future, whenever an _Ubuntu Server 14.04_ image is needed, it is fetched from the local host's cache of Vagrant Boxes.
-
-Provisioning is also a one-time only operation.  Provisioning typically takes eight minutes.  There is a large amount of terminal message output during provisioning.  The vast majority of messages log the construction of software which is being placed _into the_  _vagrant-ruby-rails_ _Vagrant Box_.  During this procedure, _Ruby, Gems, Rails, Git, and Node.js_ are _not_ placed directly onto your _host_, they are placed into the _guest-vbox_.  When provisioning of the _guest-vbox_ finishes,  the _guest-vbox_ is then stored onto the _host_.
+During provisioning, there is a large amount of terminal message output.  The vast majority of messages log the construction of software which is being placed _into the_  _vagrant-ruby-rails_ _Vagrant Box_.  During this procedure, _Ruby, Gems, Rails, Git, and Node.js_ are _not_ placed directly onto your _host_, they are placed into the _guest-vbox_.  When provisioning of the _guest-vbox_ finishes,  the _guest-vbox_ is then stored onto the _host_.
 
 Enter the following command :
 
@@ -209,11 +207,6 @@ Enter the following commands.  Notice the components which have been installed, 
           Result : 1.4.28
 
 Note the name of the currrently logged-in user is _vagrant_.  The user _vagrant_ is the user logged in by default on this _vagrantbox_.
-
-You may need to know the following credentials for some admin activities in this _vagrantbox_ :
-
-      user : vagrant
-      password : vagrant
 
 ##### Construct And Test A Minimal App Which Confirms Working _Rails_ Scaffolding
 
@@ -325,7 +318,7 @@ In order to minimize both the build time and the storage space consumed by this 
 
 ##### Port Mapping
 
-The _Rails_ server port default number is 3000.  The _vagrant-ruby-rails_ _Vagrantfile_ maps _guest-vbox_ port number 3000 to _host_ port number 3030.  The choice of port number 3030 is arbitrary.  If you wish to change this port mapping to a _host_ number port which better suits your needs, you can do so by editing the _Vagrantfile_.  For more information, see the _Vagrant_ documentation about the _config.vm.network_ directive.
+The _Rails_ server port default number is 3000.  The _vagrant-ruby-rails_ _Vagrantfile_ maps _guest-vbox_ port number 3000 to _host_ port number 3030, so it will not conflict with the Rails default port 3000 you may have already been using before installing the _vagrant-ruby-rails_ _guest-vbox_.  The choice of port number 3030 is arbitrary.  If you wish to change this port mapping to a _host_ number port which better suits your needs, you can do so by editing the _Vagrantfile_.  By revising this port mapping for each instance, you may also run more than one instance of _vagrant-ruby-rails_ _guest-vbox_ at the same time.  For more information, see the _Vagrant_ documentation about the _config.vm.network_ directive.
 
 ##### Memory (RAM) Usage
 
@@ -441,7 +434,7 @@ _Node.js_ is installed using apt-get and Chris Lea's Node.js PPA, https://launch
 
 ##### "works on my machine"
 
-This product, at this time, is in the _alpha_ stage of development.  Extensive testing has not been done on its components, only its gross operation has been confirmed .  _Host_ hardware and _host_ OS environment testing has been limited to the single generic _AMD/Ubuntu Linux/Windows_ box used for development.
+This product, at this time, is in the _alpha_ stage of development.  Extensive testing has not been done on its components, only its gross operation has been confirmed .  _Host_ hardware and _host_ OS environment testing has been limited to the single generic _AMD/Ubuntu/Windows_ box used for development.
 
 Your feedback is appreciated, especially with regard to success or problems using this product on _OS X_.
 
