@@ -132,11 +132,11 @@ A directory listing shows the following, (or very similar), contents :
 
 #### Do _The Build_
 
-The "vagrant up" command executed below will provision and start a _vagrant-ruby-rails_ _Vagrant Box_.  The work done by Vagrant and the provisioning scripts during this initial "vagrant up" operation will only be performed once.
+The "vagrant up" command executed below will provision and start a _vagrant-ruby-rails_ _Vagrant Box_.  The work done by Vagrant and the provisioning scripts during this initial "vagrant up" operation will be performed only once.
 
-Downloading and provisioning the _Ubuntu Server 14.04_ image the first time consumes a rather substantial amount of time.  The total time is mostly determined by the speed of the source servers, including Cannonical, (for Ubuntu updates), Atlas/Hashicorp, (for the Vagrant box), and for other servers of Ruby and Gem packages.  Typically, the _guest-vbox_ image requires 15 minutes to download and build.  Subsequent "vagrant up" operations will result in a running _guest-vbox_ within approximately one minute.
+Downloading and provisioning the _Ubuntu Server 14.04_ image the first time consumes a rather substantial amount of time.  The total time is mostly determined by the speed of the source servers, including Canonical, (for Ubuntu updates), Atlas/Hashicorp, (for the Vagrant box), and for other servers of Ruby and Gem packages.  Typically, the _guest-vbox_ image requires 15 minutes to download and build.  Subsequent "vagrant up" operations will result in a running _guest-vbox_ within approximately one minute.
 
-During provisioning, there is a large amount of terminal message output.  The vast majority of messages log the construction of software which is being placed _into the_  _vagrant-ruby-rails_ _Vagrant Box_.  During this procedure, _Ruby, Gems, Rails, Git, and Node.js_ are _not_ placed directly onto your _host_, they are placed into the _guest-vbox_.  When provisioning of the _guest-vbox_ finishes,  the _guest-vbox_ is then stored onto the _host_.
+During provisioning, there is a large amount of terminal message output.  The vast majority of messages log the construction of software which is being placed _into the_  _vagrant-ruby-rails_ _Vagrant Box_.  During this procedure, _Ruby, Gems, Rails, Git, and Node.js_ are _not_ placed directly onto your _host_, they are placed into the _guest-vbox_.
 
 Enter the following command :
 
