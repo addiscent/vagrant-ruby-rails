@@ -47,15 +47,19 @@ This project has been tested on _Ubuntu 14.04_ and _Windows 7_ _hosts_, but _not
 2. Navigate to a location where you wish to create a directory which will contain _vagrant-ruby-rails_.
 
 3. Download ZIP _vagrant-ruby-rails_ file from GitHub into the current directory :
+
 > $ wget -O  vagrant-ruby-rails.zip  https://github.com/addiscent/vagrant-ruby-rails/archive/master.zip
 
 4. Unzip _vagrant-ruby-rails_ files from the zip file, e.g. :
+
 > $ unzip  vagrant-ruby-rails.zip
 
 5. Navigate into the vagrant-ruby-rails directory created by unzipping, e.g. :
+
 > $ cd  vagrant-ruby-rails-master
 
 6. Create a directory and spin up a Vagrant Box.  The spin-up provisioning installs Rails.
+
 > $ mkdir workspace && vagrant up && vagrant ssh
 
   Now wait a while for the _Ubuntu Server 14.04_ image to download and provision. The amount of wait time is mostly determined by the speed of connections to the necessary servers on the Internet.  Typically, a _vagrant-ruby-rails_ instance requires 10 minutes to download and install.
@@ -66,30 +70,37 @@ This project has been tested on _Ubuntu 14.04_ and _Windows 7_ _hosts_, but _not
         $
 
 7. Create a new Rails app and start the thin web server
+
 > $ cd /vagrant/workspace && rails new myapp && cd myapp && rails s -b 0.0.0.0
 
 Open a web browser to _http://localhost:3030_
 
         Yay! You’re on Rails!
 
-When ready to stop the rails server, press control-C :
-        The _vagrant-ruby-rails_ _guest-vbox_ SSH terminal session prompt returns.
+When ready to stop the Rails server, press control-C :
+
+  The _vagrant-ruby-rails_ _guest-vbox_ SSH terminal session prompt returns.
 
 End the _vagrant-ruby-rails_ _guest-vbox_ SSH terminal session :
+
 > $ exit
 
-        The terminal session prompt of the _host_ returns.
+  The terminal session prompt of the _host_ returns.
   
-After stopping the rails server, you may remove everything which was installed.  To do so, use the following commands.
+When you wish to do so, you may remove everything which was installed, by using the following commands.
 
-Remove the _vagrant-ruby-rails_ _guest-vbox_ from the _host_ computer :
-> $ vagrant destroy
+  Remove the _vagrant-ruby-rails_ _guest-vbox_ from the _host_ computer :
 
-        The _vagrant-ruby-rails_ _guest-vbox_ has been stopped, and the _vagrant-ruby-rails_ _guest-vbox_ (VirtualBox) virtual machine files have been removed.
+  > $ vagrant destroy
 
-Remove the  _vagrant-ruby-rails_ project files from the _host_ computer :
-> $ cd ..
-> $ rm -r vagrant-ruby-rails-master
+        The _vagrant-ruby-rails_ _guest-vbox_ has been stopped.
+        The _vagrant-ruby-rails_ _guest-vbox_ virtual machine files have been removed.
+
+  Remove the  _vagrant-ruby-rails_ project files from the _host_ computer :
+
+  > $ cd ..
+
+  > $ rm -r vagrant-ruby-rails-master
 
 "And just like that, she was gone."
 
