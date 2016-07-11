@@ -62,9 +62,10 @@ This project has been tested on _Ubuntu 14.04_ and _Windows 7_ _hosts_, but _not
 
 > $ mkdir workspace && vagrant up && vagrant ssh
 
-  Now wait a while for the _Ubuntu Server 14.04_ image to download and provision. The amount of wait time is mostly determined by the speed of connections to the necessary servers on the Internet.  Typically, a _vagrant-ruby-rails_ instance requires 10 minutes to download and install.
+Now wait a while for the _Ubuntu Server 14.04_ image to download and provision. The amount of wait time is mostly determined by the speed of connections to the necessary servers on the Internet.  Typically, a _vagrant-ruby-rails_ instance requires 10 minutes to download and install.
   
-  After the image finishes downloading and provisioning is complete, you see the prompt of the _guest-vbox_ :
+After the image finishes downloading and provisioning is complete, you see the prompt of the _guest-vbox_ :
+
         2016.0711.0215.59
         vagrant@vagrant-ruby-rails:~
         $
@@ -79,28 +80,28 @@ Open a web browser to _http://localhost:3030_
 
 When ready to stop the Rails server, press control-C :
 
-  The _vagrant-ruby-rails_ _guest-vbox_ SSH terminal session prompt returns.
+        The _vagrant-ruby-rails_ _guest-vbox_ SSH terminal session prompt returns.
 
 End the _vagrant-ruby-rails_ _guest-vbox_ SSH terminal session :
 
 > $ exit
 
-  The terminal session prompt of the _host_ returns.
+        The terminal session prompt of the _host_ returns.
   
 When you wish to do so, you may remove everything which was installed, by using the following commands.
 
-  Remove the _vagrant-ruby-rails_ _guest-vbox_ from the _host_ computer :
+Remove the _vagrant-ruby-rails_ _guest-vbox_ from the _host_ computer :
 
-  > $ vagrant destroy
+> $ vagrant destroy
 
         The _vagrant-ruby-rails_ _guest-vbox_ has been stopped.
         The _vagrant-ruby-rails_ _guest-vbox_ virtual machine files have been removed.
 
-  Remove the  _vagrant-ruby-rails_ project files from the _host_ computer :
+Remove the  _vagrant-ruby-rails_ project files from the _host_ computer :
 
-  > $ cd ..
+> $ cd ..
 
-  > $ rm -r vagrant-ruby-rails-master
+> $ rm -r vagrant-ruby-rails-master
 
 "And just like that, she was gone."
 
