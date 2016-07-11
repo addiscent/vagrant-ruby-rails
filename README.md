@@ -46,13 +46,13 @@ This project has been tested on _Ubuntu 14.04_ and _Windows 7_ _hosts_, but _not
 
 2. Navigate to a location where you wish to create a directory which will contain _vagrant-ruby-rails_.
 
-3. Download ZIP _vagrant-ruby-rails_ file from GitHub into the current dirctory, (or move it here if downloaded to a different directory)., e.g.,
+3. Download ZIP _vagrant-ruby-rails_ file from GitHub into the current directory :
 > $ wget -O  vagrant-ruby-rails.zip  https://github.com/addiscent/vagrant-ruby-rails/archive/master.zip
 
-4. Unzip _vagrant-ruby-rails_ files from the zip file, e.g.,
+4. Unzip _vagrant-ruby-rails_ files from the zip file, e.g. :
 > $ unzip  vagrant-ruby-rails.zip
 
-5. Navigate into the vagrant-ruby-rails directory created by unzipping, e.g.,
+5. Navigate into the vagrant-ruby-rails directory created by unzipping, e.g. :
 > $ cd  vagrant-ruby-rails-master
 
 6. Create a directory and spin up a Vagrant Box.  The spin-up provisioning installs Rails.
@@ -62,8 +62,8 @@ This project has been tested on _Ubuntu 14.04_ and _Windows 7_ _hosts_, but _not
   
   After the image finishes downloading and provisioning is complete, you see the prompt of the _guest-vbox_ :
 > 2016.0711.0215.59
-vagrant@vagrant-ruby-rails:~
-$
+> vagrant@vagrant-ruby-rails:~
+> $
 
 7. Create a new Rails app and start the thin web server
 > $ cd /vagrant/workspace && rails new myapp && cd myapp && rails s -b 0.0.0.0
@@ -90,47 +90,36 @@ Before beginning installation of _vagrant-ruby-rails_, you must already have _Va
 
 #### Prepare For _The Build_
 
-Bring up a terminal on your _host_.  Choose a suitable location for the directory tree which will be created by the commands below.
+Open a terminal session in your _host_ computer storage workspace.
 
-Enter the following single-line command on your terminal.  In the following sections, a terminal command prompt is indicated by the symbol $.
+Navigate to a location where you wish to create a directory which will contain _vagrant-ruby-rails_.
 
-> $ mkdir vagrant-ruby-rails && cd vagrant-ruby-rails && mkdir workspace
+Download ZIP _vagrant-ruby-rails_ file from GitHub into the current directory :
+> $ wget -O  vagrant-ruby-rails.zip  https://github.com/addiscent/vagrant-ruby-rails/archive/master.zip
 
-Windows users note : This "one-liner" command above works in PowerShell, but the "Windows Command Prompt" will not process this line properly; you must split it into separate commands like this:
+Unzip _vagrant-ruby-rails_ files from the zip file, e.g. :
+> $ unzip  vagrant-ruby-rails.zip
 
-> \> mkdir vagrant-ruby-rails
+Unzipping the file creates a directory named _vagrant-ruby-rails-master_.  You may leave it named as is, or rename it as you wish.  For the purpose of this document, we rename it now to _vagrant-ruby-rails_ :
+> $ mv  vagrant-ruby-rails-master  vagrant-ruby-rails
 
-> \> cd vagrant-ruby-rails
-
-> \> mkdir workspace
-
-The command above created the "home" directory, named "vagrant-ruby-rails", where your new _vagrant-ruby-rails_ development environment will be installed.  This is the directory from which you will launch your new _vagrant-ruby-rails_ _guest-vbox_.  The "vagrant-ruby-rails" directory is also referred to elsewhere in this document as ".../vagrant-ruby-rails/".  A subdirectory named ".../vagrant-ruby-rails/workspace/" is also created by the command above.  It will be used later.
-
-Next, visit the _vagrant-ruby-rails_ GitHub repository at, https://github.com/addiscent/vagrant-ruby-rails.  On that page, click the "(tag) releases" link near the top.  On the subsequent page, download a ZIP file containing the _vagrant-ruby-rails_ project files.  Select the most recent tagged version.
-
-Extract those files into the current working directory, (".../vagrant-ruby-rails/").
+Navigate into the vagrant-ruby-rails directory created by unzipping, e.g. :
+> $ cd  vagrant-ruby-rails
 
 After extraction, verify the contents of ".../vagrant-ruby-rails/".  Enter the following command :
-
 > $ ls -al
 
 A directory listing shows the following, (or very similar), contents :
 
-        -rw-rw-r--  1 user group   210 Mar  8 15:06 buildconfig
-        -rwxr-xr-x  1 user group   572 Apr 17 15:21 enable_repos.sh
-        -rw-rw-r--  1 user group    28 Apr 17 11:37 .gitignore
-        -rwxr-xr-x  1 user group   143 Apr 17 13:19 install.sh
-        -rw-rw-r--  1 user group 11350 Apr 17 11:37 LICENSE
-        -rwxr-xr-x  1 user group   187 Apr 17 15:28 prepare.sh
-        -rw-rw-r--  1 user group 26965 Apr 17 14:37 README.md
-        -rwxr-xr-x  1 user group  1013 Apr 17 13:20 ruby2.2.sh
-        -rwxr-xr-x  1 user group  1013 Apr 17 13:20 ruby2.3.sh
-        -rwxr-xr-x  1 user group  1692 Apr 17 12:50 ruby-finalize.sh
-        -rwxr-xr-x  1 user group  6027 Mar  8 15:06 ruby-switch
-        -rwxr-xr-x  1 user group   265 Apr 17 12:49 utilities.sh
-        drwxrwsr-x  1 user group  4096 Apr 18 01:43 .vagrant
-        -rw-rw-r--  1 user group  3050 Apr 17 13:22 Vagrantfile
-        drwxrws---  2 user group  4096 Apr 17 15:29 workspace
+        -rw-rw-r-- 1 user group   28 Jul 10 19:19 .gitignore
+        -rwxr-xr-x 1 user group 3.0K Jul 10 19:19 install.sh
+        -rw-rw-r-- 1 user group  12K Jul 10 19:19 LICENSE
+        -rw-rw-r-- 1 user group  28K Jul 10 19:19 README.md
+        -rw-rw-r-- 1 user group 3.0K Jul 10 19:19 Vagrantfile
+
+
+Create a directory named "workspace".  The "workspace" directory is the recommended location for placement of your future "rails apps" :
+> $ mkdir workspace
 
 #### Do _The Build_
 
@@ -142,9 +131,7 @@ During provisioning, there is a large amount of terminal message output.  The va
 
 Enter the following command :
 
-> $ vagrant up && vagrant ssh
-
-  Windows users note : Same "Command Prompt Window" caveat as above.
+> $ vagrant up
 
 _The Build_ starts.
 
@@ -162,19 +149,34 @@ After the build completes successfully, the last build message reads similar to 
 
               .
               .
-        ==> default: RubyGems system software updated
-              .
-              .
-        ==> default: Reading state information...
-        ==> default: 0 upgraded, 0 newly installed, 0 to remove and 2 not upgraded.
+        ==> default: -->  END Ruby on Rails 5.0.0 (Ruby 2.3.1) Provisioning
 
 #### Verify _The Build_
 
 ##### Verify The Toolset Has Properly Installed
 
-When _The Build_ is finished, an _Ubuntu_ shell welcome screen and a command prompt are displayed.  The command prompt shows :
+After the build finishes, the _guest-vbox_ is ready for use.
 
->  vagrant@vagrant-ubuntu-trusty-64:~$
+Log into the _guest-vbox_ using the following command :
+> $ vagrant ssh
+
+Successful login to the _guest-vbox_ result in an Ubuntu banner and a prompt similar to :
+
+Welcome to Ubuntu 14.04.4 LTS (GNU/Linux 3.13.0-91-generic x86_64)
+
+  System information as of Mon Jul 11 01:49:42 UTC 2016
+
+  System load:  0.76              Processes:           82
+  Usage of /:   3.5% of 39.34GB   Users logged in:     0
+  Memory usage: 27%               IP address for eth0: 10.0.2.15
+  Swap usage:   0%
+  .
+  .
+  .
+
+> 2016.0711.0215.59
+vagrant@vagrant-ruby-rails:~
+$
 
 Enter the following commands.  Notice the components which have been installed, and their associated version numbers :
 
@@ -182,15 +184,15 @@ Enter the following commands.  Notice the components which have been installed, 
 
           Result :
 
-            ruby 2.3.1p112 (2016-04-26 revision 54768) [x86_64-linux-gnu]
+            ruby 2.3.1p112 (2016-04-26 revision 54768) [x86_64-linux]
+
+> $ gem --version
+
+          Result : 2.5.1
 
 > $ bundler --version
 
           Result : Bundler version 1.12.5
-
-> $ gem --version
-
-          Result : 2.6.6
 
 > $ rails --version
 
@@ -202,13 +204,9 @@ Enter the following commands.  Notice the components which have been installed, 
 
 > $ nodejs --version
 
-          Result : v0.10.37
+          Result : v0.10.25
 
-> $ npm --version
-
-          Result : 1.4.28
-
-Note the name of the currrently logged-in user is _vagrant_.  The user _vagrant_ is the user logged in by default on this _vagrantbox_.
+Note the name of the currrently logged-in user is _vagrant_, the default built-in user on this _vagrantbox_.
 
 ##### Construct And Test A Minimal App Which Confirms Working _Rails_ Scaffolding
 
@@ -220,6 +218,10 @@ Enter the following commands.  These commands build and serve a web page from an
 
 Terminal output messages shown below trace the progress of the command above, which builds the scaffolding for a new Rails app named "myapp", and then executes the Rails server.
 
+        create  README.md
+            .
+            .
+        run  bundle exec spring binstub --all
             .
             .
         Puma starting in single mode...
@@ -280,19 +282,16 @@ The _guest-vbox_ "/vagrant/" subdirectory is created by _Vagrant_ during constru
 
 Note that the _guest-vbox_ _Vagrantfile_ and _.sh_ provisioning _Bash_ files, among others, are listed.
 
-        -rw-rw-r--  1 vagrant vagrant   210 Mar  8 22:06 buildconfig
-        -rwxr-xr-x  1 vagrant vagrant   572 Apr 17 22:21 enable_repos.sh
-        -rwxr-xr-x  1 vagrant vagrant   143 Apr 17 20:19 install.sh
-        -rw-rw-r--  1 vagrant vagrant 11350 Apr 17 18:37 LICENSE
-        -rwxr-xr-x  1 vagrant vagrant   187 Apr 17 22:28 prepare.sh
-        -rw-rw-r--  1 vagrant vagrant 26751 Apr 17 23:12 README.md
-        -rwxr-xr-x  1 vagrant vagrant  1013 Apr 17 20:20 ruby2.2.sh
-        -rwxr-xr-x  1 vagrant vagrant  1013 Apr 17 20:20 ruby2.3.sh
-        -rwxr-xr-x  1 vagrant vagrant  1692 Apr 17 19:50 ruby-finalize.sh
-        -rwxr-xr-x  1 vagrant vagrant  6027 Mar  8 22:06 ruby-switch
-        -rwxr-xr-x  1 vagrant vagrant   265 Apr 17 19:49 utilities.sh
-        -rw-rw-r--  1 vagrant vagrant  3050 Apr 17 20:22 Vagrantfile
-        drwxrws---  1 vagrant vagrant  4096 Apr 17 23:08 workspace
+        drwxrwxr-x  1 vagrant vagrant  4096 Jul 11 01:48 .
+        drwxr-xr-x 23 root    root     4096 Jul 11 01:49 ..
+        -rw-rw-r--  1 vagrant vagrant    28 Jul 11 01:43 .gitignore
+        -rwxr-xr-x  1 vagrant vagrant  3003 Jul 11 01:43 install.sh
+        -rw-rw-r--  1 vagrant vagrant 11350 Jul 11 01:43 LICENSE
+        -rw-rw-r--  1 vagrant vagrant 28552 Jul 11 01:43 README.md
+        drwxrwxr-x  1 vagrant vagrant  4096 Jul 11 01:48 .vagrant
+        -rw-rw-r--  1 vagrant vagrant  3050 Jul 11 01:43 Vagrantfile
+        drwxrwxr-x  1 vagrant vagrant  4096 Jul 11 01:59 workspace
+
 
 These are the same files you placed into ".../vagrant-ruby-rails/" after you created it, when beginning installation of this product.
 
@@ -334,9 +333,9 @@ _VirtualBox_ will dynamically increase the size of the _guest-vbox_ _Ubuntu Serv
 
 Provisioning is a process during which all of the components needed for the _vagrant-ruby-rails_ _guest-vbox_ are downloaded, built, and placed into the _vagrant-ruby-rails_ _guest-vbox_.  By default, _Vagrant_ executes this time-consumng provisioning of the _guest-vbox_ only the first time "vagrant up" is executed.  Subsequent "vagrant up" commands will fetch the previously provisioned image from _host_ local storage, rather than redundantly provisioning the _guest-vbox_ every time "vagrant up" is executed.
 
-The provisioning files are _Bash_ scripts.  By understanding how the _Vagrantfile_ and the _.sh_ provisioning files work together, and by editing the contents of those files, you can easily change the default versions of the components installed, or add/remove components, as desired.
+The provisioning files are the _Vagrantfile_ and a _Bash_ script named _install.sh_.  By understanding how the files work together, and by editing the contents of those files, you can easily change the default versions of the components installed, or add/remove components, as desired.
 
-Note that if you change your provisioning files, your installed _guest-vbox_ image will need to be modified, (re-provisioned), to implement those changes.  Depending on the changes specified in the provisioning scripts, you may be able to simply modify your existing installed _guest-vbox_ image, by executing the "vagrant provision" command.  In other cases your _guest-vbox_ must be "vagrant destroyed", and a "full rebuild" done.
+Note that if you change the _install.sh_ provisioning file, the installed _guest-vbox_ image will need to be rebuilt, (re-provisioned), in order to implement those changes.  The _guest-vbox_ is re-provisioned by executing the "vagrant provision" command.
 
 Please see the _Vagrant_ documentation for more information about provisioning _Vagrant Boxes_.
 
@@ -386,7 +385,7 @@ Only you have access to the necessary configuration information about your _host
 
 ###### Divide And Conquer
 
-Identify the "milestone" at which the provisioning error occurred.  Inspect the _.sh_ provisioning files.  Find the milestone locations in the script file at which the terminal messages indicate an eror.  Narrow down which milestone succeeded, and which did not.  Once you find the most likely script commands, investigate as to why that particular command may have failed.
+Identify the "milestone" at which the provisioning error occurred.  Inspect the _install.sh_ provisioning file.  Find the milestone locations in the script file at which the terminal messages indicate an eror, (notice markers "-->".  Narrow down which milestone succeeded, and which did not.  Once you find the most likely script commands, investigate as to why that particular command may have failed.
 
 It's possible for a build to fail for quite a few reasons.  Some are :
 
@@ -398,7 +397,7 @@ It's possible for a build to fail for quite a few reasons.  Some are :
 
 After you have found something suspicious, address it, either by changing some configuration of your _host_, (most likely to resolve the problem), or by modifying the provisioning script, (see broken links, above).
 
-Then, try again to "vagrant up" _vagrant-ruby-rails_.  Before doing so, be aware that the _.sh_ provisioning scripts in this version of _vagrant-ruby-rails_ are not idempotent, meaning, the likelyhood of producing a correctly provisioned _vagrant-ruby-rails_ _Vagrant Box_ is low if you simply re-run "vagrant up" after installation failed, even after you have implemented a "guaranteed" fix for an error.  Unless you know otherwise, your best course of action after implementing an error correction is to execute "vagrant destroy", and then execute "vagrant up" again.
+Then, try again to "vagrant up" _vagrant-ruby-rails_.  Before doing so, be aware that the _install.sh_ provisioning script in this version of _vagrant-ruby-rails_ is not idempotent, meaning, the likelyhood of producing a correctly provisioned _vagrant-ruby-rails_ _Vagrant Box_ is low if you simply re-run "vagrant up" after installation failed, even after you have implemented a "guaranteed" fix for an error.  Unless you know otherwise, your best course of action after implementing an error correction is to execute "vagrant destroy", and then execute "vagrant up" again.
 
 ## The Short List Of Online References
 
@@ -411,26 +410,6 @@ If you are unfamiliar with the products in this document, you may wish to inform
 ###### _Ruby Gems_      : https://rubygems.org/
 ###### _Git_            : http://git-scm.com/
 ###### _Node.js_        : https://nodejs.org/
-
-### Product Pedigree
-
-The software components installed by the provisioning scripts are noted here.  Their versions may be updated in the future.  Their initial commit versions are :
-
-##### _Ubuntu Server_ 14.04 "ubuntu/trusty64"
-
-_Ubuntu Server_ "ubuntu/trusty64" is an "official" image pulled by Vagrant from https://atlas.hashicorp.com/boxes/search.
-
-##### _Ruby_ 2.3.1
-
-_Ruby_ is installed using apt-get and BrightBox's Ruby NG PPA at https://launchpad.net/~brightbox/+archive/ubuntu/ruby-ng.
-
-##### _Git_ 1.9.1
-
-_Git_ is installed using apt-get.
-
-##### _Node.js_ 0.10.37
-
-_Node.js_ is installed using apt-get and Chris Lea's Node.js PPA, https://launchpad.net/~chris-lea/+archive/ubuntu/node.js.
 
 ### Caveats And Known Issues
 
