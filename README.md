@@ -61,9 +61,9 @@ This project has been tested on _Ubuntu 14.04_ and _Windows 7_ _hosts_, but _not
   Now wait a while for the _Ubuntu Server 14.04_ image to download and provision. The amount of wait time is mostly determined by the speed of connections to the necessary servers on the Internet.  Typically, a _vagrant-ruby-rails_ instance requires 10 minutes to download and install.
   
   After the image finishes downloading and provisioning is complete, you see the prompt of the _guest-vbox_ :
-> 2016.0711.0215.59
-> vagrant@vagrant-ruby-rails:~
-> $
+        2016.0711.0215.59
+        vagrant@vagrant-ruby-rails:~
+        $
 
 7. Create a new Rails app and start the thin web server
 > $ cd /vagrant/workspace && rails new myapp && cd myapp && rails s -b 0.0.0.0
@@ -123,9 +123,7 @@ Create a directory named "workspace".  The "workspace" directory is the recommen
 
 #### Do _The Build_
 
-The "vagrant up" command executed below will provision and start a _vagrant-ruby-rails_ _Vagrant Box_.  The work done by Vagrant and the provisioning scripts during this initial "vagrant up" operation will be performed only once.
-
-Downloading and provisioning the _Ubuntu Server 14.04_ image the first time consumes a rather substantial amount of time.  The total time is mostly determined by the speed of the source servers, including Canonical, (for Ubuntu updates), Atlas/Hashicorp, (for the Vagrant box), and for other servers of Ruby and Gem packages.  Typically, the _guest-vbox_ image requires 15 minutes to download and build.  Subsequent "vagrant up" operations will result in a running _guest-vbox_ within approximately one minute.
+The "vagrant up" command executed below will provision and start a _vagrant-ruby-rails_ _Vagrant Box_.  The work done by Vagrant during this initial "vagrant up" operation will be performed only once.  Typically, the _guest-vbox_ image requires 15 minutes to download and build.  Subsequent "vagrant up" operations will result in a running _guest-vbox_ within approximately one minute.
 
 During provisioning, there is a large amount of terminal message output.  The vast majority of messages log the construction of software which is being placed _into the_  _vagrant-ruby-rails_ _Vagrant Box_.  During this procedure, _Ruby, Gems, Rails, Git, and Node.js_ are _not_ placed directly onto your _host_, they are placed into the _guest-vbox_.
 
@@ -162,21 +160,21 @@ Log into the _guest-vbox_ using the following command :
 
 Successful login to the _guest-vbox_ result in an Ubuntu banner and a prompt similar to :
 
-Welcome to Ubuntu 14.04.4 LTS (GNU/Linux 3.13.0-91-generic x86_64)
+        Welcome to Ubuntu 14.04.4 LTS (GNU/Linux 3.13.0-91-generic x86_64)
 
-  System information as of Mon Jul 11 01:49:42 UTC 2016
+          System information as of Mon Jul 11 01:49:42 UTC 2016
 
-  System load:  0.76              Processes:           82
-  Usage of /:   3.5% of 39.34GB   Users logged in:     0
-  Memory usage: 27%               IP address for eth0: 10.0.2.15
-  Swap usage:   0%
-  .
-  .
-  .
+          System load:  0.76              Processes:           82
+          Usage of /:   3.5% of 39.34GB   Users logged in:     0
+          Memory usage: 27%               IP address for eth0: 10.0.2.15
+          Swap usage:   0%
+          .
+          .
+          .
 
-> 2016.0711.0215.59
-vagrant@vagrant-ruby-rails:~
-$
+        2016.0711.0215.59
+        vagrant@vagrant-ruby-rails:~
+        $
 
 Enter the following commands.  Notice the components which have been installed, and their associated version numbers :
 
@@ -248,9 +246,13 @@ This ends verification of a successful build.  You may now continue to experimen
 
         Result :
 
-          vagrant@vagrant-ubuntu-trusty-64:~$
-
           The "myapp" directory and its subdirectories are deleted.
+          Return to prompt :
+          
+          2016.0711.0410.45
+          vagrant@vagrant-ruby-rails:~
+          $ 
+
 
 ## Using _vagrant-ruby-rails_
 
@@ -385,7 +387,7 @@ Only you have access to the necessary configuration information about your _host
 
 ###### Divide And Conquer
 
-Identify the "milestone" at which the provisioning error occurred.  Inspect the _install.sh_ provisioning file.  Find the milestone locations in the script file at which the terminal messages indicate an eror, (notice markers "-->".  Narrow down which milestone succeeded, and which did not.  Once you find the most likely script commands, investigate as to why that particular command may have failed.
+Identify the "milestone" at which the provisioning error occurred.  Inspect the _install.sh_ provisioning file.  Find the milestone locations in the script file at which the terminal messages indicate an eror, (notice echoed markers "-->").  Narrow down which milestone succeeded, and which did not.  Once you find the most likely script commands, investigate as to why that particular command may have failed.
 
 It's possible for a build to fail for quite a few reasons.  Some are :
 
