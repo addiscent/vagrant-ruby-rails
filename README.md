@@ -91,10 +91,8 @@ When you wish to do so, you may remove everything which was installed, by using 
         The vagrant-ruby-rails guest-vbox has been stopped.
         The vagrant-ruby-rails guest-vbox virtual machine files have been removed.
 
-2. Remove the  _vagrant-ruby-rails_ project files from the _host_ computer :
-> $ cd ..
-
-> $ rm -r vagrant-ruby-rails-master
+2. Remove the _vagrant-ruby-rails_ project files from the _host_ computer :
+> $ cd .. && rm -r vagrant-ruby-rails-master
 
 "And just like that, she was gone."
 
