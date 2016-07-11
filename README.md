@@ -66,6 +66,7 @@ After the image finishes downloading and provisioning is complete, you see the p
         vagrant@vagrant-ruby-rails:~
         $
 
+
 7. Create a new Rails app and start the thin web server
 
 > $ cd /vagrant/workspace && rails new myapp && cd myapp && rails s -b 0.0.0.0
