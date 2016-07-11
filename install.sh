@@ -16,7 +16,7 @@ echo "vagrant-ruby-rails" > /etc/hostname
 sed -i 's/localhost/localhost vagrant-ruby-rails/g' /etc/hosts
 
 #############################################################################
-# set .bashrc for ubuntu and root for custom prompt and functions/aliases
+# set custom prompt and functions/aliases in .bashrc for ubuntu and root
 
 echo "-->  Set .bashrc customization for root and ubuntu"
 

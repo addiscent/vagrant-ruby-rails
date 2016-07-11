@@ -2,7 +2,7 @@
 
 ### A Ruby On Rails Development Environment (Basic)
 
-##### Containing Ubuntu Server 14.04, Ruby 2.3.1, Gem 2.6.6, Rails 5.0.0, Git 1.9.1, Node.js 0.10.37
+##### Containing Ubuntu Server 14.04, Ruby 2.3.1, Gem 2.5.1, Rails 5.0.0, Git 1.9.1, Node.js 0.10.25
 
 This is a _Vagrant Box_, (https://www.vagrantup.com), intended for quick installation of a very basic _Ruby On Rails_ development environment.  Assuming _Vagrant_ and _VirtualBox_ are already installed on your _host_ computer, this _Vagrant Box_ can be easily and quickly installed and removed.
 
@@ -24,7 +24,7 @@ To install _vagrant-ruby-rails_, your _host_ computer needs :
 
   * 512MB of available memory (free RAM) - After installation, you may increase or decrease the amount of _host_ memory allocated to the _guest-vbox_.
 
-  * 2.5GB of storage (minimum) - Your long term _host_ storage space requirement will be determined by your application.
+  * 2.8GB of storage (minimum) - Your long term _host_ storage space requirement will be determined by your application.
 
   * _Vagrant_ and _VirtualBox_ - Your _host_ computer must have an operating system installed which supports _Vagrant_ and _VirtualBox_, and those must be installed prior to installing _vagrant-ruby-rails_.
 
@@ -58,10 +58,12 @@ This project has been tested on _Ubuntu 14.04_ and _Windows 7_ _hosts_, but _not
 6. Create a directory and spin up a Vagrant Box.  The spin-up provisioning installs Rails.
 > $ mkdir workspace && vagrant up && vagrant ssh
 
-  Now wait a while for the _Ubuntu Server 14.04_ image to download and provision. The amount of wait time is mostly determined by the speed of the connection to Atlas/Hashicorp.  Typically, the _Ubuntu Server 14.04_ image requires 18 minutes to download.  The time required to provision the downloaded image is approximately eight minutes. These operations happen only once, the first time _vagrant up_ is executed.
+  Now wait a while for the _Ubuntu Server 14.04_ image to download and provision. The amount of wait time is mostly determined by the speed of connections to the necessary servers on the Internet.  Typically, a _vagrant-ruby-rails_ instance requires 10 minutes to download and install.
   
   After the image finishes downloading and provisioning is complete, you see the prompt of the _guest-vbox_ :
-> _vagrant@vagrant-ubuntu-trusty-64:~$_
+> 2016.0711.0215.59
+vagrant@vagrant-ruby-rails:~
+$
 
 7. Create a new Rails app and start the thin web server
 > $ cd /vagrant/workspace && rails new myapp && cd myapp && rails s -b 0.0.0.0
