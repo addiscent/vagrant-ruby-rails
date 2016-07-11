@@ -47,19 +47,15 @@ This project has been tested on _Ubuntu 14.04_ and _Windows 7_ _hosts_, but _not
 2. Navigate to a location where you wish to create a directory which will contain _vagrant-ruby-rails_.
 
 3. Download ZIP _vagrant-ruby-rails_ file from GitHub into the current directory :
-
 > $ wget -O  vagrant-ruby-rails.zip  https://github.com/addiscent/vagrant-ruby-rails/archive/master.zip
 
 4. Unzip _vagrant-ruby-rails_ files from the zip file, e.g. :
-
 > $ unzip  vagrant-ruby-rails.zip
 
 5. Navigate into the vagrant-ruby-rails directory created by unzipping, e.g. :
-
 > $ cd  vagrant-ruby-rails-master
 
 6. Create a directory and spin up a Vagrant Box.  The spin-up provisioning installs Rails.
-
 > $ mkdir workspace && vagrant up && vagrant ssh
 
 Now wait a while for the _Ubuntu Server 14.04_ image to download and provision. The amount of wait time is mostly determined by the speed of connections to the necessary servers on the Internet.  Typically, a _vagrant-ruby-rails_ instance requires 10 minutes to download and install.
