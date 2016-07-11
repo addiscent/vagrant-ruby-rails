@@ -61,11 +61,9 @@ This project has been tested on _Ubuntu 14.04_ and _Windows 7_ _hosts_, but _not
 Now wait a while for the _Ubuntu Server 14.04_ image to download and provision. The amount of wait time is mostly determined by the speed of connections to the necessary servers on the Internet.  Typically, a _vagrant-ruby-rails_ instance requires 10 minutes to download and install.
   
 After the image finishes downloading and provisioning is complete, you see the prompt of the _guest-vbox_ :
-
         2016.0711.0215.59
         vagrant@vagrant-ruby-rails:~
         $
-
 
 7. Create a new Rails app and start the thin web server
 
