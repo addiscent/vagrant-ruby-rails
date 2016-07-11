@@ -72,15 +72,26 @@ Open a web browser to _http://localhost:3030_
 
         Yay! You’re on Rails!
 
-The following set of commands is the minimum required to control a _Vagrant Box_:
+When ready to stop the rails server, press control-C :
+        The _vagrant-ruby-rails_ _guest-vbox_ SSH terminal session prompt returns.
 
-  * "vagrant up" - creates a new _Vagrant Box_ on the _host_, directed by the _Vagrantfile_. Also restarts a previously halted _Vagrant Box_.
+End the _vagrant-ruby-rails_ _guest-vbox_ SSH terminal session :
+> $ exit
 
-  * "vagrant ssh" - opens an _ssh_ terminal session with the _Vagrant Box_, allowing its system administration.
+        The terminal session prompt of the _host_ returns.
+  
+After stopping the rails server, you may remove everything which was installed.  To do so, use the following commands.
 
-  * "vagrant halt" - stops execution of a running _Vagrant Box_.
+Remove the _vagrant-ruby-rails_ _guest-vbox_ from the _host_ computer :
+> $ vagrant destroy
 
-  * "vagrant destroy" - halts an executing _Vagrant Box_, and then removes its image files, including its file system, from _host_ storage.  When this command finishes executing, the _Vagrant Box_ and its contents have been permanently deleted from _host_ file system storage.
+        The _vagrant-ruby-rails_ _guest-vbox_ has been stopped, and the _vagrant-ruby-rails_ _guest-vbox_ (VirtualBox) virtual machine files have been removed.
+
+Remove the  _vagrant-ruby-rails_ project files from the _host_ computer :
+> $ cd ..
+> $ rm -r vagrant-ruby-rails-master
+
+"And just like that, she was gone."
 
 ## Software Installation
 
@@ -253,6 +264,17 @@ This ends verification of a successful build.  You may now continue to experimen
           vagrant@vagrant-ruby-rails:~
           $ 
 
+#### Quicklist Of Vagrant Commands
+
+The following set of commands is the minimum required to control a _Vagrant Box_:
+
+  * "vagrant up" - creates a new _Vagrant Box_ on the _host_, directed by the _Vagrantfile_. Also restarts a previously halted _Vagrant Box_.
+
+  * "vagrant ssh" - opens an _ssh_ terminal session with the _Vagrant Box_, allowing its system administration.
+
+  * "vagrant halt" - stops execution of a running _Vagrant Box_.
+
+  * "vagrant destroy" - halts an executing _Vagrant Box_, and then removes its image files, including its file system, from _host_ storage.  When this command finishes executing, the _Vagrant Box_ and its contents have been permanently deleted from _host_ file system storage.
 
 ## Using _vagrant-ruby-rails_
 
