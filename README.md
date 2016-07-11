@@ -75,21 +75,21 @@ Open a web browser to _http://localhost:3030_
 
 When ready to stop the Rails server, press control-C :
 
-        The _vagrant-ruby-rails_ _guest-vbox_ SSH terminal session prompt returns.
+        The vagrant-ruby-rails guest-vbox terminal SSH session prompt returns.
 
 When ready, end the _vagrant-ruby-rails_ _guest-vbox_ SSH terminal session :
 
 > $ exit
 
-        The terminal session prompt of the _host_ returns.
+        The terminal session prompt of the host returns.
   
 When you wish to do so, you may remove everything which was installed, by using the following commands.
 
 1. Remove the _vagrant-ruby-rails_ _guest-vbox_ from the _host_ computer :
 > $ vagrant destroy
 
-        The _vagrant-ruby-rails_ _guest-vbox_ has been stopped.
-        The _vagrant-ruby-rails_ _guest-vbox_ virtual machine files have been removed.
+        The vagrant-ruby-rails guest-vbox has been stopped.
+        The vagrant-ruby-rails guest-vbox virtual machine files have been removed.
 
 2. Remove the  _vagrant-ruby-rails_ project files from the _host_ computer :
 > $ cd ..
