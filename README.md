@@ -360,9 +360,9 @@ _VirtualBox_ will dynamically increase the size of the _guest-vbox_ _Ubuntu Serv
 
 Provisioning is a process during which all of the components needed for the _vagrant-ruby-rails_ _guest-vbox_ are downloaded, built, and placed into the _vagrant-ruby-rails_ _guest-vbox_.  By default, _Vagrant_ executes this time-consumng provisioning of the _guest-vbox_ only the first time "vagrant up" is executed.  Subsequent "vagrant up" commands will fetch the previously provisioned image from _host_ local storage, rather than redundantly provisioning the _guest-vbox_ every time "vagrant up" is executed.
 
-The provisioning files are the _Vagrantfile_ and a _Bash_ script named _install.sh_.  By understanding how the files work together, and by editing the contents of those files, you can easily change the default versions of the components installed, or add/remove components, as desired.
+The provisioning file is the _Vagrantfile_.  Inspect the _Vagrantfile_, and notice the provisioning commands which are located at the end of the file, following the "config.vm.provision" directive.  Notice that these are typical GMU/Linux-style commands which you might use on a command line or in a _Bash_ shell script.  By understanding how the _Vagrant_-specific directives, and the _Bash_-type commands work together, you can easily change the default versions of the components installed, or add/remove components, as desired.
 
-Note that if you change the _install.sh_ provisioning file, the installed _guest-vbox_ image will need to be rebuilt, (re-provisioned), in order to implement those changes.  The _guest-vbox_ is re-provisioned by executing the "vagrant provision" command.
+Note that if you change the provisioning commands at the end of the _Vagrantfile_, the installed _guest-vbox_ image will need to be rebuilt, (re-provisioned), in order to implement those changes.  The _guest-vbox_ is re-provisioned by executing the "vagrant provision" command.
 
 Please see the _Vagrant_ documentation for more information about provisioning _Vagrant Boxes_.
 
@@ -412,7 +412,7 @@ Only you have access to the necessary configuration information about your _host
 
 ###### Divide And Conquer
 
-Identify the "milestone" at which the provisioning error occurred.  Inspect the _install.sh_ provisioning file.  Find the milestone locations in the script file at which the terminal messages indicate an eror, (notice echoed markers "-->").  Narrow down which milestone succeeded, and which did not.  Once you find the most likely script commands, investigate as to why that particular command may have failed.
+Identify the "milestone" at which the provisioning error occurred.  Inspect the _install.sh_ provisioning file.  Find the milestone locations in the _Vagrantfile_ at which the terminal messages indicate an eror, (notice echoed markers "-->").  Narrow down which milestone succeeded, and which did not.  Once you find the most likely script commands, investigate as to why that particular command may have failed.
 
 It's possible for a build to fail for quite a few reasons.  Some are :
 
@@ -422,9 +422,9 @@ It's possible for a build to fail for quite a few reasons.  Some are :
 
 * Missing, misconfigured, or incompatible versions of _Vagrant_ or _VirtualBox_.
 
-After you have found something suspicious, address it, either by changing some configuration of your _host_, (most likely to resolve the problem), or by modifying the provisioning script, (see broken links, above).
+After you have found something suspicious, address it, either by changing some configuration of your _host_, (most likely to resolve the problem), or by modifying the _Vagrantfile_ custom provisioning script, (see broken links, above).
 
-Then, try again to "vagrant up" _vagrant-ruby-rails_.  Before doing so, be aware that the _install.sh_ provisioning script in this version of _vagrant-ruby-rails_ is not idempotent, meaning, the likelyhood of producing a correctly provisioned _vagrant-ruby-rails_ _Vagrant Box_ is low if you simply re-run "vagrant up" after installation failed, even after you have implemented a "guaranteed" fix for an error.  Unless you know otherwise, your best course of action after implementing an error correction is to execute "vagrant destroy", and then execute "vagrant up" again.
+Then, try again to "vagrant up" _vagrant-ruby-rails_.  Before doing so, be aware that the _Vagrantfile_ provisioning script is not idempotent, meaning, the likelyhood of producing a correctly provisioned _vagrant-ruby-rails_ _Vagrant Box_ is low if you simply re-run "vagrant up" after installation failed, even after you have implemented a "guaranteed" fix for an error.  Unless you know otherwise, your best course of action after implementing an error correction is to execute "vagrant destroy", and then execute "vagrant up" again.
 
 ## The Short List Of Online References
 

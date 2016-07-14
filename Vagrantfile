@@ -65,9 +65,68 @@ Vagrant.configure(2) do |config|
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
   
-  $script = <<-SCRIPT
-        bash /vagrant/install.sh
-    SCRIPT
-  
-    config.vm.provision "shell", inline: $script, privileged: true
+  config.vm.provision "shell", inline: <<-SHELL, privileged: true
+    # configure host and install ruby 2.3.1 and rails 5.0.0
+
+    echo "-->  BEGIN Vagrant Host config and Rails 5.0.0/Ruby 2.3.1 Provision" >> /home/vagrant/arr-provision.log
+
+    ############################################################################
+    # install unzip
+    echo "-->  apt-get -y install unzip" >> /home/vagrant/arr-provision.log
+    apt-get -y install unzip
+
+    ##############################################################################
+    # set the hostname
+
+    echo "-->  Set hostname to vagrant-ruby-rails" >> /home/vagrant/arr-provision.log
+
+    hostname vagrant-ruby-rails
+
+    echo "vagrant-ruby-rails" > /etc/hostname
+
+    sed -i 's/localhost/localhost vagrant-ruby-rails/g' /etc/hosts
+
+    #############################################################################
+    # set custom prompt and functions/aliases in .bashrc for users root and vagrant
+
+    echo "-->  Set .bashrc customization for root and vagrant" >> /home/vagrant/arr-provision.log
+
+    cat /vagrant/bashrc-mod.txt >> /home/vagrant/.bashrc
+
+    cat /vagrant/bashrc-mod.txt >> /root/.bashrc
+
+    ##########################################################################
+    # remove ruby 1.9.1
+
+    echo "-->  Remove ruby 1.9.1" >> /home/vagrant/arr-provision.log
+
+    apt-get -y remove ruby1.9.1 --purge
+
+    ############################################################################
+    # install ruby/rails and related tools/software
+
+    echo "-->  download ruby/rails" >> /home/vagrant/arr-provision.log
+
+    echo "wget -O ruby-rails-install.zip https://github.com/addiscent/ruby-rails-install/archive/master.zip" >> /home/vagrant/arr-provision.log
+    wget -O ruby-rails-install.zip https://github.com/addiscent/ruby-rails-install/archive/master.zip
+
+    echo "-->  install ruby/rails" >> /home/vagrant/arr-provision.log
+
+    echo "-->  unzip ruby-rails-install.zip" >> /home/vagrant/arr-provision.log
+    unzip ruby-rails-install.zip
+
+    echo "-->  chmod +x ./ruby-rails-install-master/ruby-rails-install.sh" >> /home/vagrant/arr-provision.log
+    chmod +x ./ruby-rails-install-master/ruby-rails-install.sh
+
+    echo "-->  ./ruby-rails-install-master/ruby-rails-install.sh" >> /home/vagrant/arr-provision.log
+    ./ruby-rails-install-master/ruby-rails-install.sh >> /home/vagrant/arr-provision.log
+
+    echo "-->  rm -r ./ruby-rails-install-master" >> /home/vagrant/arr-provision.log
+    rm -r ./ruby-rails-install-master
+
+    echo "-->  rm ruby-rails-install.zip" >> /home/vagrant/arr-provision.log
+    rm ruby-rails-install.zip
+
+    echo "-->  End Vagrant Host config and Rails 5.0.0/Ruby 2.3.1 Provision" >> /home/vagrant/arr-provision.log
+  SHELL
 end
