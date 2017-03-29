@@ -2,7 +2,7 @@
 
 ### A Ruby On Rails Development Environment (Basic)
 
-##### Containing Ubuntu Server 14.04, Ruby 2.3.1, Gem 2.5.1, Rails 5.0.0, Git 1.9.1, Node.js 0.10.25
+##### Containing Ubuntu Server 16.04, Ruby 2.4.1, Rails 5.0.2, Gem 2.6.11, Node.js 4.2.6, Git 1.9.1
 
 This is a _Vagrant Box_, (https://www.vagrantup.com), intended for quick installation of a very basic _Ruby On Rails_ development environment.  Assuming _Vagrant_ and _VirtualBox_ are already installed on your _host_ computer, this _Vagrant Box_ can be easily and quickly installed and removed.
 
@@ -28,13 +28,11 @@ To install _vagrant-ruby-rails_, your _host_ computer needs :
 
   * _Vagrant_ and _VirtualBox_ - Your _host_ computer must have an operating system installed which supports _Vagrant_ and _VirtualBox_, and those must be installed prior to installing _vagrant-ruby-rails_.
 
-  * A _host_ CPU capable of running a 64bit Ubuntu Linux image inside the _guest-vbox_.  It is possible to use a 32bit Ubuntu Linux image inside the _guest-vbox_, but the _Vagrantfile_ must be revised after downloading the _vagrant-ruby-rails_ setup files.  See the section near the end of this document titled "Using _Ubuntu/Trusty32_".
-
   * A terminal/shell program - previously installed on the _host_.
 
   * A zip file extraction program - previously installed on the _host_.
 
-This project has been tested on _Ubuntu 14.04_ and _Windows 7_ _hosts_, but _not_ on _OS X_.
+This project has been tested only on _Ubuntu 16.04_.
 
 #### Quickstart For Experts Already Running Vagrant With VirtualBox On Linux or Windows
 
@@ -58,18 +56,18 @@ This project has been tested on _Ubuntu 14.04_ and _Windows 7_ _hosts_, but _not
 6. Create a directory and spin up a Vagrant Box.  The spin-up provisioning installs Rails.
 > $ mkdir workspace && vagrant up && vagrant ssh
 
-  Now wait a while for the _Ubuntu Server 14.04_ image to download and provision. The amount of wait time is mostly determined by the speed of connections to the necessary servers on the Internet.  Typically, a _vagrant-ruby-rails_ instance requires 10 minutes to download and install.
+  Now wait a while for the _Ubuntu Server 16.04_ image to download and provision. The amount of wait time is mostly determined by the speed of connections to the necessary servers on the Internet.  Typically, a _vagrant-ruby-rails_ instance requires 15 minutes to download and install.
   
   After the image finishes downloading and provisioning is complete, you see the prompt of the _guest-vbox_ :
 
-        2016.0711.0215.59
+        2017.0328.0215.59
         vagrant@vagrant-ruby-rails:~
         $
         
 7. Create a new Rails app and start the thin web server.
 > $ cd /vagrant/workspace && rails new myapp && cd myapp && rails s -b 0.0.0.0
 
-Open a web browser to _http://localhost:3030_
+Open a web browser to _http://localhost:3033_
 
         Yay! You’re on Rails!
 
@@ -98,9 +96,9 @@ When you wish to do so, you may remove everything which was installed, by using 
 
 ## Software Installation
 
-Before beginning installation of _vagrant-ruby-rails_, you must already have _Vagrant_ and _VirtualBox_ installed and properly configured.  For more information, see the section near the end of this document, titled, "Other Notes".
+Before beginning installation of _vagrant-ruby-rails_, you must already have _Vagrant_ and _VirtualBox_ installed and properly configured.  The versions used for testing were Vagrant 1.9.3 and VirtualBox 5.1.14.  Other "close" versions may work.  For more information, see the section near the end of this document, titled, "Other Notes".
 
-### Installation of _vagrant-ruby-rails_
+### Installation of _vagrant-ruby-rails_ - Expanded description
 
 #### Prepare For _The Build_
 
@@ -123,11 +121,11 @@ Navigate into the vagrant-ruby-rails directory created by unzipping, e.g. :
 After extraction, verify the contents of ".../vagrant-ruby-rails/".  Enter the following command :
 > $ ls -al
 
-A directory listing shows the following, (or very similar), contents :
+A directory listing shows the following, (or similar), contents :
 
         -rw-rw-r-- 1 user group   28 Jul 10 19:19 .gitignore
-        -rwxr-xr-x 1 user group 3.0K Jul 10 19:19 install.sh
         -rw-rw-r-- 1 user group  12K Jul 10 19:19 LICENSE
+        -rw-rw-r-- 1 user group 3.0K Jul 10 19:19 bashrc-mod.txt
         -rw-rw-r-- 1 user group  28K Jul 10 19:19 README.md
         -rw-rw-r-- 1 user group 3.0K Jul 10 19:19 Vagrantfile
 
@@ -161,7 +159,7 @@ After the build completes successfully, the last build message reads similar to 
 
               .
               .
-        ==> default: -->  END Ruby on Rails 5.0.0 (Ruby 2.3.1) Provisioning
+        -->  END ./ruby-rails-tools-install.sh
 
 #### Verify _The Build_
 
@@ -196,27 +194,32 @@ Enter the following commands.  Notice the components which have been installed, 
 
           Result :
 
-            ruby 2.3.1p112 (2016-04-26 revision 54768) [x86_64-linux]
-
-> $ gem --version
-
-          Result : 2.5.1
-
-> $ bundler --version
-
-          Result : Bundler version 1.12.5
+            ruby 2.4.1p111 (2017-03-22 revision 58053)
 
 > $ rails --version
+    
+          Result : Rails 5.0.2
 
-          Result : Rails 5.0.0
+> $ gem --version
+    
+          Result : 2.6.11
 
-> $ git --version
-
-          Result : git version 1.9.1
+> $ bundler --version
+    
+          Result : Bundler version 1.14.6
 
 > $ nodejs --version
+    
+          Result : v4.2.6
 
-          Result : v0.10.25
+> $ git --version
+    
+          Result : git version 2.7.4
+
+> $ gem list sqlite3
+    
+          Result : sqlite3 (1.3.13)
+
 
 Note the name of the currrently logged-in user is _vagrant_, the default built-in user on this _vagrantbox_.
 
@@ -230,23 +233,20 @@ Enter the following commands.  These commands build and serve a web page from an
 
 Terminal output messages shown below trace the progress of the command above, which builds the scaffolding for a new Rails app named "myapp", and then executes the Rails server.
 
-        create  README.md
-            .
-            .
-        run  bundle exec spring binstub --all
             .
             .
         Puma starting in single mode...
-        * Version 3.4.0 (ruby 2.3.1-p112), codename: Owl Bowl Brawl
+        Version 3.8.2 (ruby 2.4.1-p111), codename: Sassy Salamander
+             .
             .
-            .
+        Listening on tcp://0.0.0.0:3000
         Use Ctrl-C to stop
 
 The Rails default test server, Puma, is now running.
 
 Use a web browser on your _host_ to examine the resulting example web page at URL :
 
-        http://localhost:3030
+        http://localhost:3033
 
 The example web page shows :
 
@@ -312,7 +312,6 @@ Note that the _guest-vbox_ _Vagrantfile_ and _.sh_ provisioning _Bash_ files, am
         drwxrwxr-x  1 vagrant vagrant  4096 Jul 11 01:48 .
         drwxr-xr-x 23 root    root     4096 Jul 11 01:49 ..
         -rw-rw-r--  1 vagrant vagrant    28 Jul 11 01:43 .gitignore
-        -rwxr-xr-x  1 vagrant vagrant  3003 Jul 11 01:43 install.sh
         -rw-rw-r--  1 vagrant vagrant 11350 Jul 11 01:43 LICENSE
         -rw-rw-r--  1 vagrant vagrant 28552 Jul 11 01:43 README.md
         drwxrwxr-x  1 vagrant vagrant  4096 Jul 11 01:48 .vagrant
@@ -346,7 +345,7 @@ In order to minimize both the build time and the storage space consumed by this 
 
 ##### Port Mapping
 
-The _Rails_ server port default number is 3000.  The _vagrant-ruby-rails_ _Vagrantfile_ maps _guest-vbox_ port number 3000 to _host_ port number 3030, so it will not conflict with the Rails default port 3000 you may have already been using before installing the _vagrant-ruby-rails_ _guest-vbox_.  The choice of port number 3030 is arbitrary.  If you wish to change this port mapping to a _host_ number port which better suits your needs, you can do so by editing the _Vagrantfile_.  By revising this port mapping for each instance, you may also run more than one instance of _vagrant-ruby-rails_ _guest-vbox_ at the same time.  For more information, see the _Vagrant_ documentation about the _config.vm.network_ directive.
+The _Rails_ server port default number is 3000.  The _vagrant-ruby-rails_ _Vagrantfile_ maps _guest-vbox_ port number 3000 to _host_ port number 3033, so it will not conflict with the Rails default port 3000 you may have already been using before installing the _vagrant-ruby-rails_ _guest-vbox_.  The choice of port number 3033 is arbitrary.  If you wish to change this port mapping to a _host_ number port which better suits your needs, you can do so by editing the _Vagrantfile_.  By revising this port mapping for each instance, you may also run more than one instance of _vagrant-ruby-rails_ _guest-vbox_ at the same time.  For more information, see the _Vagrant_ documentation about the _config.vm.network_ directive.
 
 ##### Memory (RAM) Usage
 
@@ -360,7 +359,7 @@ _VirtualBox_ will dynamically increase the size of the _guest-vbox_ _Ubuntu Serv
 
 Provisioning is a process during which all of the components needed for the _vagrant-ruby-rails_ _guest-vbox_ are downloaded, built, and placed into the _vagrant-ruby-rails_ _guest-vbox_.  By default, _Vagrant_ executes this time-consumng provisioning of the _guest-vbox_ only the first time "vagrant up" is executed.  Subsequent "vagrant up" commands will fetch the previously provisioned image from _host_ local storage, rather than redundantly provisioning the _guest-vbox_ every time "vagrant up" is executed.
 
-The provisioning file is the _Vagrantfile_.  Inspect the _Vagrantfile_, and notice the provisioning commands which are located at the end of the file, following the "config.vm.provision" directive.  Notice that these are typical GMU/Linux-style commands which you might use on a command line or in a _Bash_ shell script.  By understanding how the _Vagrant_-specific directives, and the _Bash_-type commands work together, you can easily change the default versions of the components installed, or add/remove components, as desired.
+The provisioning file is the _Vagrantfile_.  Inspect the _Vagrantfile_, and notice the provisioning commands which are located at the end of the file, following the "config.vm.provision" directive.  Notice that these are typical GNU/Linux-style commands which you might use on a command line or in a _Bash_ shell script.  By understanding how the _Vagrant_-specific directives, and the _Bash_-type commands work together, you can easily change the default versions of the components installed, or add/remove components, as desired.
 
 Note that if you change the provisioning commands at the end of the _Vagrantfile_, the installed _guest-vbox_ image will need to be rebuilt, (re-provisioned), in order to implement those changes.  The _guest-vbox_ is re-provisioned by executing the "vagrant provision" command.
 
@@ -368,7 +367,7 @@ Please see the _Vagrant_ documentation for more information about provisioning _
 
 ##### Installing _Vagrant_
 
-The _vagrant-ruby-rails_ _guest-vbox_ is built and managed by _Vagrant_.  The specific version of _Vagrant_ used on the _vagrant-ruby-rails_ project development computer is _Vagrant_ 1.8.1 (DEB-64bit).  You may have success with earlier versions of _Vagrant_, but the _vagrant-ruby-rails_ project has been built/tested using only 1.8.1.
+The _vagrant-ruby-rails_ _guest-vbox_ is built and managed by _Vagrant_.  The specific version of _Vagrant_ used on the _vagrant-ruby-rails_ project development computer is _Vagrant_ 1.9.3.  You may have success with other versions of _Vagrant_, but the _vagrant-ruby-rails_ project has been built/tested using only 1.9.3.
 
 _Vagrant_ installation is typically not difficult for those persons familiar with installation of software on their operating system.
 
@@ -376,29 +375,31 @@ For _Vagrant_ installation instructions, please visit the _Vagrant_ web site : h
 
 ##### Installing _VirtualBox_
 
-_vagrant-ruby-rails_ uses _VirtualBox_ as the provider.  The specific version of _VirtualBox_ used as the provider on the _vagrant-ruby-rails_ project development computer is _VirtualBox_ 5.0.20 r106931 (AMD64).  You will probably have success with slightly earlier versions of _VirtualBox_, or the most recent stable version, but the _vagrant-ruby-rails_ project has not tested those.
+_vagrant-ruby-rails_ uses _VirtualBox_ as the provider.  The specific version of _VirtualBox_ used as the provider on the _vagrant-ruby-rails_ project development computer is _VirtualBox_ 5.1.14 (AMD64).  You will probably have success with slightly differing versions of _VirtualBox_, or the most recent stable version, but the _vagrant-ruby-rails_ project has not tested those.
 
 _VirtualBox_ installation is typically not difficult for those persons familiar with installation of software on their operating system.
 
 For _VirtualBox_ installation instructions, please visit the _VirtualBox_ web site : https://www.virtualbox.org/
 
-##### Using _Ubuntu/Trusty32_
+##### _Bento/Ubuntu-16.04-i386_
 
-The _Vagrantfile_ specifies that the _VirtualBox_ image to be loaded during provisioning is _ubuntu/trusty64_, which is a 64-bit CPU image.  It is not strictly required, you may use a 32-bit Ubuntu Linux image if necessary.  If that is the case, revise the _Vagrantfile_, to specify _ubuntu/trusty32_ instead of _ubuntu/trusty64_, e.g., find and change:
+The _Vagrantfile_ specifies that the _VirtualBox_ image to be loaded during provisioning is _bento/ubuntu-16.04-i386_, which is a 32-bit CPU image.  It is not strictly required, you may use a 64-bit Ubuntu Linux image, or possibly some other compatible (e.g., Debian-based), distibution of Linux, if necessary.  If that is the case, revise the _Vagrantfile_, to specify some other image, e.g., find and change:
 
-        config.vm.box = "ubuntu/trusty64"
+        config.vm.box = "bento/ubuntu-16.04-i386"
 
 to:
 
-        config.vm.box = "ubuntu/trusty32".
+        config.vm.box = "bento/ubuntu-16.04".
 
-If you previously provisioned a _guest-vbox_, then after revising the _Vagrantfile_, execute "vagrant destroy", to remove the existing 64-bit _guest-vbox_ image.  Then execute "vagrant up", which downloads the 32-bit _VirtualBox_ image from the Hashicorp Ubuntu repository, and is used to build the _guest-vbox_.
+An image specifier of _bento/ubuntu-16.04_ downloads and starts a 64-bit version of Ubunut 16.04.2.  For more information, or to use other compatible versions of Linux, see the Bento page on Hashicorp's website :  https://atlas.hashicorp.com/bento
+
+If you previously provisioned a _guest-vbox_, then after revising the _Vagrantfile_ to specify a different VagrantBox image, execute "vagrant destroy", to remove the existing _guest-vbox_ image.  Then execute "vagrant up", which downloads the new _VirtualBox_ image from the Hashicorp Ubuntu repository, and is used to build the _guest-vbox_.
 
 ##### Misc Troubleshooting Tips
 
 ###### "Vagrant SSH" Times Out
 
-If "vagrant ssh" times out while attempting to shell into the _guest-vbox_, one cause may be that the _host_ CPU is not capable of executing the _ubuntu/trusty64_ _guest-vbox_ image.  See "Using _Ubuntu/Trusty32_", above.
+If "vagrant ssh" times out while attempting to shell into the _guest-vbox_, one cause may be that the _guest-box_ image requires a 64-bit installation of VirtualBox, but your host is capable of only 32-bit guests.  Also, it is possible that some _guest-box_ image you have installed is simply defective.  As an example, prompting for a password during boot has been observed with the _ubuntu/xenial64_ _guest-vbox_.  Consider trying a different _guest-vbox_ image.  See "Using _Bento/Ubuntu-16.04-i386_", above.
 
 ###### Remote SSH Times Out
 
@@ -442,7 +443,7 @@ If you are unfamiliar with the products in this document, you may wish to inform
 
 ##### "works on my machine"
 
-This product, at this time, is in the _alpha_ stage of development.  Extensive testing has not been done on its components, only its gross operation has been confirmed .  _Host_ hardware and _host_ OS environment testing has been limited to the single generic _AMD/Ubuntu/Windows_ box used for development.
+This product, at this time, is in the _alpha_ stage of development.  Extensive testing has not been done on its components, only its gross operation has been confirmed .  _Host_ hardware and _host_ OS environment testing has been limited to the single generic _AMD/Ubuntu_ box used for development.
 
 Your feedback is appreciated, especially with regard to success or problems using this product on _OS X_.
 
@@ -455,5 +456,5 @@ Please read the _Apache License, Version 2.0_ included with this README file for
 
 
 
-###### Copyright 2016 Rex Addiscentis, all rights reserved.
+###### Copyright 2017 Rex Addiscentis, all rights reserved.
 ###### http://stopbeingpetty.com        http://addiscent.com
