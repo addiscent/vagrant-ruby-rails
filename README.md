@@ -96,7 +96,7 @@ When you wish to do so, you may remove everything which was installed, by using 
 
 ## Software Installation
 
-Before beginning installation of _vagrant-ruby-rails_, you must already have _Vagrant_ and _VirtualBox_ installed and properly configured.  The versions used for testing were Vagrant 1.9.3 and VirtualBox 5.1.14.  Other "close" versions may work.  For more information, see the section near the end of this document, titled, "Other Notes".
+Before beginning installation of _vagrant-ruby-rails_, you must already have _Vagrant_ and _VirtualBox_ installed and properly configured.  The versions used for development and testing are Vagrant 1.9.3 and VirtualBox 5.1.14.  Other "close" versions may work.  For more information, see the section near the end of this document, titled, "Other Notes".
 
 ### Installation of _vagrant-ruby-rails_ - Expanded description
 
