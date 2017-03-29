@@ -32,7 +32,7 @@ To install _vagrant-ruby-rails_, your _host_ computer needs :
 
   * A zip file extraction program - previously installed on the _host_.
 
-This project has been tested only on _Ubuntu 16.04_.
+The installation of Ruby/Rails/etc has been tested only on the _Ubuntu 16.04_ _guest-vbox_ installed by the included Vagrantfile.
 
 #### Quickstart For Experts Already Running Vagrant With VirtualBox On Linux or Windows
 
