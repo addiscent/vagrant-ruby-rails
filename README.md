@@ -2,7 +2,7 @@
 
 ### A Ruby On Rails Development Environment (Basic)
 
-##### Containing Ubuntu Server 16.04, Ruby 2.3.4, Rails 5.0.7, Gem 2.5.2, Node.js v4.2.6, Git 2.7.4
+##### Containing Ubuntu Server 16.04(i386), Ruby 2.3.4, Rails 5.0.7, Gem 2.5.2, Node.js v4.2.6, Git 2.7.4
 
 This is a _Vagrant Box_, (https://www.vagrantup.com), intended for quick installation of a very basic _Ruby On Rails_ development environment.  Assuming _Vagrant_ and _VirtualBox_ are already installed on your _host_ computer, this _Vagrant Box_ can be easily and quickly installed and removed.
 
@@ -13,6 +13,8 @@ It also allows easy reproduction and distribution of exact duplicates of a devel
 The installed _Git_ software can be used for committing _Ruby/Rails_ project files or other sources into repositories.
 
 If you customize the configuration and provisioning files of this _vagrant-ruby-rails_ _Vagrant Box_, and then save them in a _Git_ repository, you can easily recreate your own custom _vagrant-ruby-rails_ _Vagrant Box_ development environment in the future.  Also, using an online _Git_ repository, you can easily share your customized _vagrant-ruby-rails_ _Vagrant Box_ with other users.
+
+Note that the Ubuntu Server OS installed in this Vagrant Box is _not_ a 64 bit machine runtime; it is a 32 bit image installation.  Though a 32 bit image is slightly slower than a 64 bit image for some applications, it requires less storage than a 64 bit image, and runs more legacy software.
 
 Definitions : A "_host_" is a computer on which you will be installing _vagrant-ruby-rails_.  _Vagrant-ruby-rails_ is a "_guest_" installed onto your "_host_" computer.  Because the _vagrant-ruby-rails_ "_guest_" is a _Vagrant Box_, it is referred to in this document as a _guest-vbox_.
 
@@ -38,7 +40,7 @@ The installation of Ruby/Rails/etc has been tested only on the _Ubuntu 16.04_ _g
 
 #### Quickstart For Experts Already Running Vagrant With VirtualBox On Linux or Windows
 
-##### A New Rails Dev Env And App, In Seven Easy Steps, (for details, see _Software Installation_)
+##### A New Rails Dev Env And Rails App, (for details, see _Software Installation_)
 
 ###### Copy-and-Paste The Given Commands Into Your Terminal Session
 
@@ -58,18 +60,27 @@ The installation of Ruby/Rails/etc has been tested only on the _Ubuntu 16.04_ _g
 6. Create a directory and spin up a Vagrant Box.  The spin-up provisioning installs Rails.
 > $ mkdir workspace && vagrant up && vagrant ssh
 
-  Now wait a while for the _Ubuntu Server 16.04_ image to download and provision. The amount of wait time is mostly determined by the speed of connections to the necessary servers on the Internet.  Typically, a _vagrant-ruby-rails_ instance requires 15 minutes to download and install.
+Now wait a while for the _Ubuntu Server 16.04_ image to download and provision. The amount of wait time is mostly determined by the speed of connections to the necessary servers on the Internet.  Typically, a _vagrant-ruby-rails_ instance requires 15 minutes to download and install.
   
-  After the image finishes downloading and provisioning is complete, you see the prompt of the _guest-vbox_ :
+After the image finishes downloading and provisioning is complete, you see the prompt of the _guest-vbox_ :
 
         2017.0328.0215.59
         vagrant@vagrant-ruby-rails:~
         $
-        
-7. Create a new Rails app and start the thin web server.
-> $ cd /vagrant/workspace && rails new myapp && cd myapp && rails s -b 0.0.0.0
 
-Open a web browser to _http://localhost:3033_
+7. Become root user :
+> $ sudo -s
+
+8. Create a new Rails app :
+> $ cd /vagrant/workspace && rails new myapp
+
+9. Quit being root user by exiting root user shell :
+> # exit
+
+10. Start the thin web server :
+> $ cd myapp && rails s -b 0.0.0.0
+
+While you are waiting for the web server to fill the Rails pipleline, open a web browser to _http://localhost:3033_. After the pipeline fills, in the web browser window you see :
 
         Yay! You’re on Rails!
 
@@ -142,7 +153,6 @@ The "vagrant up" command executed below will provision and start a _vagrant-ruby
 During provisioning, there is a large amount of terminal message output.  The vast majority of messages log the construction of software which is being placed _into the_  _vagrant-ruby-rails_ _Vagrant Box_.  During this procedure, _Ruby, Gems, Rails, Git, and Node.js_ are _not_ placed directly onto your _host_, they are placed into the _guest-vbox_.
 
 Enter the following command :
-
 > $ vagrant up
 
 _The Build_ starts.
@@ -262,8 +272,7 @@ The example web page shows :
 
 You may now terminate execution of the test server, by entering _Ctrl-C_ in the _guest-vbox_ terminal.
 
-It no longer necessary now to work as root, so be sure to exit as root and resume operating as the mormal "lower priviledge" user :
-
+It no longer necessary now to work as root, so be sure to exit as root and resume operating as the mormal "lower priviledge" user:
 > (root)# exit
 
 This ends verification of a successful build.  You may now continue to experiment with "myapp", or you may remove it if you have no other use for it.  If you wish to remove it, you may enter the following command.
