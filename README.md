@@ -16,6 +16,8 @@ If you customize the configuration and provisioning files of this _vagrant-ruby-
 
 Note that the _Ubuntu Server OS_ installed in this _Vagrant Box_ is _not_ a 64 bit machine runtime; it is a 32 bit image installation.  Though a 32 bit image may be slightly slower than a 64 bit image for some applications, it requires less storage than a 64 bit image, and runs more legacy software packages.
 
+If the _host_ supports simultaneous virtual machines, more than one instance of _vagrant-ruby-rails_ may execute simultaneously, as many as the host has resources to run.
+
 Definitions : A "_host_" is a computer on which you will be installing _vagrant-ruby-rails_.  _Vagrant-ruby-rails_ is a "_guest_" installed onto your "_host_" computer.  Because the _vagrant-ruby-rails_ "_guest_" is a _Vagrant Box_, it is referred to in this document as a _guest-vbox_.
 
 If you are very unfamiliar with the software products listed at the top of this document, you may wish to visit online references before proceeding.  Some relevant online resources are listed in a section near the end of this document, titled "The Short List Of Online References".
@@ -36,13 +38,13 @@ To install _vagrant-ruby-rails_, your _host_ computer needs :
 
   * A zip file extraction program - previously installed on the _host_.
 
-The installation of Ruby/Rails/etc has been tested only on the _Ubuntu 16.04_ _guest-vbox_ installed by the included Vagrantfile.
+The installation of Ruby/Rails/etc has been tested only on the _Ubuntu 16.04_ _guest-vbox_ installed by the included _Vagrantfile_.
 
 #### Quickstart For Experts Already Running Vagrant With VirtualBox On Linux or Windows
 
-##### A New Rails Dev Env And Rails App, (for details, see _Software Installation_)
+##### Instdall A New Rails Dev Env And Minimal Scaffolded Rails App, (for details, see _Software Installation_)
 
-###### Copy-and-Paste The Given Commands Into Your Terminal Session
+###### Copy-and-Paste The Commands Given Here Into Your Terminal Session
 
 1. Open a terminal session in your _host_ computer storage workspace.
 
@@ -71,13 +73,13 @@ After the image finishes downloading and provisioning is complete, you see the p
 7. Become root user :
 > $ sudo -s
 
-8. Create a new Rails app :
+8. Create a new "empty" Rails app :
 > (as root)# cd /vagrant/workspace && rails new myapp
 
 9. Quit being root user by exiting root user shell :
 > (as root)# exit
 
-10. Start the thin web server :
+10. Start the lightweight web server :
 > $ cd myapp && rails s -b 0.0.0.0
 
 While waiting for the web server to fill the Rails pipeline, open a web browser to _http://localhost:3033_. After the pipeline fills, in the web browser window you see :
@@ -272,7 +274,7 @@ The example web page shows :
 
 You may now terminate execution of the test server, by entering _Ctrl-C_ in the _guest-vbox_ terminal.
 
-It no longer necessary now to work as root, so execute the following command to exit as root and resume operating as the lower priviledge user _vagrant_:
+It no longer necessary now to work as root, so execute the following command to exit as root and resume operating as the typically more appropriate user _vagrant_:
 > (as root)# exit
 
 This ends verification of a successful build.  You may now continue to experiment with "myapp", or you may remove it if you have no other use for it.  If you wish to remove it, you may enter the following command.
@@ -298,9 +300,9 @@ The following set of commands is the minimum set required to control a _Vagrant 
 
   * "vagrant halt" - stops execution of a running _Vagrant Box_.
 
-  * "vagrant destroy" - halts an executing _Vagrant Box_, and then removes its image files, including its file system, from _host_ storage.  When this command finishes executing, the _Vagrant Box_ and its contents have been permanently deleted from _host_ file system storage.
+  * "vagrant destroy" - Removes a _guest-vbox's_ image files, including its virtual file system, from _host_ storage.  When this command finishes executing, the _guest-vbox_ operating system and its file system contents have been permanently deleted from _host_ file system storage.
   
-There are many _Vagrant_ commands in addition to those listed above; see the _Vagrant_ documentation.
+There are many _Vagrant_ commands in addition to those listed above; see the _Vagrant_ documentation.  Because a _Vagrant Box_ is also a _VirtualBox_, the many _VirtualBox_ commands may be used as well.
 
 ## Using _vagrant-ruby-rails_
 
@@ -310,7 +312,7 @@ Enter the following command :
 
 > $ ls -l /
 
-The listing which results shows a typical _Ubuntu Server 14.04_ root directory hierarchy, on the _guest-vbox_ file system.
+The listing which results shows a typical _Ubuntu Server 16.04_ root directory hierarchy, on the _guest-vbox_ file system.
 
         total 92
         drwxr-xr-x  2 root    root     4096 Apr  6 20:06 bin
@@ -342,7 +344,7 @@ Note that the _guest-vbox_ _Vagrantfile_ and _.sh_ provisioning _Bash_ files, am
         drwxrwxr-x  1 vagrant vagrant  4096 Jul 11 01:59 workspace
 
 
-These are the same files you placed into ".../vagrant-ruby-rails/" after you created it, when beginning installation of this product.
+These are the same files you placed into ".../vagrant-ruby-rails/" after you created it, when beginning installation of _vagrant-ruby-rails_.
 
 You can manage or edit those files either from "within" the _guest-vbox_, (in _guest-vbox_ "/vagrant/"), or from "outside" the _guest-vbox_, (in _host_ ".../vagrant-ruby-rails/").
 
@@ -374,7 +376,7 @@ You may also run more than one instance of _vagrant-ruby-rails_ _guest-vbox_ at 
 
 ##### Memory (RAM) Usage
 
-The amount of memory allocated to the _guest-vbox_ by default is the minimum necessary for compiling Ruby, Gems, and Rails during installation.  Based on your application needs, after installation you may wish to reduce or increase the amount of memory allocated to your _guest-vbox_.  If that is the case, after installation of a _guest-vbox_, you can use the _Vagrantfile_ directive _vb.memory_ to change the amount of allocated memory.  For more information, see the _Vagrantfile_ documentation.
+The amount of memory allocated to the _guest-vbox_ during installation is the minimum necessary for compiling Ruby, Gems, and Rails.  Based on your application needs, after installation you may wish to reduce or increase the amount of memory allocated to your _guest-vbox_.  If that is the case, after installation of a _guest-vbox_, you can use the _Vagrantfile_ directive _vb.memory_ to change the amount of allocated memory.  For more information, see the _Vagrantfile_ documentation.
 
 ##### Storage Usage
 
@@ -418,7 +420,7 @@ to:
 
 An image specifier of _bento/ubuntu-16.04_ downloads and starts a 64-bit version of _Ubuntu 16.04.2_.  For more information, or to use other compatible versions of Linux, see the Bento page on Hashicorp's website :  https://app.vagrantup.com/bento
 
-If you previously provisioned a _guest-vbox_, then after revising the _Vagrantfile_ to specify a different _VagrantBox_ image, you must execute "vagrant destroy", to remove the existing _guest-vbox_ image.  Then execute "vagrant up", which downloads the new _VirtualBox_ image from the _Hashicorp_ _Bento Ubuntu_ repository, and is used to build the _guest-vbox_.  Beware that if you "vagrant destroy" the existing _guest-vbox_ image, any files residing in the virtual file system of the existing _guest-vbox_ image will be destroyed as well.  So, save any data files which are specific to your project which you may have placed there, before destroying the _guest-vbox_ image.
+A different version of OS may be specified immediately after installing the _Vagrantfile_ in its directory, or after "vagrant up" has been executed.  If you previously provisioned a _guest-vbox_, then after revising the _Vagrantfile_ to specify a different _VagrantBox_ image, you must execute "vagrant destroy" to remove the existing _guest-vbox_ image.  Then execute "vagrant up", which downloads the new _VirtualBox_ image from the _Hashicorp_ _Bento Ubuntu_ repository, and is used to build the _guest-vbox_.  Beware that if you "vagrant destroy" an existing _guest-vbox_ image, any files residing in the virtual file system of the existing _guest-vbox_ image will be destroyed as well.  So, save any data files which are specific to your project which you may have placed there, before destroying the _guest-vbox_ image.
 
 ##### Misc Troubleshooting Tips
 
@@ -470,7 +472,7 @@ If you are unfamiliar with the products in this document, you may wish to inform
 
 This software package, at this time, is in the _alpha_ stage of development.  Extensive testing has not been done on its components, only its gross operation has been confirmed .  _Host_ hardware and _host_ OS environment testing has been limited to a single generic _AMD/Ubuntu_ box used for development.
 
-Your feedback is appreciated, especially with regard to success or problems using this product on _OS X_.
+Your feedback is appreciated, especially with regard to success or problems using this software on _OS X_.
 
 ### Licensing And Disclaimer
 
