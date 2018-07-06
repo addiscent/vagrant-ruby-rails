@@ -2,15 +2,17 @@
 
 ### A Ruby On Rails Development Environment (Basic)
 
-##### Containing Ubuntu Server 16.04, Ruby 2.4.1, Rails 5.0.2, Gem 2.6.11, Node.js 4.2.6, Git 1.9.1
+##### Containing Ubuntu Server 16.04, Ruby 2.3.4, Rails 5.0.7, Gem 2.5.2, Node.js v4.2.6, Git 2.7.4
 
 This is a _Vagrant Box_, (https://www.vagrantup.com), intended for quick installation of a very basic _Ruby On Rails_ development environment.  Assuming _Vagrant_ and _VirtualBox_ are already installed on your _host_ computer, this _Vagrant Box_ can be easily and quickly installed and removed.
 
-Because it can be quickly built or rebuilt if necessary, this _Vagrant Box_ may be handy for transient work environments, such as tutorials, or experimental work which may sacrifice the development environment.
+Because it can be quickly built or rebuilt if necessary, this _Vagrant Box_ may be handy for transient work environments, such as tutorials, or experimental work which may sacrifice this expendable _vagrant-ruby-rails_ development environment package.
 
 It also allows easy reproduction and distribution of exact duplicates of a development environment shared among multiple project members.
 
-The installed _Git_ software can be used for committing _Ruby/Rails_ project files or other sources into repositories.  If you customize the configuration and provisioning files of this _vagrant-ruby-rails_ _Vagrant Box_, and then save them in a _Git_ repository, you can easily recreate your custom _vagrant-ruby-rails_ _Vagrant Box_ development environment in the future.  Or, using an online _Git_ repository, you can easily share your customized _vagrant-ruby-rails_ _Vagrant Box_ with other users.
+The installed _Git_ software can be used for committing _Ruby/Rails_ project files or other sources into repositories.
+
+If you customize the configuration and provisioning files of this _vagrant-ruby-rails_ _Vagrant Box_, and then save them in a _Git_ repository, you can easily recreate your own custom _vagrant-ruby-rails_ _Vagrant Box_ development environment in the future.  Also, using an online _Git_ repository, you can easily share your customized _vagrant-ruby-rails_ _Vagrant Box_ with other users.
 
 Definitions : A "_host_" is a computer on which you will be installing _vagrant-ruby-rails_.  _Vagrant-ruby-rails_ is a "_guest_" installed onto your "_host_" computer.  Because the _vagrant-ruby-rails_ "_guest_" is a _Vagrant Box_, it is referred to in this document as a _guest-vbox_.
 
@@ -194,15 +196,15 @@ Enter the following commands.  Notice the components which have been installed, 
 
           Result :
 
-            ruby 2.4.1p111 (2017-03-22 revision 58053)
+            ruby 2.3.4p301 (2017-03-30 revision 58214)
 
 > $ rails --version
     
-          Result : Rails 5.0.2
+          Result : Rails 5.0.7
 
 > $ gem --version
     
-          Result : 2.6.11
+          Result : 2.5.2
 
 > $ bundler --version
     
@@ -227,9 +229,15 @@ Note the name of the currrently logged-in user is _vagrant_, the default built-i
 
 Ensure you are still in the "vagrant ssh" session in your terminal program.
 
-Enter the following commands.  These commands build and serve a web page from an example _Rails_ app named "myapp" :
+Enter the following commands.
 
-> $ cd /vagrant/workspace && rails new myapp && cd myapp && rails s -b 0.0.0.0
+Become root user by executing this command :
+
+> $ sudo -s
+
+The next command line builds and serves a web page from an example _Rails_ app named "myapp" :
+
+> (root)# cd /vagrant/workspace && rails new myapp && cd myapp && rails s -b 0.0.0.0
 
 Terminal output messages shown below trace the progress of the command above, which builds the scaffolding for a new Rails app named "myapp", and then executes the Rails server.
 
@@ -253,6 +261,10 @@ The example web page shows :
         Yay! You’re on Rails!
 
 You may now terminate execution of the test server, by entering _Ctrl-C_ in the _guest-vbox_ terminal.
+
+It no longer necessary now to work as root, so be sure to exit as root and resume operating as the mormal "lower priviledge" user :
+
+> (root)# exit
 
 This ends verification of a successful build.  You may now continue to experiment with "myapp", or you may remove it if you have no other use for it.  If you wish to remove it, you may enter the following command.
 
@@ -456,5 +468,5 @@ Please read the _Apache License, Version 2.0_ included with this README file for
 
 
 
-###### Copyright 2017 Rex Addiscentis, all rights reserved.
-###### http://stopbeingpetty.com        http://addiscent.com
+###### Copyright 2018 Rex Addiscentis, all rights reserved.
+###### http://addiscent.com
