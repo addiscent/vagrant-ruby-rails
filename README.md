@@ -474,7 +474,7 @@ Your feedback is appreciated, especially with regard to success or problems usin
 
 ### Licensing And Disclaimer
 
-_USE THIS PRODUCT AT YOUR OWN RISK. The original author and other contributors are not responsible or liable for adverse consequences caused by use of this software, even if used as designed or intended, or as described or implied, herein or elsewhere._
+_USE THIS SOFTWARE AT YOUR OWN RISK. The original author and other contributors are not responsible or liable for adverse consequences caused by use of this software, even if used as designed or intended, or as described or implied, herein or elsewhere._
 
 Please read the _Apache License, Version 2.0_ included with this README file for important licensing information and disclaimers.
 
