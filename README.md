@@ -80,7 +80,7 @@ After the image finishes downloading and provisioning is complete, you see the p
 10. Start the thin web server :
 > $ cd myapp && rails s -b 0.0.0.0
 
-While waiting for the web server to fill the Rails pipleline, open a web browser to _http://localhost:3033_. After the pipeline fills, in the web browser window you see :
+While waiting for the web server to fill the Rails pipeline, open a web browser to _http://localhost:3033_. After the pipeline fills, in the web browser window you see :
 
         Yay! You’re on Rails!
 
@@ -148,9 +148,9 @@ Create a directory named "workspace".  The "workspace" directory is the recommen
 
 #### Do _The Build_
 
-The "vagrant up" command executed below will provision and start a _vagrant-ruby-rails_ _Vagrant Box_.  The work done by Vagrant during this initial "vagrant up" operation will be performed only once.  Typically, the _guest-vbox_ image requires 15 minutes to download and build.  Subsequent "vagrant up" operations will result in a running _guest-vbox_ within approximately one minute.
+The "vagrant up" command executed below provisions and starts a _vagrant-ruby-rails_ _Vagrant Box_.  The work done by _Vagrant_ during this initial "vagrant up" operation will be performed only once.  Typically, the _guest-vbox_ image requires 15 minutes to download and build.  Subsequent "vagrant up" operations will result in a running _guest-vbox_ within approximately one minute.
 
-During provisioning, there is a large amount of terminal message output.  The vast majority of messages log the construction of software which is being placed _into the_  _vagrant-ruby-rails_ _Vagrant Box_.  During this procedure, _Ruby, Gems, Rails, Git, and Node.js_ are _not_ placed directly onto your _host_, they are placed into the _guest-vbox_.
+During provisioning, there is a large amount of terminal message output.  The vast majority of these messages log the construction of software which is being placed _into the_  _vagrant-ruby-rails_ _Vagrant Box_.  During this procedure, _Ruby, Gems, Rails, Git, and Node.js_ are _not_ placed directly onto your _host_, they are placed into the _guest-vbox_.
 
 Enter the following command :
 > $ vagrant up
@@ -165,7 +165,7 @@ A very long list of text messages is output during the build process, beginning 
 
 The build tools will output numerous status/progress messages.  If you are using a terminal which is configured to show color text, most of the informational messages displayed are green in color, but, some are red-color text output.  The output messages are color coded by _Vagrant_; green messages indicate those of STDOUT from the _guest-vbox_, while red messages indicate those of STDERR from the _guest-vbox_.
 
-Red-color messages are common, they do not indicate an error has definitely occured; the author of that particular software simply chose to use STDERR to output trace/status messages.  Typically, if the build fails, it will stop with an obvious error message, but in some unusual cases it does not.  After the build finishes, you should scroll back through the terminal output messages and scrutinize them for messages which _may_ indicate a legitimate error.  Sometime errors messages are displayed, but upon investigation you may discover that they are "non-fatal", and the installation software assumes it is safe to continue.  If you believe _The Build_ did not complete successfully, see the section near the end of this document titled, "If _The Build_ Fails".
+Red-color messages are common, they do not indicate an error has definitely occured; the author of that particular software simply chose to use STDERR to output trace/status messages.  Typically, if the build fails, it will stop with an obvious error message, but in some unusual cases it does not.  After the build finishes, you should scroll back through the terminal output messages and scrutinize them for messages which _may_ indicate a legitimate error.  Sometimes error messages may displayed, but upon investigation you may discover that they are "non-fatal", and the installation software assumed it was safe to continue.  If you believe _The Build_ did not complete successfully, see the section near the end of this document titled, "If _The Build_ Fails".
 
 After the build completes successfully, the last build message reads similar to the following :
 
@@ -272,7 +272,7 @@ The example web page shows :
 
 You may now terminate execution of the test server, by entering _Ctrl-C_ in the _guest-vbox_ terminal.
 
-It no longer necessary now to work as root, so be sure to exit as root and resume operating as the mormal "lower priviledge" user:
+It no longer necessary now to work as root, so execute the following command to exit as root and resume operating as the lower priviledge user _vagrant_:
 > (as root)# exit
 
 This ends verification of a successful build.  You may now continue to experiment with "myapp", or you may remove it if you have no other use for it.  If you wish to remove it, you may enter the following command.
@@ -290,7 +290,7 @@ This ends verification of a successful build.  You may now continue to experimen
 
 #### Quicklist Of Vagrant Commands
 
-The following set of commands is the minimum required to control a _Vagrant Box_:
+The following set of commands is the minimum set required to control a _Vagrant Box_ from a shell prompt :
 
   * "vagrant up" - creates a new _Vagrant Box_ on the _host_, directed by the _Vagrantfile_. Also restarts a previously halted _Vagrant Box_.
 
@@ -299,6 +299,8 @@ The following set of commands is the minimum required to control a _Vagrant Box_
   * "vagrant halt" - stops execution of a running _Vagrant Box_.
 
   * "vagrant destroy" - halts an executing _Vagrant Box_, and then removes its image files, including its file system, from _host_ storage.  When this command finishes executing, the _Vagrant Box_ and its contents have been permanently deleted from _host_ file system storage.
+  
+There are many _Vagrant_ commands in addition to those listed above; see the _Vagrant_ documentation.
 
 ## Using _vagrant-ruby-rails_
 
@@ -366,25 +368,27 @@ In order to minimize both the build time and the storage space consumed by this 
 
 ##### Port Mapping
 
-The _Rails_ server port default number is 3000.  The _vagrant-ruby-rails_ _Vagrantfile_ maps _guest-vbox_ port number 3000 to _host_ port number 3033, so it will not conflict with the _host's_ Rails default port 3000 you may have already been using before installing the _vagrant-ruby-rails_ _guest-vbox_.  The choice of port number 3033 is arbitrary.  If you wish to change this port mapping to a _host_ number port which better suits your needs, you can do so by editing the _Vagrantfile_.  By revising this port mapping for each instance, you may also run more than one instance of _vagrant-ruby-rails_ _guest-vbox_ at the same time, (you may install as many _vagrant-ruby-rails_ _Vagrant Boxes_ as the host has resources to run).  For more information, see the _Vagrant_ documentation about the _config.vm.network_ directive.
+A _Rails_ server port default number is 3000.  The _vagrant-ruby-rails_ _Vagrantfile_ maps _guest-vbox_ port number 3000 to _host_ port number 3033.  In order to prevent port assignment conflict with a possible previous installation of _Rails_ on the _host_, port 3033 was chosen so it will not conflict with the _host's_ _Rails_ default port 3000.  The choice of port number 3033 is arbitrary.  If you wish to change this port mapping to a _host_ port number which better suits your needs, you can do so by editing the _Vagrantfile_.
+
+You may also run more than one instance of _vagrant-ruby-rails_ _guest-vbox_ at the same time, by revising this port mapping for each additional instance of a _guest-vbox_ installed.  You may install as many _vagrant-ruby-rails_ _Vagrant Boxes_ as the host has resources to run.  When installing multiple _guest-vboxes_, the port assigment directive must be changed in the _Vagrantfile_ before a conflicting _guest-vbox_ is provisioned the first time.  During "vagrant up", a port conflict error message notifies the operator if a conflict is detected.  For more information, see the _Vagrant_ documentation about the _config.vm.network_ directive.
 
 ##### Memory (RAM) Usage
 
-The amount of memory allocated to the _guest-vbox_ by default is the minimum necessary for compiling Ruby, Gems, and Rails during installation.  Based on your application needs, after installation you may wish to reduce or increase the amount of memory allocated to your _guest-vbox_.  If that is the case, after installation of this _guest-vbox_, you can use the _Vagrantfile_ directive _vb.memory_ to change the amount of allocated memory.  For more information, see the _Vagrant_ documentation.
+The amount of memory allocated to the _guest-vbox_ by default is the minimum necessary for compiling Ruby, Gems, and Rails during installation.  Based on your application needs, after installation you may wish to reduce or increase the amount of memory allocated to your _guest-vbox_.  If that is the case, after installation of a _guest-vbox_, you can use the _Vagrantfile_ directive _vb.memory_ to change the amount of allocated memory.  For more information, see the _Vagrantfile_ documentation.
 
 ##### Storage Usage
 
-_VirtualBox_ will dynamically increase the size of the _guest-vbox_ _Ubuntu Server_ virtual disk drive as you add new files into its file system.  The maximum virtual disk drive size of this _guest-vbox_ _Ubuntu Server_ is 40GB.  This limit was set by the original developer of the _Ubuntu Server 14.04_ _VirtualBox_ image; it cannot be changed by the user.
+_VirtualBox_ will dynamically increase the size of the _guest-vbox_ _Ubuntu Server_ virtual disk drive as you add new files into its file system.  The maximum virtual disk drive size of this _guest-vbox_ _Ubuntu Server_ is 40GB.  This limit was set by the original developer of the _Ubuntu Server 16.04_ _VirtualBox_ image; it cannot be changed by the user.
 
 ##### Provisioning
 
-Provisioning is a process during which all of the components needed for the _vagrant-ruby-rails_ _guest-vbox_ are downloaded, built, and placed into the _vagrant-ruby-rails_ _guest-vbox_.  By default, _Vagrant_ executes this time-consumng provisioning of the _guest-vbox_ only the first time "vagrant up" is executed.  Subsequent "vagrant up" commands will fetch the previously provisioned image from _host_ local storage, rather than redundantly provisioning the _guest-vbox_ every time "vagrant up" is executed.
+Provisioning is a process during which all of the components needed for the _vagrant-ruby-rails_ _guest-vbox_ are downloaded, built, and placed into the _vagrant-ruby-rails_ _guest-vbox_.  By default, _Vagrant_ executes this time-consuming provisioning of the _guest-vbox_ only the first time "vagrant up" is executed.  Subsequent "vagrant up" commands will fetch the previously provisioned image from _host_ local storage, rather than redundantly provisioning the _guest-vbox_ every time "vagrant up" is executed.
 
 The provisioning file is the _Vagrantfile_.  Inspect the _Vagrantfile_, and notice the provisioning commands which are located at the end of the file, following the "config.vm.provision" directive.  Notice that these are typical GNU/Linux-style commands which you might use on a command line or in a _Bash_ shell script.  By understanding how the _Vagrant_-specific directives, and the _Bash_-type commands work together, you can easily change the default versions of the components installed, or add/remove components, as desired.
 
 Note that if you change the provisioning commands at the end of the _Vagrantfile_, the installed _guest-vbox_ image will need to be rebuilt, (re-provisioned), in order to implement those changes.  The _guest-vbox_ is re-provisioned by executing the "vagrant provision" command.
 
-Please see the _Vagrant_ documentation for more information about provisioning _Vagrant Boxes_.
+See the _Vagrant_ documentation for more information about provisioning _Vagrant Boxes_.
 
 ##### Installing _Vagrant_
 
@@ -404,7 +408,7 @@ For _VirtualBox_ installation instructions, please visit the _VirtualBox_ web si
 
 ##### _Bento/Ubuntu-16.04-i386_
 
-The _Vagrantfile_ specifies that the _VirtualBox_ image to be loaded during provisioning is _bento/ubuntu-16.04-i386_, which is a 32-bit CPU image.  It is not strictly required, you may use a 64-bit Ubuntu Linux image, or possibly some other compatible (e.g., Debian-based), distibution of Linux, if necessary.  If that is the case, revise the _Vagrantfile_, to specify some other image, e.g., find and change:
+The _Vagrantfile_ specifies that the _operating system_ image to be loaded during provisioning is _bento/ubuntu-16.04-i386_, which is a 32-bit CPU image.  An i386 image is not strictly required; as an alternative, you may use a 64-bit _Ubuntu Linux_ image, or possibly some other compatible (e.g., Debian-based), distibution of Linux, if necessary.  If that is the case, revise the _Vagrantfile_ to specify some other image; e.g., to install 64 bit _Ubuntu_ instead of 32 bit, find and change:
 
         config.vm.box = "bento/ubuntu-16.04-i386"
 
@@ -412,9 +416,9 @@ to:
 
         config.vm.box = "bento/ubuntu-16.04".
 
-An image specifier of _bento/ubuntu-16.04_ downloads and starts a 64-bit version of Ubunut 16.04.2.  For more information, or to use other compatible versions of Linux, see the Bento page on Hashicorp's website :  https://app.vagrantup.com/bento
+An image specifier of _bento/ubuntu-16.04_ downloads and starts a 64-bit version of _Ubuntu 16.04.2_.  For more information, or to use other compatible versions of Linux, see the Bento page on Hashicorp's website :  https://app.vagrantup.com/bento
 
-If you previously provisioned a _guest-vbox_, then after revising the _Vagrantfile_ to specify a different VagrantBox image, execute "vagrant destroy", to remove the existing _guest-vbox_ image.  Then execute "vagrant up", which downloads the new _VirtualBox_ image from the Hashicorp Ubuntu repository, and is used to build the _guest-vbox_.  Beware that if you "vagrant destroy" the existing _guest-vbox_ image, any files in the virtual file system of the existing _guest-vbox_ image will be destroyed as well, so save any data files which are specific to your project before destroying the _guest-vbox_ image.
+If you previously provisioned a _guest-vbox_, then after revising the _Vagrantfile_ to specify a different _VagrantBox_ image, you must execute "vagrant destroy", to remove the existing _guest-vbox_ image.  Then execute "vagrant up", which downloads the new _VirtualBox_ image from the _Hashicorp_ _Bento Ubuntu_ repository, and is used to build the _guest-vbox_.  Beware that if you "vagrant destroy" the existing _guest-vbox_ image, any files residing in the virtual file system of the existing _guest-vbox_ image will be destroyed as well.  So, save any data files which are specific to your project which you may have placed there, before destroying the _guest-vbox_ image.
 
 ##### Misc Troubleshooting Tips
 
@@ -464,13 +468,13 @@ If you are unfamiliar with the products in this document, you may wish to inform
 
 ##### "works on my machine"
 
-This product, at this time, is in the _alpha_ stage of development.  Extensive testing has not been done on its components, only its gross operation has been confirmed .  _Host_ hardware and _host_ OS environment testing has been limited to the single generic _AMD/Ubuntu_ box used for development.
+This software package, at this time, is in the _alpha_ stage of development.  Extensive testing has not been done on its components, only its gross operation has been confirmed .  _Host_ hardware and _host_ OS environment testing has been limited to a single generic _AMD/Ubuntu_ box used for development.
 
 Your feedback is appreciated, especially with regard to success or problems using this product on _OS X_.
 
 ### Licensing And Disclaimer
 
-_USE THIS PRODUCT AT YOUR OWN RISK. The author and other contributors are not responsible or liable for adverse consequences caused by use of this product, even if used as designed, or as described or implied, herein or elsewhere._
+_USE THIS PRODUCT AT YOUR OWN RISK. The original author and other contributors are not responsible or liable for adverse consequences caused by use of this software, even if used as designed or intended, or as described or implied, herein or elsewhere._
 
 Please read the _Apache License, Version 2.0_ included with this README file for important licensing information and disclaimers.
 
