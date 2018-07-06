@@ -14,7 +14,7 @@ The installed _Git_ software can be used for committing _Ruby/Rails_ project fil
 
 If you customize the configuration and provisioning files of this _vagrant-ruby-rails_ _Vagrant Box_, and then save them in a _Git_ repository, you can easily recreate your own custom _vagrant-ruby-rails_ _Vagrant Box_ development environment in the future.  Also, using an online _Git_ repository, you can easily share your customized _vagrant-ruby-rails_ _Vagrant Box_ with other users.
 
-Note that the Ubuntu Server OS installed in this Vagrant Box is _not_ a 64 bit machine runtime; it is a 32 bit image installation.  Though a 32 bit image is slightly slower than a 64 bit image for some applications, it requires less storage than a 64 bit image, and runs more legacy software.
+Note that the _Ubuntu Server OS_ installed in this _Vagrant Box_ is _not_ a 64 bit machine runtime; it is a 32 bit image installation.  Though a 32 bit image may be slightly slower than a 64 bit image for some applications, it requires less storage than a 64 bit image, and runs more legacy software packages.
 
 Definitions : A "_host_" is a computer on which you will be installing _vagrant-ruby-rails_.  _Vagrant-ruby-rails_ is a "_guest_" installed onto your "_host_" computer.  Because the _vagrant-ruby-rails_ "_guest_" is a _Vagrant Box_, it is referred to in this document as a _guest-vbox_.
 
@@ -72,15 +72,15 @@ After the image finishes downloading and provisioning is complete, you see the p
 > $ sudo -s
 
 8. Create a new Rails app :
-> $ cd /vagrant/workspace && rails new myapp
+> (as root)# cd /vagrant/workspace && rails new myapp
 
 9. Quit being root user by exiting root user shell :
-> # exit
+> (as root)# exit
 
 10. Start the thin web server :
 > $ cd myapp && rails s -b 0.0.0.0
 
-While you are waiting for the web server to fill the Rails pipleline, open a web browser to _http://localhost:3033_. After the pipeline fills, in the web browser window you see :
+While waiting for the web server to fill the Rails pipleline, open a web browser to _http://localhost:3033_. After the pipeline fills, in the web browser window you see :
 
         Yay! You’re on Rails!
 
@@ -165,7 +165,7 @@ A very long list of text messages is output during the build process, beginning 
 
 The build tools will output numerous status/progress messages.  If you are using a terminal which is configured to show color text, most of the informational messages displayed are green in color, but, some are red-color text output.  The output messages are color coded by _Vagrant_; green messages indicate those of STDOUT from the _guest-vbox_, while red messages indicate those of STDERR from the _guest-vbox_.
 
-Red-color messages are common, they do not indicate an error has definitely occured; the author of that particular software simply chose to use STDERR to output trace/status messages.  Typically, if the build fails, it will often stop with an obvious error message, but in some unusual cases it does not.  After the build finishes, you should scroll back through the terminal output messages and scrutinize them for messages which _may_ indicate a legitimate error.  If you believe _The Build_ did not complete successfully, see the section near the end of this document titled, "If _The Build_ Fails".
+Red-color messages are common, they do not indicate an error has definitely occured; the author of that particular software simply chose to use STDERR to output trace/status messages.  Typically, if the build fails, it will stop with an obvious error message, but in some unusual cases it does not.  After the build finishes, you should scroll back through the terminal output messages and scrutinize them for messages which _may_ indicate a legitimate error.  Sometime errors messages are displayed, but upon investigation you may discover that they are "non-fatal", and the installation software assumes it is safe to continue.  If you believe _The Build_ did not complete successfully, see the section near the end of this document titled, "If _The Build_ Fails".
 
 After the build completes successfully, the last build message reads similar to the following :
 
@@ -247,7 +247,7 @@ Become root user by executing this command :
 
 The next command line builds and serves a web page from an example _Rails_ app named "myapp" :
 
-> (root)# cd /vagrant/workspace && rails new myapp && cd myapp && rails s -b 0.0.0.0
+> (as root)# cd /vagrant/workspace && rails new myapp && cd myapp && rails s -b 0.0.0.0
 
 Terminal output messages shown below trace the progress of the command above, which builds the scaffolding for a new Rails app named "myapp", and then executes the Rails server.
 
@@ -273,7 +273,7 @@ The example web page shows :
 You may now terminate execution of the test server, by entering _Ctrl-C_ in the _guest-vbox_ terminal.
 
 It no longer necessary now to work as root, so be sure to exit as root and resume operating as the mormal "lower priviledge" user:
-> (root)# exit
+> (as root)# exit
 
 This ends verification of a successful build.  You may now continue to experiment with "myapp", or you may remove it if you have no other use for it.  If you wish to remove it, you may enter the following command.
 
@@ -366,11 +366,11 @@ In order to minimize both the build time and the storage space consumed by this 
 
 ##### Port Mapping
 
-The _Rails_ server port default number is 3000.  The _vagrant-ruby-rails_ _Vagrantfile_ maps _guest-vbox_ port number 3000 to _host_ port number 3033, so it will not conflict with the Rails default port 3000 you may have already been using before installing the _vagrant-ruby-rails_ _guest-vbox_.  The choice of port number 3033 is arbitrary.  If you wish to change this port mapping to a _host_ number port which better suits your needs, you can do so by editing the _Vagrantfile_.  By revising this port mapping for each instance, you may also run more than one instance of _vagrant-ruby-rails_ _guest-vbox_ at the same time.  For more information, see the _Vagrant_ documentation about the _config.vm.network_ directive.
+The _Rails_ server port default number is 3000.  The _vagrant-ruby-rails_ _Vagrantfile_ maps _guest-vbox_ port number 3000 to _host_ port number 3033, so it will not conflict with the _host's_ Rails default port 3000 you may have already been using before installing the _vagrant-ruby-rails_ _guest-vbox_.  The choice of port number 3033 is arbitrary.  If you wish to change this port mapping to a _host_ number port which better suits your needs, you can do so by editing the _Vagrantfile_.  By revising this port mapping for each instance, you may also run more than one instance of _vagrant-ruby-rails_ _guest-vbox_ at the same time, (you may install as many _vagrant-ruby-rails_ _Vagrant Boxes_ as the host has resources to run).  For more information, see the _Vagrant_ documentation about the _config.vm.network_ directive.
 
 ##### Memory (RAM) Usage
 
-Based on your application needs you may wish to reduce or increase the amount of memory allocated to your _guest-vbox_.  If that is the case, after installation of this _guest-vbox_, you can use the _Vagrantfile_ directive _vb.memory_ to change the amount of allocated memory.  For more information, see the _Vagrant_ documentation.
+The amount of memory allocated to the _guest-vbox_ by default is the minimum necessary for compiling Ruby, Gems, and Rails during installation.  Based on your application needs, after installation you may wish to reduce or increase the amount of memory allocated to your _guest-vbox_.  If that is the case, after installation of this _guest-vbox_, you can use the _Vagrantfile_ directive _vb.memory_ to change the amount of allocated memory.  For more information, see the _Vagrant_ documentation.
 
 ##### Storage Usage
 
@@ -412,9 +412,9 @@ to:
 
         config.vm.box = "bento/ubuntu-16.04".
 
-An image specifier of _bento/ubuntu-16.04_ downloads and starts a 64-bit version of Ubunut 16.04.2.  For more information, or to use other compatible versions of Linux, see the Bento page on Hashicorp's website :  https://atlas.hashicorp.com/bento
+An image specifier of _bento/ubuntu-16.04_ downloads and starts a 64-bit version of Ubunut 16.04.2.  For more information, or to use other compatible versions of Linux, see the Bento page on Hashicorp's website :  https://app.vagrantup.com/bento
 
-If you previously provisioned a _guest-vbox_, then after revising the _Vagrantfile_ to specify a different VagrantBox image, execute "vagrant destroy", to remove the existing _guest-vbox_ image.  Then execute "vagrant up", which downloads the new _VirtualBox_ image from the Hashicorp Ubuntu repository, and is used to build the _guest-vbox_.
+If you previously provisioned a _guest-vbox_, then after revising the _Vagrantfile_ to specify a different VagrantBox image, execute "vagrant destroy", to remove the existing _guest-vbox_ image.  Then execute "vagrant up", which downloads the new _VirtualBox_ image from the Hashicorp Ubuntu repository, and is used to build the _guest-vbox_.  Beware that if you "vagrant destroy" the existing _guest-vbox_ image, any files in the virtual file system of the existing _guest-vbox_ image will be destroyed as well, so save any data files which are specific to your project before destroying the _guest-vbox_ image.
 
 ##### Misc Troubleshooting Tips
 
